@@ -6,11 +6,30 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:44 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/15 21:22:32 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/15 23:36:37 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+// if newline exist, return index of newline
+// if not exist, return len.
+int	get_index_nl(char *str, int start, int len)
+{
+	int	i;
+
+	i = start;
+	while (i < len)
+	{
+		if (str[i] == '\n')
+		{
+			i++;
+			break ;
+		}
+		i++;
+	}
+	return (i);
+}
 
 // get char pointer from t_buffer
 /*             B  B  B  B  B  B  B  B                   len_line
@@ -20,35 +39,7 @@
 	case 4.   \n idx x  x  1  1  1  1 (len_read = 4) -> 3
 */
 
-char	*str_from_buffer(t_buffer buf)
-{
-	char	*str;
-	int		len;
-	int		i;
-
-	i = buf.index;
-	while (i < buf.length)
-	{
-		if (buf.buffer[i] == '\n')
-		{
-			i++;
-			break ;
-		}
-		i++;
-	}
-	len = i - buf.index;
-	str = (char *) malloc(sizeof(char) * (len + 1));
-	i = 0;
-	while (i < len)
-	{
-		str[i] = buf.buffer[buf.index + i];
-		i++;
-	}
-	str[i] = 0;
-	return (str);
-}
-
-void	update_line(t_string *line, t_buffer buf)
+void	update_line(t_string *line, t_buffer *buf)
 {
 	char	*str;
 	int		len;
@@ -56,26 +47,17 @@ void	update_line(t_string *line, t_buffer buf)
 
 	if (!line->length)
 	{
-		i = buf.index;
-		while (i < buf.length)
-		{
-			if (buf.buffer[i] == '\n')
-			{
-				i++;
-				break ;
-			}
-			i++;
-		}
-		len = i - buf.index;
+		len = get_index_nl(buf->buffer, buf->index, buf->length) - buf->index;
 		str = (char *) malloc(sizeof(char) * (len + 1));
 		i = 0;
 		while (i < len)
 		{
-			str[i] = buf.buffer[buf.index + i];
+			str[i] = buf->buffer[buf->index + i];
 			i++;
 		}
 		str[i] = 0;
-		return (str);
+		line->string = str;
+		line->length = len;
 	}
 	else
 	{
@@ -83,10 +65,13 @@ void	update_line(t_string *line, t_buffer buf)
 	}
 }
 
-// find next \n or make zero
-void	update_idx(t_buffer *buf)
-{
 
+
+// find next index to read on
+void	update_index(t_buffer *buf)
+{
+	buf->index = get_index_nl(buf->buffer, buf->index, buf->length) + 1;
+	buf->index %= buf->length;
 }
 
 char	*get_next_line(int fd)
@@ -97,16 +82,29 @@ char	*get_next_line(int fd)
 	line.length = 0;
 	if (buf.index) // if sth's left
 	{
-		update_line(&line, buf);
-		update_idx(&buf);
+		update_line(&line, &buf);
+		update_index(&buf);
 	}
 	while (!buf.index)
 	{
 		buf.length = read(fd, buf.buffer, BUFFER_SIZE);
-		line.string = get_from_buffer(buf); // need to update
-		line.length = 0;
-		update_idx(buf);
+		update_line(&line, &buf);
+		update_index(&buf);
 	}
-	
 	return (line.string);
+}
+
+#include <stdio.h>
+#include <fcntl.h>
+
+int	main(void)
+{
+	char	*line;
+	int		fd;
+	
+	fd = open("test0.txt", O_RDONLY);
+	line = get_next_line(fd);
+	printf("%s\n", line);
+	free(line);
+	return (0);
 }
