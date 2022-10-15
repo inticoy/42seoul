@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:54 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/15 20:29:01 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/15 20:46:32 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-# define BUFFER_SIZE 10 // just for test, erase when commit.
+// just for test, erase when commit.
+# define BUFFER_SIZE 42 
 
 typedef struct s_buffer
 {
