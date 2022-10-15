@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:54 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/10 15:11:04 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/15 20:29:01 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,21 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+
+# define BUFFER_SIZE 10 // just for test, erase when commit.
+
+typedef struct s_buffer
+{
+	char buffer[BUFFER_SIZE];
+	int  index;
+    int  length;
+} t_buffer;
+
+typedef struct s_string
+{
+		char *string;
+		int  length;
+} t_string;
 
 char	*get_next_line(int fd);
 
