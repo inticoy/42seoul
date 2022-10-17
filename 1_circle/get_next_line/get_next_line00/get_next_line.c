@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:44 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/17 17:28:37 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/17 18:14:59 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ char	*get_next_line(int fd)
 	t_string		line;
 
 	line.string = 0;
-	line.length = 0;	
-	if (buf.index) // if sth's left
+	line.length = 0;
+	if (buf.index)
 	{
 		update_line(&line, &buf);
 		update_index(&buf);

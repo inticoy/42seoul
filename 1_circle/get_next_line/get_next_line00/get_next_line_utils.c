@@ -6,17 +6,12 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:49 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/17 17:28:29 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/17 18:27:00 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-// find newline character in char pointer str, start from start.
-// max index to find is len - 1.
-// return value
-	// if exist, return index of newline
-	// if not exist, return last index (len - 1).
 int	get_index_nl(char *str, int start, int len)
 {
 	int	i;
@@ -31,60 +26,45 @@ int	get_index_nl(char *str, int start, int len)
 	return (len - 1);
 }
 
-// get char pointer from t_buffer
-/*             B  B  B  B  B  B  B  B                   len_line
-	case 1.   \n idx x  x  x \n  x  x (len_read = 8) -> 5
-	case 2.   \n idx x  x  x  x  x \n (len_read = 8) -> 7
-	case 3.   \n idx x  x  x  x  x  x (len_read = 8) -> 7
-	case 4.   \n idx x  x  1  1  1  1 (len_read = 4) -> 3
-*/
+void	*gnl_memcpy(void *dst, const void *src, size_t n)
+{
+	size_t	i;
+
+	if (!dst && !src)
+		return (0);
+	i = 0;
+	while (i < n)
+	{
+		((char *) dst)[i] = ((const char *) src)[i];
+		i++;
+	}
+	return (dst);
+}
 
 void	update_line(t_string *line, t_buffer *buf)
 {
 	char	*str;
 	int		len;
-	int		i;
 
-	if (!line->length) // line does not exists yet
+	len = get_index_nl(buf->buffer, buf->index, buf->length) - buf->index + 1;
+	if (!line->length)
 	{
-		len = get_index_nl(buf->buffer, buf->index, buf->length) - buf->index + 1;
 		str = (char *) malloc(sizeof(char) * (len + 1));
-		i = 0;
-		while (i < len)
-		{
-			str[i] = buf->buffer[buf->index + i];
-			i++;
-		}
-		str[i] = 0;
-		line->string = str;
-		line->length = len;
+		gnl_memcpy(str, buf->buffer + buf->index, len);
 	}
-	else // line already exists
+	else
 	{
-		len = get_index_nl(buf->buffer, buf->index, buf->length) - buf->index + 1;
 		len += line->length;
 		str = (char *) malloc(sizeof(char) * (len + 1));
-		i = 0;
-		while (i < line->length)
-		{
-			str[i] = line->string[i];
-			i++;
-		}
-		while (i < len)
-		{
-			str[i] = buf->buffer[i - line->length];
-			i++;
-		}
-		str[i] = 0;
+		gnl_memcpy(str, line->string, line->length);
+		gnl_memcpy(str + line->length, buf->buffer, len - line->length);
 		free(line->string);
-		line->string = str;
-		line->length = len;
 	}
+	str[len] = 0;
+	line->string = str;
+	line->length = len;
 }
 
-
-
-// find next index to read on
 void	update_index(t_buffer *buf)
 {
 	buf->index = get_index_nl(buf->buffer, buf->index, buf->length) + 1;
