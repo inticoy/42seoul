@@ -6,18 +6,21 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:54 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/15 20:46:32 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/17 17:23:16 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
+// just for test, erase when commit.
+# define BUFFER_SIZE 1
+#include <stdio.h>
+#include <fcntl.h>
+
+// original
 # include <unistd.h>
 # include <stdlib.h>
-
-// just for test, erase when commit.
-# define BUFFER_SIZE 42 
 
 typedef struct s_buffer
 {

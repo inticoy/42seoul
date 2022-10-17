@@ -6,14 +6,17 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:44 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/17 16:37:39 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/17 17:23:40 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-// if newline exist, return index of newline
-// if not exist, return len.
+// find newline character in char pointer str, start from start.
+// max index to find is len - 1.
+// return value
+	// if exist, return index of newline
+	// if not exist, return last index (len - 1).
 int	get_index_nl(char *str, int start, int len)
 {
 	int	i;
@@ -22,13 +25,10 @@ int	get_index_nl(char *str, int start, int len)
 	while (i < len)
 	{
 		if (str[i] == '\n')
-		{
-			i++;
-			break ;
-		}
+			return (i);
 		i++;
 	}
-	return (i);
+	return (len - 1);
 }
 
 // get char pointer from t_buffer
@@ -45,9 +45,9 @@ void	update_line(t_string *line, t_buffer *buf)
 	int		len;
 	int		i;
 
-	len = get_index_nl(buf->buffer, buf->index, buf->length) - buf->index;
 	if (!line->length) // line does not exists yet
 	{
+		len = get_index_nl(buf->buffer, buf->index, buf->length) - buf->index + 1;
 		str = (char *) malloc(sizeof(char) * (len + 1));
 		i = 0;
 		while (i < len)
@@ -61,6 +61,7 @@ void	update_line(t_string *line, t_buffer *buf)
 	}
 	else // line already exists
 	{
+		len = get_index_nl(buf->buffer, buf->index, buf->length) - buf->index + 1;
 		len += line->length;
 		str = (char *) malloc(sizeof(char) * (len + 1));
 		i = 0;
@@ -87,14 +88,8 @@ void	update_line(t_string *line, t_buffer *buf)
 void	update_index(t_buffer *buf)
 {
 	buf->index = get_index_nl(buf->buffer, buf->index, buf->length) + 1;
-	if (buf->index > buf->length)
-		buf->index -= buf->length + 1;
+	buf->index %= buf->length;
 }
-
-
-
-#include <stdio.h>
-#include <fcntl.h>
 
 
 char	*get_next_line(int fd)
@@ -133,10 +128,7 @@ int	main(void)
 	printf("%s", line);
 	line = get_next_line(fd);
 	printf("%s", line);
-	line = get_next_line(fd);
-	printf("%s", line);
-	// line = get_next_line(fd);
-	// printf("%s", line);
+
 	free(line);
 	return (0);
 }
