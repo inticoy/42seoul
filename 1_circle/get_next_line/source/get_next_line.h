@@ -6,17 +6,13 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:54 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/17 18:06:15 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/17 18:32:38 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-// just for test, erase when commit.
-# define BUFFER_SIZE 42
-
-// original
 # include <unistd.h>
 # include <stdlib.h>
 
