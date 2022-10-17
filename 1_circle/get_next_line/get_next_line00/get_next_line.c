@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:44 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/15 23:36:37 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/17 16:37:39 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ void	update_line(t_string *line, t_buffer *buf)
 	int		len;
 	int		i;
 
-	if (!line->length)
+	len = get_index_nl(buf->buffer, buf->index, buf->length) - buf->index;
+	if (!line->length) // line does not exists yet
 	{
-		len = get_index_nl(buf->buffer, buf->index, buf->length) - buf->index;
 		str = (char *) malloc(sizeof(char) * (len + 1));
 		i = 0;
 		while (i < len)
@@ -59,9 +59,25 @@ void	update_line(t_string *line, t_buffer *buf)
 		line->string = str;
 		line->length = len;
 	}
-	else
+	else // line already exists
 	{
-		
+		len += line->length;
+		str = (char *) malloc(sizeof(char) * (len + 1));
+		i = 0;
+		while (i < line->length)
+		{
+			str[i] = line->string[i];
+			i++;
+		}
+		while (i < len)
+		{
+			str[i] = buf->buffer[i - line->length];
+			i++;
+		}
+		str[i] = 0;
+		free(line->string);
+		line->string = str;
+		line->length = len;
 	}
 }
 
@@ -71,15 +87,23 @@ void	update_line(t_string *line, t_buffer *buf)
 void	update_index(t_buffer *buf)
 {
 	buf->index = get_index_nl(buf->buffer, buf->index, buf->length) + 1;
-	buf->index %= buf->length;
+	if (buf->index > buf->length)
+		buf->index -= buf->length + 1;
 }
+
+
+
+#include <stdio.h>
+#include <fcntl.h>
+
 
 char	*get_next_line(int fd)
 {
 	static t_buffer	buf;
 	t_string		line;
 
-	line.length = 0;
+	line.string = 0;
+	line.length = 0;	
 	if (buf.index) // if sth's left
 	{
 		update_line(&line, &buf);
@@ -88,23 +112,31 @@ char	*get_next_line(int fd)
 	while (!buf.index)
 	{
 		buf.length = read(fd, buf.buffer, BUFFER_SIZE);
+		if (!buf.length)
+			break ;
 		update_line(&line, &buf);
 		update_index(&buf);
 	}
 	return (line.string);
 }
 
-#include <stdio.h>
-#include <fcntl.h>
 
 int	main(void)
 {
 	char	*line;
 	int		fd;
 	
-	fd = open("test0.txt", O_RDONLY);
+	fd = open("test1.txt", O_RDONLY);
 	line = get_next_line(fd);
-	printf("%s\n", line);
+	printf("%s", line);
+	line = get_next_line(fd);
+	printf("%s", line);
+	line = get_next_line(fd);
+	printf("%s", line);
+	line = get_next_line(fd);
+	printf("%s", line);
+	// line = get_next_line(fd);
+	// printf("%s", line);
 	free(line);
 	return (0);
 }
