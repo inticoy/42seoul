@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+         #
+#    By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 18:37:33 by gyoon             #+#    #+#              #
-#    Updated: 2022/10/17 18:42:48 by gyoon            ###   ########.fr        #
+#    Updated: 2022/10/17 18:51:46 by gyoon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -D BUFFER_SIZE=42
+CFLAGS = -Wall -Wextra -Werror -D BUFFER_SIZE=1
 
 SRCS = main.c \
 	   ../source/get_next_line_utils.c \

@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 18:27:32 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/17 18:43:58 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/17 20:14:21 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(void)
 	char	*line;
 	int		fd;
 
-	fd = open("test1.txt", O_RDONLY);
+	fd = open("test2.txt", O_RDONLY);
 	line = get_next_line(fd);
 	printf("%s", line);
 	line = get_next_line(fd);
