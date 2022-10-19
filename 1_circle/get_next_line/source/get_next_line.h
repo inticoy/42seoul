@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:54 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/17 18:32:38 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/19 14:12:45 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,20 @@
 
 typedef struct s_buffer
 {
-	char	buffer[BUFFER_SIZE];
-	int		index;
-	int		length;
+	char	buf[BUFFER_SIZE];
+	int		idx;
+	int		len;
 }	t_buffer;
 
 typedef struct s_string
 {
-	char	*string;
-	int		length;
+	char	*str;
+	int		len;
 }	t_string;
 
-char	*get_next_line(int fd);
-int		get_index_nl(char *str, int start, int len);
-void	update_line(t_string *line, t_buffer *buf);
+int		read_buffer(int fd, t_buffer *buf);
+int		update_line(t_string *line, t_buffer *buf);
 void	update_index(t_buffer *buf);
+char	*get_next_line(int fd);
 
 #endif

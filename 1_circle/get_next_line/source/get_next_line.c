@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:44 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/17 20:56:14 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/19 14:31:07 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,26 @@ char	*get_next_line(int fd)
 	static t_buffer	buf;
 	t_string		line;
 
-	line.string = 0;
-	line.length = 0;
-	if (buf.index)
+	line.str = 0;
+	line.len = 0;
+	if (buf.idx)
 	{
-		update_line(&line, &buf);
+		if (!update_line(&line, &buf))
+			return (line.str);
 		update_index(&buf);
 	}
-	while (!buf.index)
+	while (!buf.idx)
 	{
-		buf.length = read(fd, buf.buffer, BUFFER_SIZE);
-		if (buf.length <= 0)
+		if (read_buffer(fd, &buf) <= 0)
 			break ;
-		update_line(&line, &buf);
+		if (!update_line(&line, &buf))
+		{
+			free(line.str);
+			return (0);
+		}
 		update_index(&buf);
-		if (line.string[line.length - 1] == '\n')
+		if (line.str[line.len - 1] == '\n')
 			break ;
 	}
-	return (line.string);
+	return (line.str);
 }
