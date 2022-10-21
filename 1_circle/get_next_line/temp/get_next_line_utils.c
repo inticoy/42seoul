@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:49 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/21 18:23:04 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/21 18:57:32 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ static void	*memcpy(void *dst, const void *src, size_t n)
 int	read_buffer(int fd, t_buffer *buf)
 {
 	buf->len = read(fd, buf->buf, BUFFER_SIZE);
-	return (buf->len);
+	if (buf->len > 0)
+		return (1);
+	else
+		return (0);
 }
 
 int	update_line(t_string *line, t_buffer *buf)
@@ -56,12 +59,11 @@ int	update_line(t_string *line, t_buffer *buf)
 	len = get_index(buf->buf, '\n', buf->idx, buf->len) - buf->idx + 1;
 	if (!line->len)
 	{
-		len_alloc = len * 2 + 1;
+		len_alloc = len * 2;
 		str = (char *) malloc(sizeof(char) * (len_alloc));
 		if (!str)
 			return (0);
 		memcpy(str, buf->buf + buf->idx, len);
-		str[len] = 0;
 		line->len_alloc = len_alloc;
 		line->str = str;
 		line->len = len;
@@ -70,15 +72,14 @@ int	update_line(t_string *line, t_buffer *buf)
 	else
 	{
 		len += line->len;
-		if (len + 1 >= line->len_alloc)
+		if (len > line->len_alloc)
 		{
-			len_alloc = len * 2 + 1;
+			len_alloc = len * 2;
 			str = (char *) malloc(sizeof(char) * (len_alloc));
 			if (!str)
 				return (0);
 			memcpy(str, line->str, line->len);
 			memcpy(str + line->len, buf->buf, len - line->len);
-			str[len] = 0;
 			free(line->str);
 			line->str = str;
 			line->len = len;
@@ -88,7 +89,6 @@ int	update_line(t_string *line, t_buffer *buf)
 		else
 		{
 			memcpy(line->str + line->len, buf->buf, len - line->len);
-			line->str[len] = 0;
 			line->len = len;
 			return (1);
 		}
