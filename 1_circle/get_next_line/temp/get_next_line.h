@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_timeout.h                            :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:54 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/21 14:51:40 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/21 17:12:16 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,13 @@ typedef struct s_string
 {
 	char	*str;
 	int		len;
-	int		alloc;
+	int		len_alloc;
 }	t_string;
 
 int		read_buffer(int fd, t_buffer *buf);
 int		update_line(t_string *line, t_buffer *buf);
 void	update_buffer(t_buffer *buf);
+char	*optimize_string(t_string *line);
 char	*get_next_line(int fd);
 
 #endif
