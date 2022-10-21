@@ -6,19 +6,35 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:44 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/19 15:08:23 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/19 16:56:07 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
+t_buffer	*add_buffer());
+
+t_buffer	*get_buffer(t_buffer head, int fd)
+{
+	while (head.next != 0)
+	{
+
+	}
+	head.next = ;
+}
+
 char	*get_next_line(int fd)
 {
-	static t_buffer	buf;
+	static t_buffer	*head;
+	t_buffer		*current;
 	t_string		line;
 
 	line.str = 0;
 	line.len = 0;
+	
+	
+	
+	current = get_buffer(head, fd);
 	if (buf.idx)
 	{
 		if (!update_line(&line, &buf))

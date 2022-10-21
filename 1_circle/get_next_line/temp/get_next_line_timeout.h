@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*   get_next_line_timeout.h                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:54 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/19 16:19:14 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/21 14:51:40 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
-# define GET_NEXT_LINE_BONUS_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
 # include <unistd.h>
 # include <stdlib.h>
 
 typedef struct s_buffer
 {
-	int			fd;
-	char		buf[BUFFER_SIZE];
-	int			idx;
-	int			len;
-	t_buffer	*next;
+	char	buf[BUFFER_SIZE];
+	int		idx;
+	int		len;
 }	t_buffer;
 
 typedef struct s_string
 {
 	char	*str;
 	int		len;
+	int		alloc;
 }	t_string;
 
 int		read_buffer(int fd, t_buffer *buf);
