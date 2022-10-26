@@ -6,16 +6,16 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:44 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/26 22:31:10 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/26 22:58:50 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	read_buffer(int fd, t_buffer *buf)
+int	read_buffer(int fd, t_buffer *b)
 {
-	buf->len = read(fd, buf->buf, BUFFER_SIZE);
-	if (buf->len > 0)
+	b->len = read(fd, b->buf, BUFFER_SIZE);
+	if (b->len > 0)
 		return (1);
 	else
 		return (0);
@@ -23,12 +23,12 @@ int	read_buffer(int fd, t_buffer *buf)
 
 t_string	init_string(void)
 {
-	t_string	str;
+	t_string	s;
 
-	str.str = 0;
-	str.len = 0;
-	str.len_alloc = 0;
-	return (str);
+	s.str = 0;
+	s.len = 0;
+	s.size = 0;
+	return (s);
 }
 
 char	*get_next_line(int fd)
@@ -48,11 +48,7 @@ char	*get_next_line(int fd)
 		if (!read_buffer(fd, &buf))
 			break ;
 		if (!update_line(&line, buf))
-		{
-			free(line.str);
-			line.str = 0;
 			break ;
-		}
 		update_buffer(&buf);
 		if (line.str[line.len - 1] == '\n')
 			break ;

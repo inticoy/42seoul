@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:54 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/26 16:01:07 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/26 22:56:26 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ typedef struct s_string
 {
 	char	*str;
 	int		len;
-	int		len_alloc;
+	int		size;
 }	t_string;
 
-int			update_line(t_string *line, t_buffer buf);
-void		update_buffer(t_buffer *buf);
-char		*optimize_string(t_string *line);
+int			update_line(t_string *l, t_buffer b);
+void		update_buffer(t_buffer *b);
+char		*optimize_string(t_string *s);
 
-int			read_buffer(int fd, t_buffer *buf);
+int			read_buffer(int fd, t_buffer *b);
 t_string	init_string(void);
 char		*get_next_line(int fd);
 
