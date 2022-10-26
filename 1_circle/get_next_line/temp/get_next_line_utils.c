@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:49 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/26 22:59:31 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/26 23:05:29 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,12 @@ int	update_line(t_string *l, t_buffer b)
 	t_string	tmp;
 
 	tmp.len = get_index(b.buf, '\n', b.idx, b.len) - b.idx + 1 + l->len;
-	tmp.size = tmp.len * 10 + 1;
 	if (l->len && tmp.len < l->size)
-	{
 		memcpy(l->str + l->len, b.buf, tmp.len - l->len);
-		l->str[tmp.len] = 0;
-	}
 	else
 	{
-		tmp.str = (char *) malloc(sizeof(char) * (tmp.size));
+		l->size = tmp.len * 10 + 1;
+		tmp.str = (char *) malloc(sizeof(char) * (l->size));
 		if (!tmp.str)
 		{
 			if (l->str)
@@ -70,11 +67,10 @@ int	update_line(t_string *l, t_buffer b)
 			memcpy(tmp.str + l->len, b.buf, tmp.len - l->len);
 			free(l->str);
 		}
-		tmp.str[tmp.len] = 0;
 		l->str = tmp.str;
-		l->size = tmp.size;
 	}
 	l->len = tmp.len;
+	l->str[l->len] = 0;
 	return (l->len);
 }
 
