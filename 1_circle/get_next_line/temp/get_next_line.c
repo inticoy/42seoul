@@ -6,11 +6,20 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:44 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/26 13:57:13 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/26 14:06:30 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+int	read_buffer(int fd, t_buffer *buf)
+{
+	buf->len = read(fd, buf->buf, BUFFER_SIZE);
+	if (buf->len > 0)
+		return (1);
+	else
+		return (0);
+}
 
 char	*get_next_line(int fd)
 {
@@ -40,7 +49,5 @@ char	*get_next_line(int fd)
 		if (line.str[line.len - 1] == '\n')
 			break ;
 	}
-	if (!optimize_string(&line))
-		return (0);
-	return (line.str);
+	return (optimize_string(&line));
 }

@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:49 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/26 13:57:12 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/26 14:06:24 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,6 @@ static void	*memcpy(void *dst, const void *src, size_t n)
 		i++;
 	}
 	return (dst);
-}
-
-int	read_buffer(int fd, t_buffer *buf)
-{
-	buf->len = read(fd, buf->buf, BUFFER_SIZE);
-	if (buf->len > 0)
-		return (1);
-	else
-		return (0);
 }
 
 int	update_line(t_string *line, t_buffer *buf)
@@ -104,13 +95,13 @@ void	update_buffer(t_buffer *buf)
 	buf->idx = get_index(buf->buf, '\n', buf->idx, buf->len) + 1;
 	buf->idx %= buf->len;
 }
-int	optimize_string(t_string *line)
+
+char	*optimize_string(t_string *line)
 {
 	char	*ret;
 
-	ret = 0;
 	if (!line->str || line->len + 1 == line->len_alloc)
-		return (1);
+		return (line->str);
 	else
 	{
 		ret = (char *) malloc(sizeof(char) * (line->len + 1));
@@ -122,7 +113,6 @@ int	optimize_string(t_string *line)
 		memcpy(ret, line->str, line->len);
 		ret[line->len] = 0;
 		free(line->str);
-		line->str = ret;
-		return (1);
+		return (ret);
 	}
 }
