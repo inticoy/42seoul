@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:44 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/26 14:49:20 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/26 15:28:35 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,7 @@ char	*get_next_line(int fd)
 		if (!read_buffer(fd, &buf))
 			break ;
 		if (!update_line(&line, buf))
-		{
-			free(line.str);
-			line.str = 0;
 			break ;
-		}
 		update_buffer(&buf);
 		if (line.str[line.len - 1] == '\n')
 			break ;

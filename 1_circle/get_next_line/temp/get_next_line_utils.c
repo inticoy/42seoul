@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:49 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/26 15:01:45 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/26 15:42:07 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,36 +43,38 @@ static void	*memcpy(void *dst, const void *src, size_t n)
 
 int	update_line(t_string *line, t_buffer buf)
 {
-	char	*str;
-	int		len;
-	int		len_alloc;
+	t_string	temp;
 
-	len = get_index(buf.buf, '\n', buf.idx, buf.len) - buf.idx + 1 + line->len;
-	len_alloc = len * 10 + 1;
-	if (line->len && len < line->len_alloc)
-	{
-		memcpy(line->str + line->len, buf.buf, len - line->len);
-		line->str[len] = 0;
-	}
+	temp.len = get_index(buf.buf, '\n', buf.idx, buf.len) - buf.idx + 1 + line->len;
+	if (line->len && temp.len < line->len_alloc)
+		memcpy(line->str + line->len, buf.buf, temp.len - line->len);
 	else
 	{
-		str = (char *) malloc(sizeof(char) * (len_alloc));
-		if (!str)
+		temp.len_alloc = temp.len * 10 + 1;
+		temp.str = (char *) malloc(sizeof(char) * (temp.len_alloc));
+		if (!temp.str)
+		{
+			if (line->str)
+			{
+				free(line->str);
+				line->str = 0;
+			}
 			return (0);
+		}
 		if (!line->len)
-			memcpy(str, buf.buf + buf.idx, len);
+			memcpy(temp.str, buf.buf + buf.idx, temp.len);
 		else
 		{
-			memcpy(str, line->str, line->len);
-			memcpy(str + line->len, buf.buf, len - line->len);
+			memcpy(temp.str, line->str, line->len);
+			memcpy(temp.str + line->len, buf.buf, temp.len - line->len);
 			free(line->str);
 		}
-		str[len] = 0;
-		line->str = str;
-		line->len_alloc = len_alloc;
+		line->str = temp.str;
+		line->len_alloc = temp.len_alloc;
 	}
-	line->len = len;
-	return (len);
+	line->len = temp.len;
+	line->str[line->len] = 0;
+	return (1);
 }
 
 void	update_buffer(t_buffer *buf)
