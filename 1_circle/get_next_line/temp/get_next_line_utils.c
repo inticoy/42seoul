@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:49 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/21 18:57:32 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/26 13:57:12 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,12 @@ int	update_line(t_string *line, t_buffer *buf)
 	len = get_index(buf->buf, '\n', buf->idx, buf->len) - buf->idx + 1;
 	if (!line->len)
 	{
-		len_alloc = len * 2;
+		len_alloc = len * 2 + 1;
 		str = (char *) malloc(sizeof(char) * (len_alloc));
 		if (!str)
 			return (0);
 		memcpy(str, buf->buf + buf->idx, len);
+		str[len] = 0;
 		line->len_alloc = len_alloc;
 		line->str = str;
 		line->len = len;
@@ -72,14 +73,15 @@ int	update_line(t_string *line, t_buffer *buf)
 	else
 	{
 		len += line->len;
-		if (len > line->len_alloc)
+		if (len + 1 > line->len_alloc)
 		{
-			len_alloc = len * 2;
+			len_alloc = len * 2 + 1;
 			str = (char *) malloc(sizeof(char) * (len_alloc));
 			if (!str)
 				return (0);
 			memcpy(str, line->str, line->len);
 			memcpy(str + line->len, buf->buf, len - line->len);
+			str[len] = 0;
 			free(line->str);
 			line->str = str;
 			line->len = len;
@@ -89,6 +91,7 @@ int	update_line(t_string *line, t_buffer *buf)
 		else
 		{
 			memcpy(line->str + line->len, buf->buf, len - line->len);
+			line->str[len] = 0;
 			line->len = len;
 			return (1);
 		}
@@ -101,24 +104,25 @@ void	update_buffer(t_buffer *buf)
 	buf->idx = get_index(buf->buf, '\n', buf->idx, buf->len) + 1;
 	buf->idx %= buf->len;
 }
-
-char	*optimize_string(t_string *line)
+int	optimize_string(t_string *line)
 {
 	char	*ret;
 
 	ret = 0;
-	if (!line->str)
-		return (line->str);
-	if (line->len + 1 == line->len_alloc)
-		return (line->str);
+	if (!line->str || line->len + 1 == line->len_alloc)
+		return (1);
 	else
 	{
 		ret = (char *) malloc(sizeof(char) * (line->len + 1));
 		if (!ret)
+		{
+			free(line->str);
 			return (0);
+		}
 		memcpy(ret, line->str, line->len);
 		ret[line->len] = 0;
 		free(line->str);
-		return (ret);
+		line->str = ret;
+		return (1);
 	}
 }

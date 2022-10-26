@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:54 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/21 20:54:08 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/26 13:57:12 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_string
 int		read_buffer(int fd, t_buffer *buf);
 int		update_line(t_string *line, t_buffer *buf);
 void	update_buffer(t_buffer *buf);
-char	*optimize_string(t_string *line);
+int		optimize_string(t_string *line);
 char	*get_next_line(int fd);
 
 #endif
