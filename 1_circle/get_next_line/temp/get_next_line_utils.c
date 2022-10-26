@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:49 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/26 14:10:54 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/26 15:01:45 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,53 +41,38 @@ static void	*memcpy(void *dst, const void *src, size_t n)
 	return (dst);
 }
 
-int	update_line(t_string *line, t_buffer *buf)
+int	update_line(t_string *line, t_buffer buf)
 {
 	char	*str;
 	int		len;
 	int		len_alloc;
 
-	len = get_index(buf->buf, '\n', buf->idx, buf->len) - buf->idx + 1;
-	if (!line->len)
+	len = get_index(buf.buf, '\n', buf.idx, buf.len) - buf.idx + 1 + line->len;
+	len_alloc = len * 10 + 1;
+	if (line->len && len < line->len_alloc)
 	{
-		len_alloc = len * 2 + 1;
-		str = (char *) malloc(sizeof(char) * (len_alloc));
-		if (!str)
-			return (0);
-		memcpy(str, buf->buf + buf->idx, len);
-		str[len] = 0;
-		line->len_alloc = len_alloc;
-		line->str = str;
-		line->len = len;
-		return (1);
+		memcpy(line->str + line->len, buf.buf, len - line->len);
+		line->str[len] = 0;
 	}
 	else
 	{
-		len += line->len;
-		if (len + 1 > line->len_alloc)
-		{
-			len_alloc = len * 2 + 1;
-			str = (char *) malloc(sizeof(char) * (len_alloc));
-			if (!str)
-				return (0);
-			memcpy(str, line->str, line->len);
-			memcpy(str + line->len, buf->buf, len - line->len);
-			str[len] = 0;
-			free(line->str);
-			line->str = str;
-			line->len = len;
-			line->len_alloc = len_alloc;
-			return (1);
-		}
+		str = (char *) malloc(sizeof(char) * (len_alloc));
+		if (!str)
+			return (0);
+		if (!line->len)
+			memcpy(str, buf.buf + buf.idx, len);
 		else
 		{
-			memcpy(line->str + line->len, buf->buf, len - line->len);
-			line->str[len] = 0;
-			line->len = len;
-			return (1);
+			memcpy(str, line->str, line->len);
+			memcpy(str + line->len, buf.buf, len - line->len);
+			free(line->str);
 		}
+		str[len] = 0;
+		line->str = str;
+		line->len_alloc = len_alloc;
 	}
-	return (1);
+	line->len = len;
+	return (len);
 }
 
 void	update_buffer(t_buffer *buf)

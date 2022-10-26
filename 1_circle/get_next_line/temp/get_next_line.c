@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:44 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/26 14:12:10 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/26 14:49:20 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,14 @@ int	read_buffer(int fd, t_buffer *buf)
 		return (0);
 }
 
-void	init_string(t_string *str)
+t_string	init_string(void)
 {
-	str->str = 0;
-	str->len = 0;
-	str->len_alloc = 0;
+	t_string	str;
+
+	str.str = 0;
+	str.len = 0;
+	str.len_alloc = 0;
+	return (str);
 }
 
 char	*get_next_line(int fd)
@@ -33,10 +36,10 @@ char	*get_next_line(int fd)
 	static t_buffer	buf;
 	t_string		line;
 
-	init_string(&line);
+	line = init_string();
 	if (buf.idx)
 	{
-		if (!update_line(&line, &buf))
+		if (!update_line(&line, buf))
 			return (0);
 		update_buffer(&buf);
 	}
@@ -44,7 +47,7 @@ char	*get_next_line(int fd)
 	{
 		if (!read_buffer(fd, &buf))
 			break ;
-		if (!update_line(&line, &buf))
+		if (!update_line(&line, buf))
 		{
 			free(line.str);
 			line.str = 0;
