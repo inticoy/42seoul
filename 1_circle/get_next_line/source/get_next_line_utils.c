@@ -6,20 +6,20 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:49 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/19 15:00:55 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/26 23:09:07 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int	get_index(char *str, char ch, int begin, int end)
+static int	get_index(char *s, char c, int begin, int end)
 {
 	int	i;
 
 	i = begin;
 	while (i < end)
 	{
-		if (str[i] == ch)
+		if (s[i] == c)
 			return (i);
 		i++;
 	}
@@ -41,43 +41,57 @@ static void	*memcpy(void *dst, const void *src, size_t n)
 	return (dst);
 }
 
-int	read_buffer(int fd, t_buffer *buf)
+int	update_line(t_string *l, t_buffer b)
 {
-	buf->len = read(fd, buf->buf, BUFFER_SIZE);
-	return (buf->len);
-}
+	t_string	tmp;
 
-int	update_line(t_string *line, t_buffer *buf)
-{
-	char	*str;
-	int		len;
-
-	len = get_index(buf->buf, '\n', buf->idx, buf->len) - buf->idx + 1;
-	if (!line->len)
-	{
-		str = (char *) malloc(sizeof(char) * (len + 1));
-		if (!str)
-			return (0);
-		memcpy(str, buf->buf + buf->idx, len);
-	}
+	tmp.len = get_index(b.buf, '\n', b.idx, b.len) - b.idx + 1 + l->len;
+	if (l->len && tmp.len < l->size)
+		memcpy(l->str + l->len, b.buf, tmp.len - l->len);
 	else
 	{
-		len += line->len;
-		str = (char *) malloc(sizeof(char) * (len + 1));
-		if (!str)
+		l->size = tmp.len * 10 + 1;
+		tmp.str = (char *) malloc(sizeof(char) * (l->size));
+		if (!tmp.str)
 			return (0);
-		memcpy(str, line->str, line->len);
-		memcpy(str + line->len, buf->buf, len - line->len);
-		free(line->str);
+		if (!l->len)
+			memcpy(tmp.str, b.buf + b.idx, tmp.len);
+		else
+		{
+			memcpy(tmp.str, l->str, l->len);
+			memcpy(tmp.str + l->len, b.buf, tmp.len - l->len);
+			free(l->str);
+		}
+		l->str = tmp.str;
 	}
-	str[len] = 0;
-	line->str = str;
-	line->len = len;
+	l->len = tmp.len;
+	l->str[l->len] = 0;
 	return (1);
 }
 
-void	update_buffer(t_buffer *buf)
+void	update_buffer(t_buffer *b)
 {
-	buf->idx = get_index(buf->buf, '\n', buf->idx, buf->len) + 1;
-	buf->idx %= buf->len;
+	b->idx = get_index(b->buf, '\n', b->idx, b->len) + 1;
+	b->idx %= b->len;
+}
+
+char	*optimize_string(t_string *s)
+{
+	char	*ret;
+
+	if (!s->str || s->len + 1 == s->size)
+		return (s->str);
+	else
+	{
+		ret = (char *) malloc(sizeof(char) * (s->len + 1));
+		if (!ret)
+		{
+			free(s->str);
+			return (0);
+		}
+		memcpy(ret, s->str, s->len);
+		ret[s->len] = 0;
+		free(s->str);
+		return (ret);
+	}
 }
