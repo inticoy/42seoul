@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:49 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/26 23:05:29 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/26 23:09:07 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,7 @@ int	update_line(t_string *l, t_buffer b)
 		l->size = tmp.len * 10 + 1;
 		tmp.str = (char *) malloc(sizeof(char) * (l->size));
 		if (!tmp.str)
-		{
-			if (l->str)
-				free(l->str);
-			l->str = 0;
 			return (0);
-		}
 		if (!l->len)
 			memcpy(tmp.str, b.buf + b.idx, tmp.len);
 		else
@@ -71,7 +66,7 @@ int	update_line(t_string *l, t_buffer b)
 	}
 	l->len = tmp.len;
 	l->str[l->len] = 0;
-	return (l->len);
+	return (1);
 }
 
 void	update_buffer(t_buffer *b)
