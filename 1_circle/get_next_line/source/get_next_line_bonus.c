@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:44 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/26 23:08:59 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/26 23:34:53 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	read_buffer(int fd, t_buffer *b)
 {
@@ -33,29 +33,29 @@ t_string	init_string(void)
 
 char	*get_next_line(int fd)
 {
-	static t_buffer	buf;
-	t_string		line;
+	static t_buffer	b;
+	t_string		l;
 
-	line = init_string();
-	if (buf.idx)
+	l = init_string();
+	if (b.idx)
 	{
-		if (!update_line(&line, buf))
+		if (!update_line(&l, b))
 			return (0);
-		update_buffer(&buf);
+		update_buffer(&b);
 	}
-	while (!buf.idx)
+	while (!b.idx)
 	{
-		if (!read_buffer(fd, &buf))
+		if (!read_buffer(fd, &b))
 			break ;
-		if (!update_line(&line, buf))
+		if (!update_line(&l, b))
 		{
-			if (line.str)
-				free(line.str);
-			return (0);
+			free(l.str);
+			l.str = 0;
+			break ;
 		}
-		update_buffer(&buf);
-		if (line.str[line.len - 1] == '\n')
+		update_buffer(&b);
+		if (l.str[l.len - 1] == '\n')
 			break ;
 	}
-	return (optimize_string(&line));
+	return (optimize_string(&l));
 }
