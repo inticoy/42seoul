@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:49 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/28 14:38:25 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/28 14:50:14 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,6 @@ int	update_line(t_string *l, t_buffer b)
 	l->len = tmp.len;
 	l->str[l->len] = 0;
 	return (1);
-}
-
-void	update_buffer(t_buffer *b)
-{
-	b->idx = get_index(b->buf, '\n', b->idx, b->len) + 1;
-	b->idx %= b->len;
 }
 
 char	*optimize_string(t_string *s)

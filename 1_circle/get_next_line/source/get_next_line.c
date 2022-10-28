@@ -6,13 +6,13 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:44 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/28 14:35:27 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/28 14:50:20 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	read_buffer(int fd, t_buffer *b)
+static int	read_buffer(int fd, t_buffer *b)
 {
 	b->len = read(fd, b->buf, BUFFER_SIZE);
 	if (b->len > 0)
@@ -21,7 +21,13 @@ int	read_buffer(int fd, t_buffer *b)
 		return (0);
 }
 
-t_string	init_string(void)
+static void	update_buffer(t_buffer *b)
+{
+	b->idx = get_index(b->buf, '\n', b->idx, b->len) + 1;
+	b->idx %= b->len;
+}
+
+static t_string	init_string(void)
 {
 	t_string	s;
 
