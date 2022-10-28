@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:49 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/28 18:32:57 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/28 18:43:37 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,10 @@ t_string	optimize_string(t_string s)
 		return (s);
 	else
 	{
-		opt.str = (char *) malloc(sizeof(char) * (opt.size));
+		opt.str = (char *) malloc(sizeof(char) * opt.size);
 		if (!opt.str)
 		{
-			if (s.str)
-				free(s.str);
+			free(s.str);
 			return (opt);
 		}
 		memcpy(opt.str, s.str, opt.len);
