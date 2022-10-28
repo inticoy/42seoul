@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:49 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/28 18:43:09 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/28 19:55:16 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,24 +78,24 @@ int	update_buffer(t_buffer *b)
 
 t_string	optimize_string(t_string s)
 {
-	t_string	ret;
+	t_string	opt;
 
-	ret.str = 0;
-	ret.len = s.len;
-	ret.size = s.len + 1;
+	opt.str = 0;
+	opt.len = s.len;
+	opt.size = s.len + 1;
 	if (!s.str || s.len + 1 == s.size)
 		return (s);
 	else
 	{
-		ret.str = (char *) malloc(sizeof(char) * ret.size);
-		if (!ret.str)
+		opt.str = (char *) malloc(sizeof(char) * opt.size);
+		if (!opt.str)
 		{
 			free(s.str);
-			return (ret);
+			return (opt);
 		}
-		memcpy(ret.str, s.str, ret.len);
-		ret.str[ret.len] = 0;
+		memcpy(opt.str, s.str, opt.len);
+		opt.str[opt.len] = 0;
 		free(s.str);
-		return (ret);
+		return (opt);
 	}
 }
