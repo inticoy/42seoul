@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:49 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/28 15:08:49 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/28 18:32:57 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,30 +70,33 @@ int	update_line(t_string *l, t_buffer b)
 	return (1);
 }
 
-void	update_buffer(t_buffer *b)
+int	update_buffer(t_buffer *b)
 {
-	b->idx = get_index(b->buf, '\n', b->idx, b->len) + 1;
-	b->idx %= b->len;
+	b->idx = (get_index(b->buf, '\n', b->idx, b->len) + 1) % b->len;
+	return (1);
 }
 
-char	*optimize_string(t_string *s)
+t_string	optimize_string(t_string s)
 {
-	char	*ret;
+	t_string	opt;
 
-	if (!s->str || s->len + 1 == s->size)
-		return (s->str);
+	opt.str = 0;
+	opt.len = s.len;
+	opt.size = s.len + 1;
+	if (!s.str || s.len + 1 == s.size)
+		return (s);
 	else
 	{
-		ret = (char *) malloc(sizeof(char) * (s->len + 1));
-		if (!ret)
+		opt.str = (char *) malloc(sizeof(char) * (opt.size));
+		if (!opt.str)
 		{
-			if (s->str)
-				free(s->str);
-			return (0);
+			if (s.str)
+				free(s.str);
+			return (opt);
 		}
-		memcpy(ret, s->str, s->len);
-		ret[s->len] = 0;
-		free(s->str);
-		return (ret);
+		memcpy(opt.str, s.str, opt.len);
+		opt.str[opt.len] = 0;
+		free(s.str);
+		return (opt);
 	}
 }

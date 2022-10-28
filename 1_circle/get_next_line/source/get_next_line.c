@@ -6,20 +6,11 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:44 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/28 15:10:24 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/28 18:27:57 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-static int	read_buffer(int fd, t_buffer *b)
-{
-	b->len = read(fd, b->buf, BUFFER_SIZE);
-	if (b->len > 0)
-		return (1);
-	else
-		return (0);
-}
 
 static t_string	init_string(void)
 {
@@ -31,21 +22,30 @@ static t_string	init_string(void)
 	return (s);
 }
 
+static int	read_buffer(int fd, t_buffer *b)
+{
+	b->len = read(fd, b->buf, BUFFER_SIZE);
+	if (b->len > 0)
+		return (1);
+	else
+		return (0);
+}
+
 char	*get_next_line(int fd)
 {
-	static t_buffer	b;
-	t_string		l;
+	static t_buffer	buffer;
+	t_string		line;
 
-	l = init_string();
+	line = init_string();
 	while (1)
 	{
-		if (!b.idx && !read_buffer(fd, &b))
+		if (!buffer.idx && !read_buffer(fd, &buffer))
 			break ;
-		if (!update_line(&l, b))
+		if (!update_line(&line, buffer) || !update_buffer(&buffer))
 			break ;
-		update_buffer(&b);
-		if (l.str[l.len - 1] == '\n' || b.idx)
+		if (line.str[line.len - 1] == '\n' || buffer.idx)
 			break ;
 	}
-	return (optimize_string(&l));
+	line = optimize_string(line);
+	return (line.str);
 }
