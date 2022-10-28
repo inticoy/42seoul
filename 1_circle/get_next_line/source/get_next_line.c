@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:44 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/26 23:51:10 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/28 14:35:27 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,14 @@ char	*get_next_line(int fd)
 	t_string		l;
 
 	l = init_string();
-	if (b.idx)
+	while (1)
 	{
-		if (!update_line(&l, b))
-			return (0);
-		update_buffer(&b);
-	}
-	while (!b.idx)
-	{
-		if (!read_buffer(fd, &b))
+		if (!b.idx && !read_buffer(fd, &b))
 			break ;
 		if (!update_line(&l, b))
-		{
-			if (l.str)
-				free(l.str);
-			l.str = 0;
 			break ;
-		}
 		update_buffer(&b);
-		if (l.str[l.len - 1] == '\n')
+		if (l.str[l.len - 1] == '\n' || b.idx)
 			break ;
 	}
 	return (optimize_string(&l));

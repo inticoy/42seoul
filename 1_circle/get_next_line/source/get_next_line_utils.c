@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:49 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/26 23:33:34 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/28 14:38:25 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,22 @@ int	update_line(t_string *l, t_buffer b)
 
 	tmp.len = get_index(b.buf, '\n', b.idx, b.len) - b.idx + 1 + l->len;
 	if (l->len && tmp.len < l->size)
-		memcpy(l->str + l->len, b.buf, tmp.len - l->len);
+		memcpy(l->str + l->len, b.buf + b.idx, tmp.len - l->len);
 	else
 	{
 		l->size = tmp.len * 10 + 1;
 		tmp.str = (char *) malloc(sizeof(char) * (l->size));
 		if (!tmp.str)
-			return (0);
-		if (!l->len)
-			memcpy(tmp.str, b.buf + b.idx, tmp.len);
-		else
 		{
-			memcpy(tmp.str, l->str, l->len);
-			memcpy(tmp.str + l->len, b.buf, tmp.len - l->len);
-			free(l->str);
+			if (l->str)
+				free(l->str);
+			l->str = 0;
+			return (0);
 		}
+		memcpy(tmp.str, l->str, l->len);
+		memcpy(tmp.str + l->len, b.buf + b.idx, tmp.len - l->len);
+		if (l->str)
+			free(l->str);
 		l->str = tmp.str;
 	}
 	l->len = tmp.len;
@@ -86,7 +87,8 @@ char	*optimize_string(t_string *s)
 		ret = (char *) malloc(sizeof(char) * (s->len + 1));
 		if (!ret)
 		{
-			free(s->str);
+			if (s->str)
+				free(s->str);
 			return (0);
 		}
 		memcpy(ret, s->str, s->len);
