@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:44 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/28 14:50:20 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/10/28 15:10:24 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,6 @@ static int	read_buffer(int fd, t_buffer *b)
 		return (1);
 	else
 		return (0);
-}
-
-static void	update_buffer(t_buffer *b)
-{
-	b->idx = get_index(b->buf, '\n', b->idx, b->len) + 1;
-	b->idx %= b->len;
 }
 
 static t_string	init_string(void)
