@@ -6,7 +6,7 @@
 /*   By: inticoy <inticoy@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 18:27:32 by gyoon             #+#    #+#             */
-/*   Updated: 2022/11/03 01:01:14 by inticoy          ###   ########.fr       */
+/*   Updated: 2022/11/03 01:13:15 by inticoy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(void)
 {
 	char	*line;
 	int		fd;
-
+	
 	fd = open("test.txt", O_RDONLY);
 	do {
 		line = get_next_line(fd);
