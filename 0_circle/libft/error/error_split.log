@@ -1,0 +1,260 @@
+For ft_split, in /Users/gyoon/francinette/tests/libft/fsoares/test_split.c:
+
+Error in test 1: ft_split("hello!", 32:' '):
+malloc protection check for 2th malloc:
+     in _add_malloc malloc_mock.c:29:8
+     in malloc malloc_mock.c:75:10
+  -> in copy_until_char ft_split.c:53:6
+     in ft_split ft_split.c:90:3
+     in test_single_split test_split.c:72:2
+     in test_split test_split.c:79:6
+     in main test_split.c:98:2
+: Should return NULL
+Error in test 2: ft_split("xxxxxxxxhello!", 120:'x'):
+malloc protection check for 2th malloc:
+     in _add_malloc malloc_mock.c:29:8
+     in malloc malloc_mock.c:75:10
+  -> in copy_until_char ft_split.c:53:6
+     in ft_split ft_split.c:90:3
+     in test_single_split test_split.c:72:2
+     in test_split test_split.c:81:8
+     in main test_split.c:98:2
+: Should return NULL
+Error in test 3: ft_split("hello!zzzzzzzz", 122:'z'):
+malloc protection check for 2th malloc:
+     in _add_malloc malloc_mock.c:29:8
+     in malloc malloc_mock.c:75:10
+  -> in copy_until_char ft_split.c:53:6
+     in ft_split ft_split.c:90:3
+     in test_single_split test_split.c:72:2
+     in test_split test_split.c:82:8
+     in main test_split.c:98:2
+: Should return NULL
+Error in test 4: ft_split("\t\t\t\thello!\t\t\t\t", 9:'\t'):
+malloc protection check for 2th malloc:
+     in _add_malloc malloc_mock.c:29:8
+     in malloc malloc_mock.c:75:10
+  -> in copy_until_char ft_split.c:53:6
+     in ft_split ft_split.c:90:3
+     in test_single_split test_split.c:72:2
+     in test_split test_split.c:83:8
+     in main test_split.c:98:2
+: Should return NULL
+Error in test 7: ft_split("^^^1^^2a,^^^^3^^^^--h^^^^", 94:'^'):
+malloc protection check for 2th malloc:
+     in _add_malloc malloc_mock.c:29:8
+     in malloc malloc_mock.c:75:10
+  -> in copy_until_char ft_split.c:53:6
+     in ft_split ft_split.c:90:3
+     in test_single_split test_split.c:72:2
+     in test_split test_split.c:90:8
+     in main test_split.c:98:2
+: 
+Memory leak: 0x602000000690 - 4 bytes
+You failed to free the memory allocated at:
+     in _add_malloc malloc_mock.c:29:8
+     in malloc malloc_mock.c:75:10
+  -> in copy_until_char ft_split.c:53:6
+     in ft_split ft_split.c:90:3
+     in test_single_split test_split.c:72:2
+     in test_split test_split.c:90:8
+     in main test_split.c:98:2
+
+Memory leak: 0x6020000006b0 - 2 bytes
+You failed to free the memory allocated at:
+     in _add_malloc malloc_mock.c:29:8
+     in malloc malloc_mock.c:75:10
+  -> in copy_until_char ft_split.c:53:6
+     in ft_split ft_split.c:90:3
+     in test_single_split test_split.c:72:2
+     in test_split test_split.c:90:8
+     in main test_split.c:98:2
+
+Memory leak: 0x6020000006d0 - 4 bytes
+You failed to free the memory allocated at:
+     in _add_malloc malloc_mock.c:29:8
+     in malloc malloc_mock.c:75:10
+  -> in copy_until_char ft_split.c:53:6
+     in ft_split ft_split.c:90:3
+     in test_single_split test_split.c:72:2
+     in test_split test_split.c:90:8
+     in main test_split.c:98:2
+7   libdyld.dylib                       0x00007fff6e607cc9 start + 1
+
+Error in test 7: ft_split("^^^1^^2a,^^^^3^^^^--h^^^^", 94:'^'):
+malloc protection check for 2th malloc:
+0   test_split.out                      0x000000010ba5c0a5 _add_malloc + 757
+1   test_split.out                      0x000000010ba5bda3 malloc + 307
+2   test_split.out                      0x000000010ba61cf7 copy_until_char + 55
+3   test_split.out                      0x000000010ba619a8 ft_split + 248
+4   test_split.out                      0x000000010ba5b6a9 test_single_split + 601
+5   test_split.out                      0x000000010ba5bab0 test_split + 464
+6   test_split.out                      0x000000010ba5bb7e main + 158
+7   libdyld.dylib                       0x00007fff6e607cc9 start + 1
+: Should return NULL
+Error in test 7: ft_split("^^^1^^2a,^^^^3^^^^--h^^^^", 94:'^'):
+malloc protection check for 3th malloc:
+0   test_split.out                      0x000000010ba5c0a5 _add_malloc + 757
+1   test_split.out                      0x000000010ba5bda3 malloc + 307
+2   test_split.out                      0x000000010ba61cf7 copy_until_char + 55
+3   test_split.out                      0x000000010ba619a8 ft_split + 248
+4   test_split.out                      0x000000010ba5b6a9 test_single_split + 601
+5   test_split.out                      0x000000010ba5bab0 test_split + 464
+6   test_split.out                      0x000000010ba5bb7e main + 158
+7   libdyld.dylib                       0x00007fff6e607cc9 start + 1
+: 
+Memory leak: 0x6020000006f0 - 2 bytes
+You failed to free the memory allocated at:
+0   test_split.out                      0x000000010ba5c0a5 _add_malloc + 757
+1   test_split.out                      0x000000010ba5bda3 malloc + 307
+2   test_split.out                      0x000000010ba61cf7 copy_until_char + 55
+3   test_split.out                      0x000000010ba619a8 ft_split + 248
+4   test_split.out                      0x000000010ba5b85e test_single_split + 1038
+5   test_split.out                      0x000000010ba5bab0 test_split + 464
+6   test_split.out                      0x000000010ba5bb7e main + 158
+7   libdyld.dylib                       0x00007fff6e607cc9 start + 1
+
+Memory leak: 0x602000000730 - 2 bytes
+You failed to free the memory allocated at:
+0   test_split.out                      0x000000010ba5c0a5 _add_malloc + 757
+1   test_split.out                      0x000000010ba5bda3 malloc + 307
+2   test_split.out                      0x000000010ba61cf7 copy_until_char + 55
+3   test_split.out                      0x000000010ba619a8 ft_split + 248
+4   test_split.out                      0x000000010ba5b85e test_single_split + 1038
+5   test_split.out                      0x000000010ba5bab0 test_split + 464
+6   test_split.out                      0x000000010ba5bb7e main + 158
+7   libdyld.dylib                       0x00007fff6e607cc9 start + 1
+
+Memory leak: 0x602000000750 - 4 bytes
+You failed to free the memory allocated at:
+0   test_split.out                      0x000000010ba5c0a5 _add_malloc + 757
+1   test_split.out                      0x000000010ba5bda3 malloc + 307
+2   test_split.out                      0x000000010ba61cf7 copy_until_char + 55
+3   test_split.out                      0x000000010ba619a8 ft_split + 248
+4   test_split.out                      0x000000010ba5b85e test_single_split + 1038
+5   test_split.out                      0x000000010ba5bab0 test_split + 464
+6   test_split.out                      0x000000010ba5bb7e main + 158
+7   libdyld.dylib                       0x00007fff6e607cc9 start + 1
+
+Error in test 7: ft_split("^^^1^^2a,^^^^3^^^^--h^^^^", 94:'^'):
+malloc protection check for 3th malloc:
+0   test_split.out                      0x000000010ba5c0a5 _add_malloc + 757
+1   test_split.out                      0x000000010ba5bda3 malloc + 307
+2   test_split.out                      0x000000010ba61cf7 copy_until_char + 55
+3   test_split.out                      0x000000010ba619a8 ft_split + 248
+4   test_split.out                      0x000000010ba5b6a9 test_single_split + 601
+5   test_split.out                      0x000000010ba5bab0 test_split + 464
+6   test_split.out                      0x000000010ba5bb7e main + 158
+7   libdyld.dylib                       0x00007fff6e607cc9 start + 1
+: Should return NULL
+Error in test 7: ft_split("^^^1^^2a,^^^^3^^^^--h^^^^", 94:'^'):
+malloc protection check for 4th malloc:
+0   test_split.out                      0x000000010ba5c0a5 _add_malloc + 757
+1   test_split.out                      0x000000010ba5bda3 malloc + 307
+2   test_split.out                      0x000000010ba61cf7 copy_until_char + 55
+3   test_split.out                      0x000000010ba619a8 ft_split + 248
+4   test_split.out                      0x000000010ba5b6a9 test_single_split + 601
+5   test_split.out                      0x000000010ba5bab0 test_split + 464
+6   test_split.out                      0x000000010ba5bb7e main + 158
+7   libdyld.dylib                       0x00007fff6e607cc9 start + 1
+: 
+Memory leak: 0x602000000770 - 2 bytes
+You failed to free the memory allocated at:
+0   test_split.out                      0x000000010ba5c0a5 _add_malloc + 757
+1   test_split.out                      0x000000010ba5bda3 malloc + 307
+2   test_split.out                      0x000000010ba61cf7 copy_until_char + 55
+3   test_split.out                      0x000000010ba619a8 ft_split + 248
+4   test_split.out                      0x000000010ba5b85e test_single_split + 1038
+5   test_split.out                      0x000000010ba5bab0 test_split + 464
+6   test_split.out                      0x000000010ba5bb7e main + 158
+7   libdyld.dylib                       0x00007fff6e607cc9 start + 1
+
+Memory leak: 0x602000000790 - 4 bytes
+You failed to free the memory allocated at:
+0   test_split.out                      0x000000010ba5c0a5 _add_malloc + 757
+1   test_split.out                      0x000000010ba5bda3 malloc + 307
+2   test_split.out                      0x000000010ba61cf7 copy_until_char + 55
+3   test_split.out                      0x000000010ba619a8 ft_split + 248
+4   test_split.out                      0x000000010ba5b85e test_single_split + 1038
+5   test_split.out                      0x000000010ba5bab0 test_split + 464
+6   test_split.out                      0x000000010ba5bb7e main + 158
+7   libdyld.dylib                       0x00007fff6e607cc9 start + 1
+
+Memory leak: 0x6020000007d0 - 4 bytes
+You failed to free the memory allocated at:
+0   test_split.out                      0x000000010ba5c0a5 _add_malloc + 757
+1   test_split.out                      0x000000010ba5bda3 malloc + 307
+2   test_split.out                      0x000000010ba61cf7 copy_until_char + 55
+3   test_split.out                      0x000000010ba619a8 ft_split + 248
+4   test_split.out                      0x000000010ba5b85e test_single_split + 1038
+5   test_split.out                      0x000000010ba5bab0 test_split + 464
+6   test_split.out                      0x000000010ba5bb7e main + 158
+7   libdyld.dylib                       0x00007fff6e607cc9 start + 1
+
+Error in test 7: ft_split("^^^1^^2a,^^^^3^^^^--h^^^^", 94:'^'):
+malloc protection check for 4th malloc:
+0   test_split.out                      0x000000010ba5c0a5 _add_malloc + 757
+1   test_split.out                      0x000000010ba5bda3 malloc + 307
+2   test_split.out                      0x000000010ba61cf7 copy_until_char + 55
+3   test_split.out                      0x000000010ba619a8 ft_split + 248
+4   test_split.out                      0x000000010ba5b6a9 test_single_split + 601
+5   test_split.out                      0x000000010ba5bab0 test_split + 464
+6   test_split.out                      0x000000010ba5bb7e main + 158
+7   libdyld.dylib                       0x00007fff6e607cc9 start + 1
+: Should return NULL
+Error in test 7: ft_split("^^^1^^2a,^^^^3^^^^--h^^^^", 94:'^'):
+malloc protection check for 5th malloc:
+0   test_split.out                      0x000000010ba5c0a5 _add_malloc + 757
+1   test_split.out                      0x000000010ba5bda3 malloc + 307
+2   test_split.out                      0x000000010ba61cf7 copy_until_char + 55
+3   test_split.out                      0x000000010ba619a8 ft_split + 248
+4   test_split.out                      0x000000010ba5b6a9 test_single_split + 601
+5   test_split.out                      0x000000010ba5bab0 test_split + 464
+6   test_split.out                      0x000000010ba5bb7e main + 158
+7   libdyld.dylib                       0x00007fff6e607cc9 start + 1
+: 
+Memory leak: 0x6020000007f0 - 2 bytes
+You failed to free the memory allocated at:
+0   test_split.out                      0x000000010ba5c0a5 _add_malloc + 757
+1   test_split.out                      0x000000010ba5bda3 malloc + 307
+2   test_split.out                      0x000000010ba61cf7 copy_until_char + 55
+3   test_split.out                      0x000000010ba619a8 ft_split + 248
+4   test_split.out                      0x000000010ba5b85e test_single_split + 1038
+5   test_split.out                      0x000000010ba5bab0 test_split + 464
+6   test_split.out                      0x000000010ba5bb7e main + 158
+7   libdyld.dylib                       0x00007fff6e607cc9 start + 1
+
+Memory leak: 0x602000000810 - 4 bytes
+You failed to free the memory allocated at:
+0   test_split.out                      0x000000010ba5c0a5 _add_malloc + 757
+1   test_split.out                      0x000000010ba5bda3 malloc + 307
+2   test_split.out                      0x000000010ba61cf7 copy_until_char + 55
+3   test_split.out                      0x000000010ba619a8 ft_split + 248
+4   test_split.out                      0x000000010ba5b85e test_single_split + 1038
+5   test_split.out                      0x000000010ba5bab0 test_split + 464
+6   test_split.out                      0x000000010ba5bb7e main + 158
+7   libdyld.dylib                       0x00007fff6e607cc9 start + 1
+
+Memory leak: 0x602000000830 - 2 bytes
+You failed to free the memory allocated at:
+0   test_split.out                      0x000000010ba5c0a5 _add_malloc + 757
+1   test_split.out                      0x000000010ba5bda3 malloc + 307
+2   test_split.out                      0x000000010ba61cf7 copy_until_char + 55
+3   test_split.out                      0x000000010ba619a8 ft_split + 248
+4   test_split.out                      0x000000010ba5b85e test_single_split + 1038
+5   test_split.out                      0x000000010ba5bab0 test_split + 464
+6   test_split.out                      0x000000010ba5bb7e main + 158
+7   libdyld.dylib                       0x00007fff6e607cc9 start + 1
+
+Error in test 7: ft_split("^^^1^^2a,^^^^3^^^^--h^^^^", 94:'^'):
+malloc protection check for 5th malloc:
+0   test_split.out                      0x000000010ba5c0a5 _add_malloc + 757
+1   test_split.out                      0x000000010ba5bda3 malloc + 307
+2   test_split.out                      0x000000010ba61cf7 copy_until_char + 55
+3   test_split.out                      0x000000010ba619a8 ft_split + 248
+4   test_split.out                      0x000000010ba5b6a9 test_single_split + 601
+5   test_split.out                      0x000000010ba5bab0 test_split + 464
+6   test_split.out                      0x000000010ba5bb7e main + 158
+7   libdyld.dylib                       0x00007fff6e607cc9 start + 1
+: Should return NULL
+
