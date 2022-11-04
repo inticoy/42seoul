@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 20:37:16 by gyoon             #+#    #+#             */
-/*   Updated: 2022/09/14 22:31:04 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/11/04 21:34:47 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*node;
-
 	if (!lst || !new)
 		return ;
-	node = *lst;
-	while (node->next != 0)
-		node = node->next;
-	node = new;
-	node->next = 0;
+	if (!*lst)
+		*lst = new;
+	else
+		ft_lstadd_back(&(*lst)->next, new);
 }

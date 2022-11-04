@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 20:34:05 by gyoon             #+#    #+#             */
-/*   Updated: 2022/09/14 23:34:54 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/11/04 20:50:52 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,7 @@
 
 int	ft_lstsize(t_list *lst)
 {
-	int	ret;
-
 	if (!lst)
 		return (0);
-	ret = 1;
-	while (lst->next != 0)
-	{
-		lst = lst->next;
-		ret++;
-	}
-	return (ret);
+	return (ft_lstsize(lst->next) + 1);
 }

@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 20:35:44 by gyoon             #+#    #+#             */
-/*   Updated: 2022/09/14 21:15:50 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/11/04 21:01:37 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_list	*ft_lstlast(t_list *lst)
 {
 	if (!lst)
 		return (0);
-	while (lst->next != 0)
+	while (lst->next)
 		lst = lst->next;
 	return (lst);
 }
