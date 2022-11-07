@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 13:36:29 by gyoon             #+#    #+#             */
-/*   Updated: 2022/11/04 22:00:12 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/11/07 20:33:45 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# define FT_ABS(N) ((N) * ((N > 0) - (N < 0)))
 
 typedef struct s_list
 {

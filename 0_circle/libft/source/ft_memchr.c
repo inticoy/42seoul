@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:05:28 by gyoon             #+#    #+#             */
-/*   Updated: 2022/09/13 21:28:09 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/11/07 14:50:22 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	while (i < n)
 	{
 		if (((unsigned char *) s)[i] == (unsigned char) c)
-			return ((void *) s + i);
+			return ((void *)((char *) s + i));
 		i++;
 	}
 	return (0);
