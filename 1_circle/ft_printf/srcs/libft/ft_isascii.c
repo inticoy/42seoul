@@ -1,41 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/10 17:23:02 by gyoon             #+#    #+#             */
-/*   Updated: 2022/11/09 15:17:56 by gyoon            ###   ########.fr       */
+/*   Created: 2022/08/25 13:41:46 by gyoon             #+#    #+#             */
+/*   Updated: 2022/09/07 19:54:17 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	get_digits(int n)
+int	ft_isascii(int c)
 {
-	if (0 <= n && n < 10)
+	if (0 <= c && c <= 127)
 		return (1);
-	return (get_digits(n / 10) + 1);
-}
-
-static char	*set_itoa(char *s, int n)
-{
-	if (-10 < n && n < 0)
-		*s++ = '-';
-	else if (10 <= n || n <= -10)
-		s = set_itoa(s, n / 10);
-	*s++ = '0' + ((n > 0) - (n < 0)) * (n % 10);
-	return (s);
-}
-
-char	*ft_itoa(int n)
-{
-	char	*ret;
-
-	ret = (char *) ft_calloc(get_digits(n) + 1, sizeof(char));
-	if (!ret)
+	else
 		return (0);
-	set_itoa(ret, n);
-	return (ret);
 }

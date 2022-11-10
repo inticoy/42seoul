@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/25 13:56:20 by gyoon             #+#    #+#             */
-/*   Updated: 2022/11/07 14:50:36 by gyoon            ###   ########.fr       */
+/*   Created: 2022/11/10 18:10:39 by gyoon             #+#    #+#             */
+/*   Updated: 2022/11/10 18:37:30 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
+#include "libft/libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+int	ft_printf(const char *f, ...)
 {
-	size_t	i;
+	int	len;
 
-	if (!dst && !src)
-		return (0);
-	i = 0;
-	while (i < n)
+	len = 0;
+	while (*f)
 	{
-		((char *) dst)[i] = ((const char *) src)[i];
-		i++;
+		write(1, f++, 1);
+		len++;
 	}
-	return (dst);
+	return (len);
+}
+
+#include <stdio.h>
+
+int main(void)
+{
+	int n = ft_printf("hello\n");
+	printf("%d\n", n);
+	return (0);
 }

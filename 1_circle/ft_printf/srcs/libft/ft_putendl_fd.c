@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/17 18:27:32 by gyoon             #+#    #+#             */
-/*   Updated: 2022/11/10 15:59:00 by gyoon            ###   ########.fr       */
+/*   Created: 2022/09/08 18:32:53 by gyoon             #+#    #+#             */
+/*   Updated: 2022/11/07 20:35:24 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <fcntl.h>
-#include "get_next_line.h"
-#include <unistd.h>
+#include "libft.h"
 
-int	main(void)
+void	ft_putendl_fd(char *s, int fd)
 {
-	char	*line;
-	int		fd;
-
-	fd = open("test.txt", O_RDONLY);
-	do {
-		line = get_next_line(fd);
-		write(1, line, 10);
-	} while (line);
-	close(fd);
-	free(line);
-	return (0);
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
 }

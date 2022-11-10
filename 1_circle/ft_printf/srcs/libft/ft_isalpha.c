@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/17 18:27:32 by gyoon             #+#    #+#             */
-/*   Updated: 2022/11/10 15:59:00 by gyoon            ###   ########.fr       */
+/*   Created: 2022/08/25 13:25:50 by gyoon             #+#    #+#             */
+/*   Updated: 2022/11/04 23:23:57 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <fcntl.h>
-#include "get_next_line.h"
-#include <unistd.h>
+#include "libft.h"
 
-int	main(void)
+int	ft_isalpha(int c)
 {
-	char	*line;
-	int		fd;
-
-	fd = open("test.txt", O_RDONLY);
-	do {
-		line = get_next_line(fd);
-		write(1, line, 10);
-	} while (line);
-	close(fd);
-	free(line);
-	return (0);
+	if (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z'))
+		return (1);
+	else
+		return (0);
 }

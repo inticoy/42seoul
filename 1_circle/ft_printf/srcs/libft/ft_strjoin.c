@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/25 18:09:29 by gyoon             #+#    #+#             */
-/*   Updated: 2022/11/07 14:53:13 by gyoon            ###   ########.fr       */
+/*   Created: 2022/09/07 21:19:51 by gyoon             #+#    #+#             */
+/*   Updated: 2022/09/14 23:27:30 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	i;
+	const size_t	slen1 = ft_strlen(s1);
+	const size_t	slen2 = ft_strlen(s2);
+	char			*ret;
+	size_t			i;
 
+	ret = (char *) malloc(sizeof(char) * (slen1 + slen2 + 1));
+	if (!ret)
+		return (0);
 	i = 0;
-	while (i < n)
-	{
-		if (((unsigned char *) s1)[i] != ((unsigned char *) s2)[i])
-			return (((unsigned char *) s1)[i] - ((unsigned char *) s2)[i]);
-		i++;
-	}
-	return (0);
+	while (i < slen1)
+		ret[i++] = *s1++;
+	while (i < slen1 + slen2)
+		ret[i++] = *s2++;
+	ret[i] = 0;
+	return (ret);
 }
