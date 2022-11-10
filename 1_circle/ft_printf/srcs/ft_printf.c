@@ -6,11 +6,12 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:10:39 by gyoon             #+#    #+#             */
-/*   Updated: 2022/11/10 18:37:30 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/11/10 22:09:00 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdarg.h>
 #include "libft/libft.h"
 
 int	ft_printf(const char *f, ...)
