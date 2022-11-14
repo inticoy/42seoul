@@ -6,11 +6,13 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:49 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/28 18:43:37 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/11/14 19:41:29 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdlib.h>
+#include <unistd.h>
 
 static int	get_index(char *s, char c, int begin, int end)
 {
@@ -26,7 +28,7 @@ static int	get_index(char *s, char c, int begin, int end)
 	return (end - 1);
 }
 
-static void	*memcpy(void *dst, const void *src, size_t n)
+static void	*gnl_memcpy(void *dst, const void *src, size_t n)
 {
 	size_t	i;
 
@@ -47,7 +49,7 @@ int	update_line(t_string *l, t_buffer b)
 
 	tmp.len = get_index(b.buf, '\n', b.idx, b.len) - b.idx + 1 + l->len;
 	if (l->len && tmp.len < l->size)
-		memcpy(l->str + l->len, b.buf + b.idx, tmp.len - l->len);
+		gnl_memcpy(l->str + l->len, b.buf + b.idx, tmp.len - l->len);
 	else
 	{
 		l->size = tmp.len * 10 + 1;
@@ -59,8 +61,8 @@ int	update_line(t_string *l, t_buffer b)
 			l->str = 0;
 			return (0);
 		}
-		memcpy(tmp.str, l->str, l->len);
-		memcpy(tmp.str + l->len, b.buf + b.idx, tmp.len - l->len);
+		gnl_memcpy(tmp.str, l->str, l->len);
+		gnl_memcpy(tmp.str + l->len, b.buf + b.idx, tmp.len - l->len);
 		if (l->str)
 			free(l->str);
 		l->str = tmp.str;
@@ -93,7 +95,7 @@ t_string	optimize_string(t_string s)
 			free(s.str);
 			return (opt);
 		}
-		memcpy(opt.str, s.str, opt.len);
+		gnl_memcpy(opt.str, s.str, opt.len);
 		opt.str[opt.len] = 0;
 		free(s.str);
 		return (opt);

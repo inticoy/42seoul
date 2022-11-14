@@ -6,11 +6,14 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:44 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/28 18:28:17 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/11/14 19:43:49 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
+#include <stdlib.h>
+#include <unistd.h>
+
 
 static t_string	init_string(void)
 {
