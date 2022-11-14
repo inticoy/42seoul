@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 18:10:39 by gyoon             #+#    #+#             */
-/*   Updated: 2022/11/14 15:54:50 by gyoon            ###   ########.fr       */
+/*   Created: 2022/10/10 15:06:54 by gyoon             #+#    #+#             */
+/*   Updated: 2022/10/28 18:08:25 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdarg.h>
-#include "libft/libft.h"
-#include <stdio.h>
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int	ft_printf(const char *fmt, ...)
+# include <unistd.h>
+# include <stdlib.h>
+
+typedef struct s_buffer
 {
-	va_list	args;
-	int		total;
+	char	buf[BUFFER_SIZE];
+	int		idx;
+	int		len;
+}	t_buffer;
 
-	va_start(args, fmt);
-	total = 0;
-	while (*fmt)
-	{
-		write(1, fmt++, 1);
-		total++;
-	}
-	va_end(args);
-	return (total);
-}
-
-int	main(void)
+typedef struct s_string
 {
-	int	n;
+	char	*str;
+	int		len;
+	int		size;
+}	t_string;
 
-	n = ft_printf("hello\n");
-	return (0);
-}
+int			update_line(t_string *l, t_buffer b);
+int			update_buffer(t_buffer *b);
+t_string	optimize_string(t_string s);
+
+char		*get_next_line(int fd);
+
+#endif
