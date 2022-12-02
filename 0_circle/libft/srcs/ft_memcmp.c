@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/17 18:27:32 by gyoon             #+#    #+#             */
-/*   Updated: 2022/11/10 15:59:00 by gyoon            ###   ########.fr       */
+/*   Created: 2022/08/25 18:09:29 by gyoon             #+#    #+#             */
+/*   Updated: 2022/11/09 15:39:55 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <fcntl.h>
-#include "get_next_line.h"
-#include <unistd.h>
+#include "libft.h"
 
-int	main(void)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	char	*line;
-	int		fd;
+	size_t	i;
 
-	fd = open("test.txt", O_RDONLY);
-	do {
-		line = get_next_line(fd);
-		write(1, line, 10);
-	} while (line);
-	close(fd);
-	free(line);
+	i = 0;
+	while (i < n)
+	{
+		if (((unsigned char *) s1)[i] != ((unsigned char *) s2)[i])
+			return (((unsigned char *) s1)[i] - ((unsigned char *) s2)[i]);
+		i++;
+	}
 	return (0);
 }

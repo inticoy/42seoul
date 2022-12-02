@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/25 18:09:29 by gyoon             #+#    #+#             */
-/*   Updated: 2022/09/14 23:30:30 by gyoon            ###   ########.fr       */
+/*   Created: 2022/09/14 20:11:42 by gyoon             #+#    #+#             */
+/*   Updated: 2022/11/04 22:50:31 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+t_list	*ft_lstnew(void *content)
 {
-	size_t	i;
+	t_list	*ret;
 
-	i = 0;
-	while (i < n)
-	{
-		if (((unsigned char *) s1)[i] != ((unsigned char *) s2)[i])
-			return (((unsigned char *) s1)[i] - ((unsigned char *) s2)[i]);
-		i++;
-	}
-	return (0);
+	ret = (t_list *) ft_calloc(1, sizeof(t_list));
+	if (!ret)
+		return (0);
+	ret->content = content;
+	return (ret);
 }

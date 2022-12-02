@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:43:46 by gyoon             #+#    #+#             */
-/*   Updated: 2022/09/14 23:29:43 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/11/07 21:49:15 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ static char	*strdup_until_char(const char *s, char c)
 
 static void	free_split(char **list, size_t i)
 {
-	while (i != 0)
+	while (i > 0)
 	{
-		free(list[i]);
-		list[i--] = 0;
+		free(list[--i]);
+		list[i] = 0;
 	}
 	free(list);
 }
@@ -88,7 +88,7 @@ char	**ft_split(const char *s, char c)
 		while (*s == c)
 			s++;
 		ret[i] = strdup_until_char(s, c);
-		if (!ret)
+		if (!ret[i])
 		{
 			free_split(ret, i);
 			return (0);

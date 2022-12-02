@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/17 18:27:32 by gyoon             #+#    #+#             */
-/*   Updated: 2022/11/10 15:59:00 by gyoon            ###   ########.fr       */
+/*   Created: 2022/08/25 13:56:20 by gyoon             #+#    #+#             */
+/*   Updated: 2022/11/09 15:40:50 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <fcntl.h>
-#include "get_next_line.h"
-#include <unistd.h>
+#include "libft.h"
 
-int	main(void)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	char	*line;
-	int		fd;
+	size_t	i;
 
-	fd = open("test.txt", O_RDONLY);
-	do {
-		line = get_next_line(fd);
-		write(1, line, 10);
-	} while (line);
-	close(fd);
-	free(line);
-	return (0);
+	if (!dst && !src)
+		return (0);
+	i = 0;
+	while (i < n)
+	{
+		((char *) dst)[i] = ((const char *) src)[i];
+		i++;
+	}
+	return (dst);
 }

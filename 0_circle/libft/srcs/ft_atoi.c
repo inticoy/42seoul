@@ -6,11 +6,13 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 18:50:15 by gyoon             #+#    #+#             */
-/*   Updated: 2022/09/15 15:47:16 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/11/07 19:52:36 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+
 
 static const char	*skip_space(const char *str)
 {

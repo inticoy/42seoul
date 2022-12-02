@@ -1,31 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/17 18:27:32 by gyoon             #+#    #+#             */
-/*   Updated: 2022/11/10 15:59:00 by gyoon            ###   ########.fr       */
+/*   Created: 2022/08/25 19:02:28 by gyoon             #+#    #+#             */
+/*   Updated: 2022/09/14 23:35:23 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <fcntl.h>
-#include "get_next_line.h"
-#include <unistd.h>
+#include "libft.h"
 
-int	main(void)
+static size_t	get_strlen(const char *s1)
 {
-	char	*line;
-	int		fd;
+	size_t	len;
 
-	fd = open("test.txt", O_RDONLY);
-	do {
-		line = get_next_line(fd);
-		write(1, line, 10);
-	} while (line);
-	close(fd);
-	free(line);
-	return (0);
+	len = 0;
+	while (s1[len] != '\0')
+		len++;
+	return (len);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	const size_t	len = get_strlen(s1);
+	char			*ret;
+	size_t			i;
+
+	ret = (char *) malloc(sizeof(char) * (len + 1));
+	if (!ret)
+		return (0);
+	i = 0;
+	while (i < len)
+	{
+		ret[i] = s1[i];
+		i++;
+	}
+	ret[i] = 0;
+	return (ret);
 }
