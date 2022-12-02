@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 20:45:14 by gyoon             #+#    #+#             */
-/*   Updated: 2022/11/04 22:54:09 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/11/05 18:13:38 by inticoy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f) (void *), void (*del) (void *))
 
 	if (!lst)
 		return (0);
-	temp = del;
+	temp = 0;
+	del(temp);
 	i = 0;
 	ret = ft_lstnew(f(lst->content));
 	lst = lst->next;
