@@ -1,39 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 20:45:14 by gyoon             #+#    #+#             */
-/*   Updated: 2022/11/05 18:13:38 by inticoy          ###   ########.fr       */
+/*   Created: 2022/09/10 17:23:02 by gyoon             #+#    #+#             */
+/*   Updated: 2022/11/09 15:44:46 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f) (void *), void (*del) (void *))
+static size_t	get_digits(int n)
 {
-	const int	size = ft_lstsize(lst);
-	t_list		*ret;
-	t_list		*t;
-	int			i;
-	void		*temp;
+	if (0 <= n && n < 10)
+		return (1);
+	else
+		return (get_digits(n / 10) + 1);
+}
 
-	if (!lst)
+static char	*set_itoa(char *s, int n)
+{
+	if (-10 < n && n < 0)
+		*s++ = '-';
+	else if (10 <= n || n <= -10)
+		s = set_itoa(s, n / 10);
+	*s++ = '0' + ((n > 0) - (n < 0)) * (n % 10);
+	return (s);
+}
+
+char	*ft_itoa(int n)
+{
+	char	*ret;
+
+	ret = (char *) ft_calloc(get_digits(n) + 1, sizeof(char));
+	if (!ret)
 		return (0);
-	temp = 0;
-	del(temp);
-	i = 0;
-	ret = ft_lstnew(f(lst->content));
-	lst = lst->next;
-	t = ret;
-	while (i < size - 1)
-	{
-		t->next = ft_lstnew(f(lst->content));
-		t = t->next;
-		lst = lst->next;
-		i++;
-	}
+	set_itoa(ret, n);
 	return (ret);
 }

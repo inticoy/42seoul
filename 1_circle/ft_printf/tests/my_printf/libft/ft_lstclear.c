@@ -1,39 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 20:45:14 by gyoon             #+#    #+#             */
-/*   Updated: 2022/11/05 18:13:38 by inticoy          ###   ########.fr       */
+/*   Created: 2022/09/14 20:42:07 by gyoon             #+#    #+#             */
+/*   Updated: 2022/11/04 21:42:33 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f) (void *), void (*del) (void *))
+void	ft_lstclear(t_list **lst, void (*del) (void *))
 {
-	const int	size = ft_lstsize(lst);
-	t_list		*ret;
-	t_list		*t;
-	int			i;
-	void		*temp;
-
-	if (!lst)
-		return (0);
-	temp = 0;
-	del(temp);
-	i = 0;
-	ret = ft_lstnew(f(lst->content));
-	lst = lst->next;
-	t = ret;
-	while (i < size - 1)
+	if (*lst)
 	{
-		t->next = ft_lstnew(f(lst->content));
-		t = t->next;
-		lst = lst->next;
-		i++;
+		ft_lstclear(&(*lst)->next, del);
+		del((*lst)->content);
+		free(*lst);
+		*lst = 0;
 	}
-	return (ret);
 }

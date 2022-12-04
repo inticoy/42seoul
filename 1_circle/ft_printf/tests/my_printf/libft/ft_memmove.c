@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 20:45:14 by gyoon             #+#    #+#             */
-/*   Updated: 2022/11/05 18:13:38 by inticoy          ###   ########.fr       */
+/*   Created: 2022/08/25 14:04:12 by gyoon             #+#    #+#             */
+/*   Updated: 2022/11/09 15:32:13 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f) (void *), void (*del) (void *))
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	const int	size = ft_lstsize(lst);
-	t_list		*ret;
-	t_list		*t;
-	int			i;
-	void		*temp;
+	size_t	i;
 
-	if (!lst)
-		return (0);
-	temp = 0;
-	del(temp);
 	i = 0;
-	ret = ft_lstnew(f(lst->content));
-	lst = lst->next;
-	t = ret;
-	while (i < size - 1)
+	while (i < len)
 	{
-		t->next = ft_lstnew(f(lst->content));
-		t = t->next;
-		lst = lst->next;
+		if (dst < src)
+			((char *) dst)[i] = ((const char *) src)[i];
+		else if (dst > src)
+			((char *) dst)[len - 1 - i] = ((const char *) src)[len - 1 - i];
 		i++;
 	}
-	return (ret);
+	return (dst);
 }

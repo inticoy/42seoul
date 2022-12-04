@@ -1,39 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 20:45:14 by gyoon             #+#    #+#             */
-/*   Updated: 2022/11/05 18:13:38 by inticoy          ###   ########.fr       */
+/*   Created: 2022/08/25 19:02:28 by gyoon             #+#    #+#             */
+/*   Updated: 2022/09/14 23:35:23 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f) (void *), void (*del) (void *))
+static size_t	get_strlen(const char *s1)
 {
-	const int	size = ft_lstsize(lst);
-	t_list		*ret;
-	t_list		*t;
-	int			i;
-	void		*temp;
+	size_t	len;
 
-	if (!lst)
+	len = 0;
+	while (s1[len] != '\0')
+		len++;
+	return (len);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	const size_t	len = get_strlen(s1);
+	char			*ret;
+	size_t			i;
+
+	ret = (char *) malloc(sizeof(char) * (len + 1));
+	if (!ret)
 		return (0);
-	temp = 0;
-	del(temp);
 	i = 0;
-	ret = ft_lstnew(f(lst->content));
-	lst = lst->next;
-	t = ret;
-	while (i < size - 1)
+	while (i < len)
 	{
-		t->next = ft_lstnew(f(lst->content));
-		t = t->next;
-		lst = lst->next;
+		ret[i] = s1[i];
 		i++;
 	}
+	ret[i] = 0;
 	return (ret);
 }

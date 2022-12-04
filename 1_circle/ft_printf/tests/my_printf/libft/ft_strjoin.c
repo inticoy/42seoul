@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 20:45:14 by gyoon             #+#    #+#             */
-/*   Updated: 2022/11/05 18:13:38 by inticoy          ###   ########.fr       */
+/*   Created: 2022/09/07 21:19:51 by gyoon             #+#    #+#             */
+/*   Updated: 2022/09/14 23:27:30 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f) (void *), void (*del) (void *))
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	const int	size = ft_lstsize(lst);
-	t_list		*ret;
-	t_list		*t;
-	int			i;
-	void		*temp;
+	const size_t	slen1 = ft_strlen(s1);
+	const size_t	slen2 = ft_strlen(s2);
+	char			*ret;
+	size_t			i;
 
-	if (!lst)
+	ret = (char *) malloc(sizeof(char) * (slen1 + slen2 + 1));
+	if (!ret)
 		return (0);
-	temp = 0;
-	del(temp);
 	i = 0;
-	ret = ft_lstnew(f(lst->content));
-	lst = lst->next;
-	t = ret;
-	while (i < size - 1)
-	{
-		t->next = ft_lstnew(f(lst->content));
-		t = t->next;
-		lst = lst->next;
-		i++;
-	}
+	while (i < slen1)
+		ret[i++] = *s1++;
+	while (i < slen1 + slen2)
+		ret[i++] = *s2++;
+	ret[i] = 0;
 	return (ret);
 }
