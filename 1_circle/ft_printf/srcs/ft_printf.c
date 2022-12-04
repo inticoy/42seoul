@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:10:39 by gyoon             #+#    #+#             */
-/*   Updated: 2022/11/14 15:54:50 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/11/21 13:14:16 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,23 @@
 #include <stdarg.h>
 #include "libft/libft.h"
 #include <stdio.h>
+
+typedef enum e_bool {
+	false,
+	true
+}	t_bool;
+
+typedef struct s_flag {
+	t_bool	left;
+	t_bool	sign;
+	t_bool	space;
+	t_bool	prefix;
+	t_bool	zero;
+}	t_flag;
+typedef struct s_format {
+
+
+}	t_format;
 
 int	ft_printf(const char *fmt, ...)
 {
@@ -36,5 +53,6 @@ int	main(void)
 	int	n;
 
 	n = ft_printf("hello\n");
+	printf("%-#.4x\n", -333);
 	return (0);
 }
