@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 23:13:18 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/05 23:17:22 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/05 23:35:04 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*get_strf(const char *fmt, t_format *format, va_list args)
 		str = ft_strndup(fmt, format->len);
 	else
 	{
-		str = ft_vtoa(format, args);
+		str = ft_vtoa(format->specifier, args);
 		/* str = convert_precision(str, format);
 		str = convert_prefix(str, format);
 		str = convert_sign(str, format);

@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:10:51 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/05 23:17:09 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/05 23:32:59 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,32 +59,35 @@ char		*convert_space(char *str, t_format *format);
 char		*convert_left(char *str, t_format *format);
 char		*convert_padding(char *str, t_format *format);
 
-// utils
-int			ft_isdot(int c);
-int			ft_isflag(int c);
-int			ft_ispercent(int c);
-char		*ft_strndup(const char *s1, size_t n);
-char		*ft_strtoupper(char *s);
+// flag
+void		set_flag(t_flag *flag, int c);
 
 // format
+void		del_fmtnode(t_format *format);
 t_format	*ft_fmtnew(void);
-void		set_flag(t_flag *flag, int c);
 t_format	*get_fmtf(const char *fmt);
 t_list		*get_fmtlstf(const char *fmt);
+
+// string
+char		*get_strf(const char *fmt, t_format *format, va_list args);
+t_list		*get_strlstf(const char *fmt, t_list *formats, va_list args);
 
 // toa
 char		*ft_ctoa(int c);
 char		*ft_ptoa(void *ptr);
-char		*ft_vtoa(t_format *format, va_list args);
+char		*ft_vtoa(char specifier, va_list args);
 char		*ft_utoa(unsigned int u);
 char		*ft_xtoa(unsigned int num);
 
-// string
+// utils
+int			ft_isdot(int c);
+int			ft_isflag(int c);
+int			ft_ispercent(int c);
 int			ft_strlstlen(t_list *strlst);
-char		*vatoa(t_format *format, va_list args);
-char		*get_strf(const char *fmt, t_format *format, va_list args);
-t_list		*get_strlstf(const char *fmt, t_list *formats, va_list args);
+char		*ft_strndup(const char *s1, size_t n);
+char		*ft_strtoupper(char *s);
 
+// ft_printf
 int			get_skip_digit(const char *str);
 void		prints(char *str);
 int			ft_printf(const char *fmt, ...);

@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 13:36:29 by gyoon             #+#    #+#             */
-/*   Updated: 2022/11/09 15:36:30 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/05 23:19:39 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+
+# ifndef FT_NULL
+#  define FT_NULL (void *)0
+# endif
 
 typedef struct s_list
 {

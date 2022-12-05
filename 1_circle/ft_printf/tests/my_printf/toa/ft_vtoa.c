@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 23:14:08 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/05 23:17:18 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/05 23:22:22 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,27 @@
 #include "libft.h"
 #include "ft_printf.h"
 
-char	*ft_vtoa(t_format *format, va_list args)
+char	*ft_vtoa(char specifier, va_list args)
 {
 	char		*str;
 
-	if (format->specifier == 'c')
+	if (specifier == 'c')
 		str = ft_ctoa(va_arg(args, int));
-	else if (format->specifier == 's')
+	else if (specifier == 's')
 		str = ft_strdup(va_arg(args, char *));
-	else if (format->specifier == 'p')
+	else if (specifier == 'p')
 		str = ft_ptoa(va_arg(args, void *));
-	else if (format->specifier == 'd' || format->specifier == 'i')
+	else if (specifier == 'd' || specifier == 'i')
 		str = ft_itoa(va_arg(args, int));
-	else if (format->specifier == 'u')
+	else if (specifier == 'u')
 		str = ft_utoa(va_arg(args, unsigned int));
-	else if (format->specifier == 'x')
+	else if (specifier == 'x')
 		str = ft_xtoa(va_arg(args, int));
-	else if (format->specifier == 'X')
+	else if (specifier == 'X')
 		str = ft_strtoupper(ft_xtoa(va_arg(args, int)));
-	else if (format->specifier == '%')
+	else if (specifier == '%')
 		str = ft_strdup("%");
+	if (!str)
+		return (FT_NULL);
 	return (str);
 }
