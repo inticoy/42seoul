@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:28:36 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/05 16:56:30 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/05 19:54:47 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ t_list	*get_fmtlstf(const char *fmt)
 			if (format)
 				free(format);
 			ft_lstclear(&fhead, (void (*)(void *))del_fmtnode);
-			return (0);
+			return (FT_NULL);
 		}
 		if (!fhead)
 			fhead = fnode;

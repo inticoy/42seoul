@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is.c                                               :+:      :+:    :+:   */
+/*   ft_ctoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/05 14:22:43 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/05 14:25:50 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/05 20:11:53 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/05 20:13:59 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_ispercent(int c)
-{
-	if (c == '%')
-		return (1);
-	else
-		return (0);
-}
+#include "libft.h"
 
-int	ft_isflag(int c)
+char	*ft_ctoa(int c)
 {
-	if (c == '-' || c == '+' || c == ' ' || c == '#' || c == '0')
-		return (1);
-	else
-		return (0);
-}
+	char	*ret;
 
-int	ft_isdot(int c)
-{
-	if (c == '.')
-		return (1);
-	else
-		return (0);
+	ret = (char *)ft_calloc(2, sizeof(char));
+	*ret = (char)c;
+	return (ret);
 }
