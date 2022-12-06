@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 23:28:42 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/05 23:29:22 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/06 19:45:27 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ t_format	*get_fmtf(const char *fmt)
 			format->precision = ft_atoi(fmt + ++len);
 			len += get_skip_digit(fmt + len);
 		}
+		else
+			format->precision = -1;
 		format->specifier = fmt[len++];
 	}
 	else

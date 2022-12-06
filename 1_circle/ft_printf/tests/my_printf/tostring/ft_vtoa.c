@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 23:14:08 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/05 23:22:22 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/06 18:56:58 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ char	*ft_vtoa(char specifier, va_list args)
 		str = ft_strdup(va_arg(args, char *));
 	else if (specifier == 'p')
 		str = ft_ptoa(va_arg(args, void *));
-	else if (specifier == 'd' || specifier == 'i')
+	else if (specifier == 'd')
+		str = ft_itoa(va_arg(args, int));
+	else if (specifier == 'i')
 		str = ft_itoa(va_arg(args, int));
 	else if (specifier == 'u')
 		str = ft_utoa(va_arg(args, unsigned int));

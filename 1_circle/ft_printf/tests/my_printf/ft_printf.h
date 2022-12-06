@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:10:51 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/05 23:32:59 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/06 22:22:41 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ char		*convert_precision(char *str, t_format *format);
 char		*convert_prefix(char *str, t_format *format);
 char		*convert_sign(char *str, t_format *format);
 char		*convert_space(char *str, t_format *format);
-char		*convert_left(char *str, t_format *format);
 char		*convert_padding(char *str, t_format *format);
 
 // flag
@@ -82,7 +81,12 @@ char		*ft_xtoa(unsigned int num);
 // utils
 int			ft_isdot(int c);
 int			ft_isflag(int c);
+int			ft_isintspecfier(int c);
+int			ft_isminus(int c);
 int			ft_ispercent(int c);
+int			ft_isplus(int c);
+int			ft_isstrspecifier(int c);
+int			ft_iszero(int c);
 int			ft_strlstlen(t_list *strlst);
 char		*ft_strndup(const char *s1, size_t n);
 char		*ft_strtoupper(char *s);
