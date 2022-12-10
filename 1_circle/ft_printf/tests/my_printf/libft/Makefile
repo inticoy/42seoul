@@ -6,7 +6,7 @@
 #    By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/07 19:53:58 by gyoon             #+#    #+#              #
-#    Updated: 2022/09/14 20:32:36 by gyoon            ###   ########.fr        #
+#    Updated: 2022/12/08 19:37:01 by gyoon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ BONUSOBJS = ${BONUS:.c=.o}
 NAME = libft.a
 
 .c.o :
-	$(CC) $(CFLAGS) -c $< -o ${<:.c=.o} 
+	$(CC) $(CFLAGS) -c $< -o ${<:.c=.o} -I.
 
 $(NAME) : $(OBJS)
 	ar rcs $(NAME) $(OBJS)

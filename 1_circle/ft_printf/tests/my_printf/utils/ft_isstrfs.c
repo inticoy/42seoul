@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   del_fmtnode.c                                      :+:      :+:    :+:   */
+/*   ft_isstrfs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/05 23:27:51 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/05 23:28:15 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/10 17:19:47 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/10 17:19:54 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-#include "ft_printf.h"
-
-void	del_fmtnode(t_format *format)
+int	ft_isstrfs(int c)
 {
-	if (format->flag)
-		free(format->flag);
-	free(format);
+	if (c == 's')
+		return (1);
+	else
+		return (0);
 }

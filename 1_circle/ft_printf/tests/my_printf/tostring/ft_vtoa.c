@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 23:14:08 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/06 18:56:58 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/10 19:04:43 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,20 @@
 
 char	*ft_vtoa(char specifier, va_list args)
 {
-	char		*str;
+	char	*str;
+	void	*pa;
 
+	if (specifier == 's')
+		pa = va_arg(args, void *);
 	if (specifier == 'c')
 		str = ft_ctoa(va_arg(args, int));
-	else if (specifier == 's')
-		str = ft_strdup(va_arg(args, char *));
+	else if (specifier == 's' && !pa)
+		str = ft_strdup("(null)");
+	else if (specifier == 's' && pa)
+		str = ft_strdup(pa);
 	else if (specifier == 'p')
 		str = ft_ptoa(va_arg(args, void *));
-	else if (specifier == 'd')
-		str = ft_itoa(va_arg(args, int));
-	else if (specifier == 'i')
+	else if (specifier == 'd' || specifier == 'i')
 		str = ft_itoa(va_arg(args, int));
 	else if (specifier == 'u')
 		str = ft_utoa(va_arg(args, unsigned int));
@@ -37,7 +40,5 @@ char	*ft_vtoa(char specifier, va_list args)
 		str = ft_strtoupper(ft_xtoa(va_arg(args, int)));
 	else if (specifier == '%')
 		str = ft_strdup("%");
-	if (!str)
-		return (FT_NULL);
 	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:10:51 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/06 22:22:41 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/10 18:11:02 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,38 +38,37 @@ typedef struct s_flag
 typedef struct s_format
 {
 	int		len;
-	t_flag	*flag;
+	t_flag	flag;
 	int		width;
 	int		precision;
 	char	specifier;
 }	t_format;
 
-typedef struct s_string
+/* typedef struct s_string
 {
 	char	*str;
 	int		len;
 	int		size;
-}	t_string;
+}	t_string; */
 
 // convert
-char		*convert_precision(char *str, t_format *format);
-char		*convert_prefix(char *str, t_format *format);
-char		*convert_sign(char *str, t_format *format);
-char		*convert_space(char *str, t_format *format);
-char		*convert_padding(char *str, t_format *format);
+char		*convert_padding(char *str, t_format format);
+char		*convert_precision(char *str, t_format format);
+char		*convert_prefix(char *str, t_format format);
+char		*convert_sign(char *str, t_format format);
+char		*convert_space(char *str, t_format format);
 
 // flag
-void		set_flag(t_flag *flag, int c);
+t_flag		init_flag(void);
+t_flag		update_flag(t_flag flag, int c);
 
 // format
-void		del_fmtnode(t_format *format);
-t_format	*ft_fmtnew(void);
-t_format	*get_fmtf(const char *fmt);
-t_list		*get_fmtlstf(const char *fmt);
+t_format	get_formatf(const char *fmt);
+t_format	init_format(void);
 
 // string
-char		*get_strf(const char *fmt, t_format *format, va_list args);
-t_list		*get_strlstf(const char *fmt, t_list *formats, va_list args);
+char		*get_strf(const char *fmt, t_format format, va_list args);
+t_list		*get_strlstf(const char *fmt, va_list args);
 
 // toa
 char		*ft_ctoa(int c);
@@ -79,13 +78,15 @@ char		*ft_utoa(unsigned int u);
 char		*ft_xtoa(unsigned int num);
 
 // utils
+void		ft_bspace(void *s, size_t n);
+void		ft_free_s(void *ptr);
 int			ft_isdot(int c);
 int			ft_isflag(int c);
-int			ft_isintspecfier(int c);
+int			ft_isnumfs(int c);
 int			ft_isminus(int c);
 int			ft_ispercent(int c);
 int			ft_isplus(int c);
-int			ft_isstrspecifier(int c);
+int			ft_isstrfs(int c);
 int			ft_iszero(int c);
 int			ft_strlstlen(t_list *strlst);
 char		*ft_strndup(const char *s1, size_t n);

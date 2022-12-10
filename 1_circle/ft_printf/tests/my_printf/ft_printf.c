@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 21:34:02 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/05 19:36:49 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/10 16:59:25 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,14 @@ void	prints(char *str)
 int	ft_printf(const char *fmt, ...)
 {
 	va_list	args;
-	t_list	*fmtlst;
 	t_list	*strlst;
 	int		printed;
 
 	va_start(args, fmt);
-	fmtlst = get_fmtlstf(fmt);
-	strlst = get_strlstf(fmt, fmtlst, args);
+	strlst = get_strlstf(fmt, args);
 	ft_lstiter(strlst, (void (*)(void *))prints);
 	printed = ft_strlstlen(strlst);
+	ft_lstclear(&strlst, ft_free_s);
 	va_end(args);
 	return (printed);
 }

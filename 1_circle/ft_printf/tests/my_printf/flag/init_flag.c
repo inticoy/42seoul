@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isplus.c                                        :+:      :+:    :+:   */
+/*   init_flag.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 21:57:26 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/10 18:15:33 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/10 15:41:02 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/10 15:41:50 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isplus(int c)
+#include "ft_printf.h"
+
+t_flag	init_flag(void)
 {
-	if (c == '+')
-		return (1);
-	else
-		return (0);
+	t_flag	flag;
+
+	flag.left = 0;
+	flag.sign = 0;
+	flag.space = 0;
+	flag.prefix = 0;
+	flag.zero = 0;
+	return (flag);
 }

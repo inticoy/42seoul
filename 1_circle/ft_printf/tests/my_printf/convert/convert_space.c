@@ -6,19 +6,19 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 19:53:09 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/06 22:00:50 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/10 15:54:48 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*convert_space(char *str, t_format *format)
+char	*convert_space(char *str, t_format format)
 {
 	char	*ret;
 
-	if (!str || !format)
+	if (!str)
 		return (FT_NULL);
-	if (format->specifier == 'd' || format->specifier == 'i')
+	if (format.specifier == 'd' || format.specifier == 'i')
 	{
 		if (!ft_isplus(str[0]) && !ft_isminus(str[0]))
 		{

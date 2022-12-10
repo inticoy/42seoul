@@ -6,37 +6,38 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 23:12:40 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/05 23:13:02 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/10 17:02:46 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdlib.h>
 
-t_list	*get_strlstf(const char *fmt, t_list *formats, va_list args)
+t_list	*get_strlstf(const char *fmt, va_list args)
 {
-	t_list		*shead;
-	t_list		*snode;
+	t_format	format;
 	char		*str;
+	t_list		*snode;
+	t_list		*shead;
 
 	shead = FT_NULL;
-	while (*fmt && formats)
+	while (*fmt)
 	{
-		str = get_strf(fmt, formats->content, args);
+		format = get_formatf(fmt);
+		str = get_strf(fmt, format, args);
 		snode = ft_lstnew(str);
 		if (!str || !snode)
 		{
-			if (str)
-				free(str);
-			ft_lstclear(&shead, free);
+			ft_free_s(str);
+			ft_free_s(snode);
+			ft_lstclear(&shead, ft_free_s);
 			return (FT_NULL);
 		}
 		if (!shead)
 			shead = snode;
 		else
 			ft_lstadd_back(&shead, snode);
-		fmt += ((t_format *)formats->content)->len;
-		formats = formats->next;
+		fmt += format.len;
 	}
 	return (shead);
 }

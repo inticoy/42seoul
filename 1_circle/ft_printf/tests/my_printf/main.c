@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:26:15 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/06 22:05:17 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/10 19:04:21 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	main(void)
 	ft_printf("%x\n", 123);
 	ft_printf("%X\n", 123);
 	ft_printf("%%\n");
+	ft_printf(":::%10s\n", NULL);
 	ft_printf("----- ----- ----- -----\n");
 	printf("hello world!\n");
 	printf("%c\n", '&');
@@ -39,6 +40,7 @@ int	main(void)
 	printf("%x\n", 123);
 	printf("%X\n", 123);
 	printf("%%\n");
+	printf(":::%10s\n", NULL);
 	printf("----- ----- ----- -----\n");
 
 	/* printf("%c\n", 0);

@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isintspecifier.c                                :+:      :+:    :+:   */
+/*   init_format.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 19:03:02 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/06 19:04:40 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/10 15:39:53 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/10 15:43:02 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isintspecfier(int c)
+#include "ft_printf.h"
+
+t_format	init_format(void)
 {
-	if (c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X')
-		return (1);
-	else
-		return (0);
+	t_format	format;
+
+	format.len = 0;
+	format.flag = init_flag();
+	format.width = 0;
+	format.precision = 0;
+	format.specifier = 0;
+	return (format);
 }
