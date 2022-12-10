@@ -6,14 +6,26 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 19:53:09 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/10 17:16:24 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/10 21:49:43 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-#include <stdio.h>
+static t_bool	need_precision(t_format format)
+{
+	if (format.precision < 0)
+		return (ft_false);
+	else if (format.specifier == 'c')
+		return (ft_false);
+	else if (format.specifier == 'p')
+		return (ft_false);
+	else if (format.specifier == '%')
+		return (ft_false);
+	else
+		return (ft_true);
+}
 
 static size_t	get_precisionlen(char *str, t_format format)
 {
@@ -43,39 +55,37 @@ static size_t	get_precisionlen(char *str, t_format format)
 	return (len);
 }
 
-static void	fill_zero(char *str, size_t n)
+static char	*precision(char *str, t_format format)
 {
-	size_t	i;
+	const size_t	slen = ft_strlen(str);
+	size_t			len;
+	size_t			i;
+	char			*ret;
 
-	i = 0;
-	while (i < n)
-		str[i++] = '0';
-}
-
-char	*convert_precision(char *str, t_format format)
-{
-	size_t	slen;
-	size_t	len;
-	size_t	i;
-	char	*ret;
-
-	if (!str)
-		return (FT_NULL);
-	slen = ft_strlen(str);
 	len = get_precisionlen(str, format);
+	i = 0;
 	ret = ft_calloc(len + 1, sizeof(char));
 	if (!ret)
-		return (0);
+		return (FT_NULL);
 	if (ft_isnumfs(format.specifier))
 	{
-		i = 0;
 		if (ft_isminus(str[i]))
-			ret[i++] = '-';
-		fill_zero(ret + i, len - slen);
+			ret[i++] = str[i];
+		ft_bzero(ret + i, len - slen);
 		ft_strlcpy(ret + i + len - slen, str, slen - i + 1);
 	}
 	else if (ft_isstrfs(format.specifier))
 		ft_strlcpy(ret, str, len + 1);
-	free(str);
+	ft_free_s(str);
 	return (ret);
+}
+
+char	*convert_precision(char *str, t_format format)
+{
+	if (!str)
+		return (FT_NULL);
+	else if (need_precision(format))
+		return (precision(str, format));
+	else
+		return (str);
 }

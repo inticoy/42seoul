@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_flag.c                                         :+:      :+:    :+:   */
+/*   update_flag.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 23:29:47 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/10 15:32:02 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/10 19:46:40 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 t_flag	update_flag(t_flag flag, int c)
 {
 	if (c == '-')
-		flag.left = FT_TRUE;
+		flag.left = ft_true;
 	else if (c == '+')
-		flag.sign = FT_TRUE;
+		flag.sign = ft_true;
 	else if (c == ' ')
-		flag.space = FT_TRUE;
+		flag.space = ft_true;
 	else if (c == '#')
-		flag.prefix = FT_TRUE;
+		flag.prefix = ft_true;
 	else if (c == '0')
-		flag.zero = FT_TRUE;
+		flag.zero = ft_true;
 	return (flag);
 }

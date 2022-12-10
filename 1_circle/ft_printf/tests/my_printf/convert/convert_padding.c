@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 19:53:09 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/10 18:17:16 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/10 19:37:47 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ char	*convert_padding(char *str, t_format format)
 		return (FT_NULL);
 	if (format.width <= ft_strlen(str))
 		return (str);
-	else
-		ret = (char *)ft_calloc(format.width + 1, sizeof(char));
+	ret = (char *)ft_calloc(format.width + 1, sizeof(char));
 	if (!ret)
 		return (FT_NULL);
 	if (format.flag.zero)
@@ -32,5 +31,6 @@ char	*convert_padding(char *str, t_format format)
 		ft_memcpy(ret, str, ft_strlen(str));
 	else
 		ft_memcpy(ret + format.width - ft_strlen(str), str, ft_strlen(str));
+	ft_free_s(str);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 19:53:09 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/10 15:54:13 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/10 19:24:44 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*convert_sign(char *str, t_format format)
 		if (!ft_isminus(str[0]))
 		{
 			ret = ft_strjoin("+", str);
-			free(str);
+			ft_free_s(str);
 			return (ret);
 		}
 	}

@@ -6,11 +6,12 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 23:06:11 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/05 23:10:42 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/10 19:06:17 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "ft_printf.h"
 
 char	*ft_strtoupper(char *s)
 {
@@ -18,7 +19,7 @@ char	*ft_strtoupper(char *s)
 	size_t	i;
 
 	if (!s)
-		return (0);
+		return (FT_NULL);
 	len = ft_strlen(s);
 	i = 0;
 	while (i < len)

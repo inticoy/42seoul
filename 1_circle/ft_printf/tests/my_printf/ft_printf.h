@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:10:51 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/10 18:11:02 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/10 19:46:40 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 
 typedef enum e_bool
 {
-	FT_FALSE,
-	FT_TRUE
+	ft_false,
+	ft_true
 }	t_bool;
 
 typedef struct s_flag
