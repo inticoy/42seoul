@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_sign.c                                     :+:      :+:    :+:   */
+/*   need_precision.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/05 19:53:09 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/12 19:46:49 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/12 19:42:14 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/12 19:43:59 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	*sign(char *str, t_format format)
+t_bool	need_precision(t_format format)
 {
-	char	*ret;
-
-	if (ft_isminus(str[0]))
-		return (str);
+	if (format.precision < 0)
+		return (ft_false);
+	else if (format.specifier == 'c')
+		return (ft_false);
+	else if (format.specifier == 'p')
+		return (ft_false);
+	else if (format.specifier == '%')
+		return (ft_false);
 	else
-	{
-		ret = ft_strjoin("+", str);
-		ft_free_s(str);
-		return (ret);
-	}
-}
-
-char	*convert_sign(char *str, t_format format)
-{
-	if (!str)
-		return (FT_NULL);
-	else if (!need_sign(format))
-		return (str);
-	else
-		return (sign(str, format));
+		return (ft_true);
 }

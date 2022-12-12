@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bspace.c                                        :+:      :+:    :+:   */
+/*   need_space.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/10 18:09:50 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/10 18:10:26 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/12 19:44:20 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/12 19:46:21 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "ft_printf.h"
 
-void	ft_bspace(void *s, size_t n)
+t_bool	need_space(t_format format)
 {
-	size_t	i;
-
-	i = 0;
-	while (i < n)
-		((char *) s)[i++] = ' ';
+	if (!format.flag.space)
+		return (ft_false);
+	else if (format.specifier == 'd')
+		return (ft_true);
+	else if (format.specifier == 'i')
+		return (ft_true);
+	else
+		return (ft_false);
 }

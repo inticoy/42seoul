@@ -6,21 +6,11 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 19:53:09 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/12 16:33:20 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/12 19:46:44 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static t_bool	need_prefix(char *str, t_format format)
-{
-	if (format.specifier == 'x')
-		return (ft_true);
-	else if (format.specifier == 'X')
-		return (ft_true);
-	else
-		return (ft_false);
-}
 
 static char	*prefix(char *str, t_format format)
 {
@@ -40,9 +30,7 @@ char	*convert_prefix(char *str, t_format format)
 
 	if (!str)
 		return (FT_NULL);
-	else if (!need_prefix(str, format))
-		return (str);
-	else if (!format.flag.prefix)
+	else if (!need_prefix(format))
 		return (str);
 	else
 		return (prefix(str, format));

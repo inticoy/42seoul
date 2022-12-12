@@ -6,26 +6,12 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 19:53:09 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/12 16:32:56 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/12 19:52:09 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
-
-static t_bool	need_precision(t_format format)
-{
-	if (format.precision < 0)
-		return (ft_false);
-	else if (format.specifier == 'c')
-		return (ft_false);
-	else if (format.specifier == 'p')
-		return (ft_false);
-	else if (format.specifier == '%')
-		return (ft_false);
-	else
-		return (ft_true);
-}
 
 static size_t	get_precisionlen(char *str, t_format format)
 {
@@ -85,8 +71,6 @@ char	*convert_precision(char *str, t_format format)
 	if (!str)
 		return (FT_NULL);
 	else if (!need_precision(format))
-		return (str);
-	else if (format.precision < 0)
 		return (str);
 	else
 		return (precision(str, format));

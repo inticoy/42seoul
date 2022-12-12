@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:26:15 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/10 19:12:35 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/12 20:01:39 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(void)
 	ft_printf("%c\n", '&');
 	ft_printf("%.4s\n", "testing %s");
 	ft_printf("%p\n", &ft);
-	ft_printf("%.d\n", 123);
+	ft_printf("%+010.4d\n", 123);
 	ft_printf("%i\n", -123);
 	ft_printf("%u\n", -123);
 	ft_printf("%x\n", 123);
@@ -34,7 +34,7 @@ int	main(void)
 	printf("%c\n", '&');
 	printf("%.4s\n", "testing %s");
 	printf("%p\n", &ft);
-	printf("%.d\n", 123);
+	printf("%+010.4d\n", 123);
 	printf("%i\n", -123);
 	printf("%u\n", -123);
 	printf("%x\n", 123);

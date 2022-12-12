@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:10:51 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/10 19:46:40 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/12 20:02:02 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,11 @@ char		*convert_space(char *str, t_format format);
 
 // flag
 t_flag		init_flag(void);
+t_bool		need_padding(char *str, t_format format);
+t_bool		need_precision(t_format format);
+t_bool		need_prefix(t_format format);
+t_bool		need_sign(t_format format);
+t_bool		need_space(t_format format);
 t_flag		update_flag(t_flag flag, int c);
 
 // format

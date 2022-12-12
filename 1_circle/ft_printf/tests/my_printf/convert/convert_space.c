@@ -6,49 +6,34 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 19:53:09 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/12 18:47:15 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/12 19:46:28 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static t_bool	need_space(char *str, t_format format)
-{
-	if (format.specifier == 'd')
-		return (ft_true);
-	else if (format.specifier == 'i')
-		return (ft_true);
-	else
-		return (ft_false);
-}
-
 static char	*space(char *str, t_format format)
 {
 	char	*ret;
 
-	if (!ft_isplus(str[0]) && !ft_isminus(str[0]))
+	if (ft_isplus(str[0]) || ft_isminus(str[0]))
+		return (str);
+	else
+	{
 		ret = ft_strjoin(" ", str);
-	ft_free_s(str);
-	return ();
+		ft_free_s(str);
+		return (ret);
+	}
 }
 
 char	*convert_space(char *str, t_format format)
 {
 	if (!str)
 		return (FT_NULL);
-	else if (!need_space(str, format))
+	else if (!need_space(format))
 		return (str);
 	else if (!format.flag.space)
 		return (str);
 	else
 		return (space(str, format));
-
-
-	if (format.specifier == 'd' || format.specifier == 'i')
-		if (!ft_isplus(str[0]) && !ft_isminus(str[0]))
-			ret = ft_strjoin(" ", str);
-	else
-		return (str);
-	ft_free_s(str);
-	return (ret);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+         #
+#    By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 16:53:40 by jinhchoi          #+#    #+#              #
-#    Updated: 2022/12/10 18:15:12 by gyoon            ###   ########.fr        #
+#    Updated: 2022/12/12 20:04:34 by gyoon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,11 @@ CFLAGS =
 ARFLAGS = -rc
 SRCFILES := ft_printf.c \
 			convert/convert_padding.c convert/convert_precision.c convert/convert_prefix.c convert/convert_sign.c convert/convert_space.c \
-			flag/init_flag.c flag/update_flag.c \
+			flag/init_flag.c flag/need_padding.c flag/need_precision.c flag/need_prefix.c flag/need_sign.c flag/need_space.c flag/update_flag.c \
 			format/get_formatf.c format/init_format.c \
 			string/get_strf.c string/get_strlstf.c \
 			tostring/ft_ctoa.c tostring/ft_ptoa.c tostring/ft_utoa.c tostring/ft_vtoa.c tostring/ft_xtoa.c \
-			utils/ft_bspace.c utils/ft_free_s.c \
+			utils/ft_free_s.c \
 			utils/ft_isdot.c utils/ft_isflag.c utils/ft_isnumfs.c utils/ft_isminus.c utils/ft_ispercent.c utils/ft_isplus.c utils/ft_isstrfs.c utils/ft_iszero.c \
 			utils/ft_strlstlen.c utils/ft_strndup.c utils/ft_strtoupper.c 
 OBJS := $(SRCFILES:.c=.o)
