@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_precision.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 19:53:09 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/10 21:49:43 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/12 16:32:56 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static char	*precision(char *str, t_format format)
 	if (ft_isnumfs(format.specifier))
 	{
 		if (ft_isminus(str[i]))
-			ret[i++] = str[i];
+			ret[i++] = '-';
 		ft_bzero(ret + i, len - slen);
 		ft_strlcpy(ret + i + len - slen, str, slen - i + 1);
 	}
@@ -84,8 +84,10 @@ char	*convert_precision(char *str, t_format format)
 {
 	if (!str)
 		return (FT_NULL);
-	else if (need_precision(format))
-		return (precision(str, format));
-	else
+	else if (!need_precision(format))
 		return (str);
+	else if (format.precision < 0)
+		return (str);
+	else
+		return (precision(str, format));
 }
