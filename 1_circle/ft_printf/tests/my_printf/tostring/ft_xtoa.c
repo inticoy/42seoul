@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 22:19:06 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/10 19:16:02 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/12 21:58:27 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 static size_t	get_xdigits(unsigned int num)
 {
-	if (num == 0)
-		return (0);
-	else if (num < 15)
+	if (num < 16)
 		return (1);
 	else
 		return (get_xdigits(num / 16) + 1);
