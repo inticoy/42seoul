@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 21:34:02 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/10 16:59:25 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/13 15:38:12 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_printf(const char *fmt, ...)
 	int		printed;
 
 	va_start(args, fmt);
-	strlst = get_strlstf(fmt, args);
+	strlst = get_strlstf(fmt, &args);
 	ft_lstiter(strlst, (void (*)(void *))prints);
 	printed = ft_strlstlen(strlst);
 	ft_lstclear(&strlst, ft_free_s);

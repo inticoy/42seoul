@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   get_strf.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 23:13:18 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/10 19:31:33 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/13 15:35:53 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include "ft_printf.h"
 
-char	*get_strf(const char *fmt, t_format format, va_list args)
+char	*get_strf(const char *fmt, t_format format, va_list *args)
 {
 	char	*str;
 

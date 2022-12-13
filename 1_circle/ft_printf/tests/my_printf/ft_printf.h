@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:10:51 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/12 20:02:02 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/13 15:36:26 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ typedef struct s_format
 	char	specifier;
 }	t_format;
 
-/* typedef struct s_string
+typedef struct s_string
 {
 	char	*str;
 	int		len;
 	int		size;
-}	t_string; */
+}	t_string;
 
 // convert
 char		*convert_padding(char *str, t_format format);
@@ -72,13 +72,13 @@ t_format	get_formatf(const char *fmt);
 t_format	init_format(void);
 
 // string
-char		*get_strf(const char *fmt, t_format format, va_list args);
-t_list		*get_strlstf(const char *fmt, va_list args);
+char		*get_strf(const char *fmt, t_format format, va_list *args);
+t_list		*get_strlstf(const char *fmt, va_list *args);
 
 // toa
 char		*ft_ctoa(int c);
 char		*ft_ptoa(void *ptr);
-char		*ft_vtoa(char specifier, va_list args);
+char		*ft_vtoa(char specifier, va_list *args);
 char		*ft_utoa(unsigned int u);
 char		*ft_xtoa(unsigned int num);
 

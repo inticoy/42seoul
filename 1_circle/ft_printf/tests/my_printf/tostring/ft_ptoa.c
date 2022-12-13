@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ptoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 20:15:14 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/12 22:14:28 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/13 15:13:40 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 static size_t	get_xdigits(unsigned long long num)
 {
-	if (num == 0)
-		return (0);
-	else if (num < 16)
+	if (num < 16)
 		return (1);
 	else
 		return (get_xdigits(num / 16) + 1);
