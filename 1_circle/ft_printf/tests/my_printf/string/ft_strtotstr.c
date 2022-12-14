@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   need_space.c                                       :+:      :+:    :+:   */
+/*   ft_strtotstr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/12 19:44:20 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/14 15:20:21 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/13 17:03:43 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/14 15:05:07 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_bool	need_space(t_format format)
+t_string	*ft_strtotstr(char *str)
 {
-	if (!format.flag.space)
-		return (ft_false);
-	else if (format.specifier == 'd')
-		return (ft_true);
-	else if (format.specifier == 'i')
-		return (ft_true);
-	else
-		return (ft_false);
+	if (!str)
+		return (FT_NULL);
+	return (ft_tstrnew(str, ft_strlen(str), ft_strlen(str) + 1));
 }

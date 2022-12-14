@@ -6,72 +6,69 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 19:53:09 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/12 19:52:09 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/14 16:54:28 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "ft_printf.h"
+#include "libft.h"
 
-static size_t	get_precisionlen(char *str, t_format format)
+static size_t	get_precisionlen(t_string *tstr, t_format format)
 {
-	size_t	slen;
 	size_t	len;
 
-	slen = ft_strlen(str);
 	len = 0;
 	if (ft_isnumfs(format.specifier))
 	{
-		if (ft_isminus(str[0]))
+		if (ft_isminus(tstr->str[0]))
 			len++;
-		if (format.precision > (int)(slen - len))
+		if (format.precision > (int)(tstr->len - len))
 			len += format.precision;
 		else
-			len = slen;
-		if (ft_iszero(str[0]) && !format.precision)
+			len = tstr->len;
+		if (ft_iszero(tstr->str[0]) && !format.precision)
 			len = 0;
 	}
 	else if (ft_isstrfs(format.specifier))
 	{
-		if (format.precision < (int)slen)
+		if (format.precision < (int)tstr->len)
 			len = format.precision;
 		else
-			len = slen;
+			len = tstr->len;
 	}
 	return (len);
 }
 
-static char	*precision(char *str, t_format format)
+static t_string	*precision(t_string *tstr, t_format format)
 {
-	const size_t	slen = ft_strlen(str);
 	size_t			len;
 	size_t			i;
 	char			*ret;
 
-	len = get_precisionlen(str, format);
+	len = get_precisionlen(tstr, format);
 	i = 0;
 	ret = ft_calloc(len + 1, sizeof(char));
 	if (!ret)
 		return (FT_NULL);
 	if (ft_isnumfs(format.specifier))
 	{
-		if (ft_isminus(str[i]))
+		if (ft_isminus(tstr->str[i]))
 			ret[i++] = '-';
-		ft_bzero(ret + i, len - slen);
-		ft_strlcpy(ret + i + len - slen, str, slen - i + 1);
+		ft_memset(ret + i, '0', len - tstr->len);
+		ft_strlcpy(ret + i + len - tstr->len, tstr->str + i, tstr->len - i + 1);
 	}
 	else if (ft_isstrfs(format.specifier))
-		ft_strlcpy(ret, str, len + 1);
-	ft_free_s(str);
-	return (ret);
+		ft_strlcpy(ret, tstr->str, len + 1);
+	del_tstr(tstr);
+	return (ft_strtotstr(ret));
 }
 
-char	*convert_precision(char *str, t_format format)
+t_string	*convert_precision(t_string *tstr, t_format format)
 {
-	if (!str)
+	if (!tstr)
 		return (FT_NULL);
 	else if (!need_precision(format))
-		return (str);
+		return (tstr);
 	else
-		return (precision(str, format));
+		return (precision(tstr, format));
 }

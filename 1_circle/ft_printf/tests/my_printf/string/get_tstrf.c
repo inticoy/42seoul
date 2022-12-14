@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_space.c                                    :+:      :+:    :+:   */
+/*   get_tstrf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/05 19:53:09 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/14 15:50:49 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/05 23:13:18 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/14 15:47:29 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdarg.h>
 #include "ft_printf.h"
 
-static t_string	*space(t_string *tstr, t_format format)
+t_string	*get_tstrf(const char *fmt, t_format format, va_list *args)
 {
-	t_string	*ret;
+	t_string	*tstr;
 
-	if (ft_isplus(tstr->str[0]) || ft_isminus(tstr->str[0]))
-		return (tstr);
+	if (!format.specifier)
+		tstr = ft_strtotstr(ft_strndup(fmt, format.len));
 	else
 	{
-		ret = ft_strtotstr(ft_strjoin(" ", tstr->str));
-		del_tstr(tstr);
-		return (ret);
+		tstr = ft_vtoa(format.specifier, args);
+		tstr = convert_precision(tstr, format);
+		tstr = convert_prefix(tstr, format);
+		tstr = convert_sign(tstr, format);
+		tstr = convert_space(tstr, format);
+		// tstr = convert_padding(tstr, format);
 	}
-}
-
-t_string	*convert_space(t_string *tstr, t_format format)
-{
-	if (!tstr)
-		return (FT_NULL);
-	else if (!need_space(format))
-		return (tstr);
-	else
-		return (space(tstr, format));
+	return (tstr);
 }

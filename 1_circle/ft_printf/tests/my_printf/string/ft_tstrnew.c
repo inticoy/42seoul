@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   need_space.c                                       :+:      :+:    :+:   */
+/*   ft_tstrnew.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/12 19:44:20 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/14 15:20:21 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/13 16:15:09 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/14 15:50:16 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_bool	need_space(t_format format)
+t_string	*ft_tstrnew(char *str, int len, int size)
 {
-	if (!format.flag.space)
-		return (ft_false);
-	else if (format.specifier == 'd')
-		return (ft_true);
-	else if (format.specifier == 'i')
-		return (ft_true);
-	else
-		return (ft_false);
+	t_string	*tstr;
+
+	if (!str)
+		return (FT_NULL);
+	tstr = (t_string *)ft_calloc(1, sizeof(t_string));
+	if (!tstr)
+	{
+		ft_free_s(str);
+		return (FT_NULL);
+	}
+	tstr->str = str;
+	tstr->len = len;
+	tstr->size = size;
+	return (tstr);
 }

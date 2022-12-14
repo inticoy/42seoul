@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:10:51 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/13 15:36:26 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/14 16:56:07 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ typedef struct s_string
 }	t_string;
 
 // convert
-char		*convert_padding(char *str, t_format format);
-char		*convert_precision(char *str, t_format format);
-char		*convert_prefix(char *str, t_format format);
-char		*convert_sign(char *str, t_format format);
-char		*convert_space(char *str, t_format format);
+//t_string	*convert_padding(t_string *tstr, t_format format);
+t_string	*convert_precision(t_string *tstr, t_format format);
+t_string	*convert_prefix(t_string *tstr, t_format format);
+t_string	*convert_sign(t_string *tstr, t_format format);
+t_string	*convert_space(t_string *tstr, t_format format);
 
 // flag
 t_flag		init_flag(void);
@@ -72,13 +72,17 @@ t_format	get_formatf(const char *fmt);
 t_format	init_format(void);
 
 // string
-char		*get_strf(const char *fmt, t_format format, va_list *args);
-t_list		*get_strlstf(const char *fmt, va_list *args);
+void		del_tstr(t_string *tstr);
+t_string	*ft_strtotstr(char *str);
+int			ft_tstrlstlen(t_list *tstrlst);
+t_string	*ft_tstrnew(char *str, int len, int size);
+t_string	*get_tstrf(const char *fmt, t_format format, va_list *args);
+t_list		*get_tstrlstf(const char *fmt, va_list *args);
 
 // toa
 char		*ft_ctoa(int c);
 char		*ft_ptoa(void *ptr);
-char		*ft_vtoa(char specifier, va_list *args);
+t_string	*ft_vtoa(char specifier, va_list *args);
 char		*ft_utoa(unsigned int u);
 char		*ft_xtoa(unsigned int num);
 
@@ -99,7 +103,7 @@ char		*ft_strtoupper(char *s);
 
 // ft_printf
 int			get_skip_digit(const char *str);
-void		prints(char *str);
+void		prints(t_string *tstr);
 int			ft_printf(const char *fmt, ...);
 
 #endif

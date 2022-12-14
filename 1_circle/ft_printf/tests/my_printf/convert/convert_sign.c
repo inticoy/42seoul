@@ -6,32 +6,32 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 19:53:09 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/12 19:46:49 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/14 15:45:18 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	*sign(char *str, t_format format)
+static t_string	*sign(t_string *tstr, t_format format)
 {
-	char	*ret;
+	t_string	*ret;
 
-	if (ft_isminus(str[0]))
-		return (str);
+	if (ft_isminus(tstr->str[0]))
+		return (tstr);
 	else
 	{
-		ret = ft_strjoin("+", str);
-		ft_free_s(str);
+		ret = ft_strtotstr(ft_strjoin("+", tstr->str));
+		del_tstr(tstr);
 		return (ret);
 	}
 }
 
-char	*convert_sign(char *str, t_format format)
+t_string	*convert_sign(t_string *tstr, t_format format)
 {
-	if (!str)
+	if (!tstr)
 		return (FT_NULL);
 	else if (!need_sign(format))
-		return (str);
+		return (tstr);
 	else
-		return (sign(str, format));
+		return (sign(tstr, format));
 }

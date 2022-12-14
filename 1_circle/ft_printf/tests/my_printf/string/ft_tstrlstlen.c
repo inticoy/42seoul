@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   need_space.c                                       :+:      :+:    :+:   */
+/*   ft_tstrlstlen.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/12 19:44:20 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/14 15:20:21 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/14 15:22:17 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/14 15:25:42 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
-t_bool	need_space(t_format format)
+int	ft_tstrlstlen(t_list *tstrlst)
 {
-	if (!format.flag.space)
-		return (ft_false);
-	else if (format.specifier == 'd')
-		return (ft_true);
-	else if (format.specifier == 'i')
-		return (ft_true);
-	else
-		return (ft_false);
+	int	len;
+
+	len = 0;
+	while (tstrlst)
+	{
+		len += ((t_string *)tstrlst->content)->len;
+		tstrlst = tstrlst->next;
+	}
+	return (len);
 }
