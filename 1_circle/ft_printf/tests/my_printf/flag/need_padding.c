@@ -6,15 +6,15 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 19:59:55 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/14 15:20:11 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/15 14:59:10 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_bool	need_padding(char *str, t_format format)
+t_bool	need_padding(t_string *tstr, t_format format)
 {
-	if (format.width <= ft_strlen(str))
+	if (format.width <= tstr->len)
 		return (ft_false);
 	else
 		return (ft_true);

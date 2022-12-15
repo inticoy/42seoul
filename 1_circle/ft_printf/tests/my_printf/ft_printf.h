@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:10:51 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/14 16:56:07 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/15 14:58:56 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_string
 }	t_string;
 
 // convert
-//t_string	*convert_padding(t_string *tstr, t_format format);
+t_string	*convert_padding(t_string *tstr, t_format format);
 t_string	*convert_precision(t_string *tstr, t_format format);
 t_string	*convert_prefix(t_string *tstr, t_format format);
 t_string	*convert_sign(t_string *tstr, t_format format);
@@ -60,7 +60,7 @@ t_string	*convert_space(t_string *tstr, t_format format);
 
 // flag
 t_flag		init_flag(void);
-t_bool		need_padding(char *str, t_format format);
+t_bool		need_padding(t_string *tstr, t_format format);
 t_bool		need_precision(t_format format);
 t_bool		need_prefix(t_format format);
 t_bool		need_sign(t_format format);

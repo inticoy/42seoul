@@ -6,13 +6,12 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 21:34:02 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/14 15:21:38 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/15 17:00:02 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
-#include <stdio.h>
 #include <unistd.h>
 #include <stdarg.h>
 
@@ -45,6 +44,3 @@ int	ft_printf(const char *fmt, ...)
 	va_end(args);
 	return (printed);
 }
-
-//printf("fs : %d\n", ft_lstsize(fmtlst));
-//printf("ss : %d\n", ft_lstsize(strlst));
