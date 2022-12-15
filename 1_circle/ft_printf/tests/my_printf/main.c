@@ -6,13 +6,14 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:26:15 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/15 16:39:06 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/15 23:45:07 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 #include <limits.h>
+#include <unistd.h>
 
 int	main(void)
 {
@@ -24,9 +25,11 @@ int	main(void)
 	// ft_printf("\n----- ----- ----- -----\n");
 	// printf(" %d %d %d %d %d %d %d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
 
-	ft_printf(" %04d ", -14);
-	printf(" %04d ", -14);
 
+	ft = ft_printf("", ft);
+	or = printf("", ft);
+	printf("\n%d %d\n", ft, or);
+	
 	// ft_printf("----- ----- ----- -----\n");
 	// ft_printf(" %i %i %i %i %i %i %i", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
 	// printf(" %i %i %i %i %i %i %i", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);

@@ -6,11 +6,21 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 19:53:09 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/14 16:08:59 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/15 23:20:41 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static t_string	get_tstr_prefix(void)
+{
+	t_string	prefix;
+
+	prefix.str = "0x";
+	prefix.len = 2;
+	prefix.size = 3;
+	return (prefix);
+}
 
 static t_bool	isallzero(t_string *tstr)
 {
@@ -28,16 +38,21 @@ static t_bool	isallzero(t_string *tstr)
 	return (ret);
 }
 
-static t_string	*prefix(t_string *tstr, t_format format)
+static t_string	*apply_prefix(t_string *tstr, t_format format)
 {
+	t_string	prefix;
 	t_string	*ret;
 
+	prefix = get_tstr_prefix();
 	if (isallzero(tstr))
 		return (tstr);
 	else if (format.specifier == 'x')
-		ret = ft_strtotstr(ft_strjoin("0x", tstr->str));
+		ret = ft_tstrjoin(&prefix, tstr);
 	else if (format.specifier == 'X')
-		ret = ft_strtotstr(ft_strjoin("0X", tstr->str));
+	{
+		ret = ft_tstrjoin(&prefix, tstr);
+		ft_tstrtoupper(ret);
+	}
 	del_tstr(tstr);
 	return (ret);
 }
@@ -49,5 +64,5 @@ t_string	*convert_prefix(t_string *tstr, t_format format)
 	else if (!need_prefix(format))
 		return (tstr);
 	else
-		return (prefix(tstr, format));
+		return (apply_prefix(tstr, format));
 }

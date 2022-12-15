@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:10:51 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/15 14:58:56 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/15 22:43:34 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ typedef struct s_format
 
 typedef struct s_string
 {
-	char	*str;
-	int		len;
-	int		size;
+	char		*str;
+	long long	len;
+	long long	size;
 }	t_string;
 
 // convert
@@ -74,10 +74,13 @@ t_format	init_format(void);
 // string
 void		del_tstr(t_string *tstr);
 t_string	*ft_strtotstr(char *str);
+t_string	*ft_tstrjoin(t_string *ts1, t_string *ts2);
 int			ft_tstrlstlen(t_list *tstrlst);
 t_string	*ft_tstrnew(char *str, int len, int size);
+void		ft_tstrtoupper(t_string *ts);
 t_string	*get_tstrf(const char *fmt, t_format format, va_list *args);
 t_list		*get_tstrlstf(const char *fmt, va_list *args);
+int			print_tstrlst(t_list *tstrlst);
 
 // toa
 char		*ft_ctoa(int c);
@@ -103,7 +106,6 @@ char		*ft_strtoupper(char *s);
 
 // ft_printf
 int			get_skip_digit(const char *str);
-void		prints(t_string *tstr);
 int			ft_printf(const char *fmt, ...);
 
 #endif
