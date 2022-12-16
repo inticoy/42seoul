@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 19:53:09 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/15 16:56:50 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/16 15:36:10 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,36 +32,44 @@ static void	fill_background(char *str, t_format format)
 
 }
 
-static t_string	*padding(t_string *tstr, t_format format)
+static t_string	*apply_padding(t_string *tstr, t_format format)
 {
-	char			*ret;
+	char		*sret;
+	t_string	*ret;
 
-	ret = (char *)ft_calloc(format.width + 1, sizeof(char));
-	if (!ret)
+	sret = (char *)ft_calloc(format.width + 1, sizeof(char));
+	if (!sret)
+	{
+		del_tstr(tstr);
 		return (FT_NULL);
-	fill_background(ret, format);
+	}
+	fill_background(sret, format);
 	if (format.flag.left)
-		ft_memcpy(ret, tstr->str, tstr->len);
+		ft_memcpy(sret, tstr->str, tstr->len);
 	else if (need_prefix(format))
 	{
-		if (format.flag.zero)
+		if (format.flag.zero && format.precision < 0)
 		{
 			if (format.specifier == 'x')
-				ft_memcpy(ret, "0x", 2);
+				ft_memcpy(sret, "0x", 2);
 			else if (format.specifier == 'X')
-				ft_memcpy(ret, "0X", 2);
-			ft_memcpy(ret + format.width - tstr->len - 2, tstr->str + 2, tstr->len - 2);
+				ft_memcpy(sret, "0X", 2);
+			ft_memcpy(sret + format.width - tstr->len - 2, tstr->str + 2, tstr->len - 2);
 		}
 	}
 	else if (tstr->str[0] == '+' || tstr->str[0] == '-')
 	{
-		ret[0] = tstr->str[0];
-		ft_memcpy(ret + format.width - tstr->len + 1, tstr->str + 1, tstr->len - 1);
+		if (format.flag.zero && format.precision < 0)
+			sret[0] = tstr->str[0];
+		else
+			sret[format.width - tstr->len] = tstr->str[0];
+		ft_memcpy(sret + format.width - tstr->len + 1, tstr->str + 1, tstr->len - 1);
 	}
 	else
-		ft_memcpy(ret + format.width - tstr->len, tstr->str, tstr->len);
+		ft_memcpy(sret + format.width - tstr->len, tstr->str, tstr->len);
+	ret = ft_tstrnew(sret, format.width, format.width + 1);
 	del_tstr(tstr);
-	return (ft_tstrnew(ret, format.width, format.width + 1));
+	return (ret);
 }
 
 t_string	*convert_padding(t_string *tstr, t_format format)
@@ -71,5 +79,5 @@ t_string	*convert_padding(t_string *tstr, t_format format)
 	else if (!need_padding(tstr, format))
 		return (tstr);
 	else
-		return (padding(tstr, format));
+		return (apply_padding(tstr, format));
 }

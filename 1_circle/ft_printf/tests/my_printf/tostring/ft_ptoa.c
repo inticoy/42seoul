@@ -6,10 +6,11 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 20:15:14 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/13 15:13:40 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/16 13:39:15 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include "libft.h"
 
 static size_t	get_xdigits(unsigned long long num)
@@ -31,6 +32,8 @@ char	*ft_ptoa(void *ptr)
 	num = (unsigned long long)ptr;
 	len = get_xdigits(num);
 	ret = (char *) ft_calloc(len + 3, sizeof(char));
+	if (!ret)
+		return (FT_NULL);
 	ret[0] = '0';
 	ret[1] = 'x';
 	i = 0;

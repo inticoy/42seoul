@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 17:19:36 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/16 00:18:38 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/16 14:01:07 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ int	print_tstrlst(t_list *tstrlst)
 	while (tstrlst)
 	{
 		tstr = tstrlst->content;
+		if (!tstr)
+		{
+			printed = -1;
+			break ;
+		}
 		wret = write(1, tstr->str, tstr->len);
 		if (wret < 0)
 		{

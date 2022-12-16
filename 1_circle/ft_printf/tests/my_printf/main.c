@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:26:15 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/15 23:45:07 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/16 15:36:24 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,11 @@ int	main(void)
 	// printf(" %d %d %d %d %d %d %d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
 
 
-	ft = ft_printf("", ft);
-	or = printf("", ft);
+	// 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX
+
+	ft_printf("%010.5d", 14);
+
+	printf("%010.5d", 14);
 	printf("\n%d %d\n", ft, or);
 	
 	// ft_printf("----- ----- ----- -----\n");

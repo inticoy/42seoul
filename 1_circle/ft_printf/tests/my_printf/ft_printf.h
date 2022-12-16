@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:10:51 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/15 22:43:34 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/16 14:46:07 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_string	*convert_space(t_string *tstr, t_format format);
 // flag
 t_flag		init_flag(void);
 t_bool		need_padding(t_string *tstr, t_format format);
-t_bool		need_precision(t_format format);
+t_bool		need_precision(t_string *tstr, t_format format);
 t_bool		need_prefix(t_format format);
 t_bool		need_sign(t_format format);
 t_bool		need_space(t_format format);
