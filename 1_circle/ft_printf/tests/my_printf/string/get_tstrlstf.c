@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_tstrlstf.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 23:12:40 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/16 00:20:35 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/16 19:31:40 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,7 @@ t_list	*get_tstrlstf(const char *fmt, va_list *args)
 			ft_lstclear(&shead, (void (*)(void *))del_tstr);
 			return (FT_NULL);
 		}
-		if (!shead)
-			shead = snode;
-		else
-			ft_lstadd_back(&shead, snode);
+		ft_lstadd_back(&shead, snode);
 		fmt += format.len;
 	}
 	return (shead);
