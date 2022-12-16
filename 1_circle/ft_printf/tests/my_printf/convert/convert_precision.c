@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 19:53:09 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/16 15:16:56 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/16 16:43:48 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static t_string	*apply_precision(t_string *tstr, t_format format)
 	char			*sret;
 	t_string		*ret;
 
-	i = 0;
 	sret = ft_calloc(len + 1, sizeof(char));
 	if (!sret)
 	{
@@ -58,9 +57,10 @@ static t_string	*apply_precision(t_string *tstr, t_format format)
 	{
 		if (ft_isnumfs(format.specifier))
 		{
+			i = 0;
+			ft_memset(sret, '0', len);
 			if (ft_isminus(tstr->str[i]))
 				sret[i++] = '-';
-			ft_memset(sret + i, '0', len - i);
 			ft_memcpy(sret + (len - (tstr->len - i)), tstr->str + i, tstr->len - i);
 		}
 		else if (ft_isstrfs(format.specifier))

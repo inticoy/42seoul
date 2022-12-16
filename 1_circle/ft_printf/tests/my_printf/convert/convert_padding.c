@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 19:53:09 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/16 15:36:10 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/16 16:30:42 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ static t_string	*apply_padding(t_string *tstr, t_format format)
 				ft_memcpy(sret, "0X", 2);
 			ft_memcpy(sret + format.width - tstr->len - 2, tstr->str + 2, tstr->len - 2);
 		}
+		else
+			ft_memcpy(sret + format.width - tstr->len, tstr->str, tstr->len);
 	}
 	else if (tstr->str[0] == '+' || tstr->str[0] == '-')
 	{

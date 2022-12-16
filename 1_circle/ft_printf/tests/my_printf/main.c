@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:26:15 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/16 15:36:24 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/16 16:44:26 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,12 @@ int	main(void)
 
 	// 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX
 
-	ft_printf("%010.5d", 14);
-
-	printf("%010.5d", 14);
+	//ft = ft_printf("%0+.1d, %0+.1d, %0+.1d, %0+.1d, %0+.1d, %0+.1d, %0+.1d, %0+.1d\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+	//or = printf("%0+.1d, %0+.1d, %0+.1d, %0+.1d, %0+.1d, %0+.1d, %0+.1d, %0+.1d\n", 0, 5, -1, -10, 100, -1862, INT_MIN, INT_MAX);
+	//ft = ft_printf("%#5x, %#5x, %#5x, %#5x, %#5x, %#5x, %#5x, %#5x, %#5x, %#5x\n", 0, 5, -1, -10, 0x1234, -1862, 0xABCDE, INT_MIN, INT_MAX, UINT_MAX);
+	//or = printf("%#5x, %#5x, %#5x, %#5x, %#5x, %#5x, %#5x, %#5x, %#5x, %#5x\n", 0, 5, -1, -10, 0x1234, -1862, 0xABCDE, INT_MIN, INT_MAX, UINT_MAX);
+	ft = ft_printf("%.10d%#.10d\n", 0, 5);
+	or = printf("%.10d%.10d\n", 0, 5);
 	printf("\n%d %d\n", ft, or);
 	
 	// ft_printf("----- ----- ----- -----\n");
