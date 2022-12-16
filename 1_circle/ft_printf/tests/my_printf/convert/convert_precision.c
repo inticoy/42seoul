@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_precision.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 19:53:09 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/16 16:43:48 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/16 20:49:19 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ static t_string	*apply_precision(t_string *tstr, t_format format)
 			ft_memset(sret, '0', len);
 			if (ft_isminus(tstr->str[i]))
 				sret[i++] = '-';
-			ft_memcpy(sret + (len - (tstr->len - i)), tstr->str + i, tstr->len - i);
+			ft_strlcpy(sret + (len - (tstr->len - i)), tstr->str + i, tstr->len - i + 1);
 		}
 		else if (ft_isstrfs(format.specifier))
-			ft_memcpy(sret, tstr->str, len);
+			ft_strlcpy(sret, tstr->str, len + 1);
 	}
 	del_tstr(tstr);
 	ret = ft_strtotstr(sret);

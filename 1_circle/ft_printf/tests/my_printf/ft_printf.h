@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:10:51 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/16 14:46:07 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/16 21:29:58 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include <stdarg.h>
+# include <unistd.h>
 
 # ifndef FT_NULL
 #  define FT_NULL (void *)0
@@ -79,7 +80,7 @@ int			ft_tstrlstlen(t_list *tstrlst);
 t_string	*ft_tstrnew(char *str, int len, int size);
 void		ft_tstrtoupper(t_string *ts);
 t_string	*get_tstrf(const char *fmt, t_format format, va_list *args);
-t_list		*get_tstrlstf(const char *fmt, va_list *args);
+int			get_tstrlstf(const char *fmt, va_list *args);
 int			print_tstrlst(t_list *tstrlst);
 
 // toa
