@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tstrlstlen.c                                    :+:      :+:    :+:   */
+/*   get_tstr_auto.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/14 15:22:17 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/14 15:25:42 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/13 17:03:43 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/17 13:17:06 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
 
-int	ft_tstrlstlen(t_list *tstrlst)
+t_string	get_tstr_auto(char *str)
 {
-	int	len;
+	t_string	tstr;
 
-	len = 0;
-	while (tstrlst)
-	{
-		len += ((t_string *)tstrlst->content)->len;
-		tstrlst = tstrlst->next;
-	}
-	return (len);
+	if (!str)
+		return (get_tstr(FT_NULL, -1, 0));
+	else
+		return (get_tstr(str, ft_strlen(str), ft_strlen(str) + 1));
 }

@@ -3,34 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   convert_precision.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 19:53:09 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/17 09:45:47 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/17 13:22:30 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
-#include <stdio.h>
 
 static size_t	get_precisionlen(t_string tstr, t_format format)
 {
 	size_t	len;
 
 	len = 0;
-	if (ft_isnumfs(format.specifier))
+	if (is_num_format(format))
 	{
-		if (ft_isminus(tstr.str[0]))
+		if (tstr.str[0] == '-')
 			len++;
 		if (format.precision > (int)(tstr.len - len))
 			len += format.precision;
 		else
 			len = tstr.len;
-		if (ft_iszero(tstr.str[0]) && !format.precision)
+		if (tstr.str[0] == '0' && !format.precision)
 			len = 0;
 	}
-	else if (ft_isstrfs(format.specifier))
+	else if (is_str_format(format))
 	{
 		if (format.precision < (int)tstr.len)
 			len = format.precision;
@@ -50,23 +49,20 @@ static t_string	apply_precision(t_string tstr, t_format format)
 	if (!str)
 	{
 		ft_free_s(tstr.str);
-		return (get_tstr(FT_NULL, -1, 0));
+		return (get_tstr_auto(FT_NULL));
 	}
-	if (!(len == 0))
+	if (is_num_format(format) && len)
 	{
-		if (ft_isnumfs(format.specifier))
-		{
-			i = 0;
-			ft_memset(str, '0', len);
-			if (ft_isminus(tstr.str[i]))
-				str[i++] = '-';
-			ft_memcpy(str + (len - (tstr.len - i)), tstr.str + i, tstr.len - i);
-		}
-		else if (ft_isstrfs(format.specifier))
-			ft_memcpy(str, tstr.str, len);
+		i = 0;
+		ft_memset(str, '0', len);
+		if (tstr.str[i] == '-')
+			str[i++] = '-';
+		ft_memcpy(str + (len - (tstr.len - i)), tstr.str + i, tstr.len - i);
 	}
+	else if (is_str_format(format))
+		ft_memcpy(str, tstr.str, len);
 	ft_free_s(tstr.str);
-	return (ft_strtotstr(str));
+	return (get_tstr(str, len, len + 1));
 }
 
 t_string	convert_precision(t_string tstr, t_format format)

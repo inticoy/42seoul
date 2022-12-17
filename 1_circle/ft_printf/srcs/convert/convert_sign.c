@@ -6,24 +6,24 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 19:53:09 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/17 11:43:53 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/17 13:25:30 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
 static t_string	apply_sign(t_string tstr, t_format format)
 {
-	const char	*plus = "+";
-	char		*sret;
+	char		*str;
 
-	if (ft_isminus(tstr.str[0]))
+	if (tstr.str[0] == '-')
 		return (tstr);
 	else
 	{
-		sret = ft_strjoin(plus, tstr.str);
+		str = ft_strjoin("+", tstr.str);
 		ft_free_s(tstr.str);
-		return (ft_strtotstr(sret));
+		return (get_tstr_auto(str));
 	}
 }
 

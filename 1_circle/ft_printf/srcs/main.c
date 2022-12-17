@@ -5,24 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/05 14:26:15 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/17 11:53:15 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/17 13:32:51 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/17 14:13:10 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include <stdio.h>
-#include <limits.h>
-#include <unistd.h>
+#include "ft_printf.h"
 
 int	main(void)
 {
-	int	ft;
-	int	or;
-
-	ft = ft_printf("%05d\n", 12);
-	or = printf("%05d\n", 12);
-
-	printf("%d %d\n", ft, or);
+	ft_printf("% 040.2d\n", -5);
+	printf("% 040.2d\n", -5);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_xtoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 22:19:06 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/16 13:39:40 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/17 12:58:43 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static size_t	get_xdigits(unsigned int num)
 
 char	*ft_xtoa(unsigned int num)
 {
-	const char *const	hex = "0123456789abcdef";
 	const size_t		len = get_xdigits(num);
 	size_t				i;
 	char				*ret;
@@ -34,7 +33,7 @@ char	*ft_xtoa(unsigned int num)
 	i = 0;
 	while (i < len)
 	{
-		ret[len - 1 - i] = hex[num % 16];
+		ret[len - 1 - i] = "0123456789abcdef"[num % 16];
 		num /= 16;
 		i++;
 	}

@@ -6,13 +6,14 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 19:53:09 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/17 11:41:30 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/17 13:22:47 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
-static t_bool	isallzero(t_string tstr)
+static t_bool	is_all_zero(t_string tstr)
 {
 	t_bool	ret;
 	int		i;
@@ -21,7 +22,7 @@ static t_bool	isallzero(t_string tstr)
 	i = 0;
 	while (i < tstr.len)
 	{
-		if (!ft_iszero(tstr.str[i]))
+		if (tstr.str[i] != '0')
 			ret = ft_false;
 		i++;
 	}
@@ -30,16 +31,15 @@ static t_bool	isallzero(t_string tstr)
 
 static t_string	apply_prefix(t_string tstr, t_format format)
 {
-	const char	*prefix = "0x";
-	char		*ret;
+	char		*str;
 
-	if (isallzero(tstr))
+	if (is_all_zero(tstr))
 		return (tstr);
-	ret = ft_strjoin(prefix, tstr.str);
+	str = ft_strjoin("0x", tstr.str);
 	if (format.specifier == 'X')
-		ft_strtoupper(ret);
+		ft_strtoupper(str);
 	ft_free_s(tstr.str);
-	return (ft_strtotstr(ret));
+	return (get_tstr_auto(str));
 }
 
 t_string	convert_prefix(t_string tstr, t_format format)

@@ -3,24 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   get_formatf.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 17:20:54 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/17 00:13:32 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/17 12:46:28 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-int	get_skip_digit(const char *str)
+static int	isflag(int c)
 {
-	int	len;
-
-	len = 0;
-	while (ft_isdigit(str[len]))
-		len++;
-	return (len);
+	if (c == '-' || c == '+' || c == ' ' || c == '#' || c == '0')
+		return (1);
+	else
+		return (0);
 }
 
 t_format	get_formatf(const char *fmt)
@@ -28,23 +26,23 @@ t_format	get_formatf(const char *fmt)
 	t_format	format;
 
 	format = init_format();
-	if (ft_ispercent(fmt[format.len]))
+	if (fmt[format.len] == '%')
 	{
-		while (ft_isflag(fmt[++format.len]))
+		while (isflag(fmt[++format.len]))
 			format.flag = update_flag(format.flag, fmt[format.len]);
 		format.width = ft_atoi(fmt + format.len);
-		format.len += get_skip_digit(fmt + format.len);
-		if (ft_isdot(fmt[format.len]))
+		while (ft_isdigit(fmt[format.len]))
+			format.len++;
+		if (fmt[format.len] == '.')
 		{
 			format.precision = ft_atoi(fmt + ++format.len);
-			format.len += get_skip_digit(fmt + format.len);
+			while (ft_isdigit(fmt[format.len]))
+				format.len++;
 		}
-		else
-			format.precision = -1;
 		format.specifier = fmt[format.len++];
 	}
 	else
-		while (fmt[format.len] && !ft_ispercent(fmt[format.len]))
+		while (fmt[format.len] && fmt[format.len] != '%')
 			format.len++;
 	return (format);
 }

@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isplus.c                                        :+:      :+:    :+:   */
+/*   is_num_format.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 21:57:26 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/10 18:15:33 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/17 13:03:33 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/17 13:05:56 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isplus(int c)
+#include "ft_printf.h"
+
+t_bool	is_num_format(t_format format)
 {
-	if (c == '+')
-		return (1);
+	const char	c = format.specifier;
+
+	if (c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X')
+		return (ft_true);
 	else
-		return (0);
+		return (ft_false);
 }

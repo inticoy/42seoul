@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ptoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 20:15:14 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/16 13:39:15 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/17 12:59:19 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static size_t	get_xdigits(unsigned long long num)
 
 char	*ft_ptoa(void *ptr)
 {
-	const char *const	hex = "0123456789abcdef";
 	unsigned long long	num;
 	size_t				len;
 	size_t				i;
@@ -31,7 +30,7 @@ char	*ft_ptoa(void *ptr)
 
 	num = (unsigned long long)ptr;
 	len = get_xdigits(num);
-	ret = (char *) ft_calloc(len + 3, sizeof(char));
+	ret = (char *)ft_calloc(len + 3, sizeof(char));
 	if (!ret)
 		return (FT_NULL);
 	ret[0] = '0';
@@ -39,7 +38,7 @@ char	*ft_ptoa(void *ptr)
 	i = 0;
 	while (i < len)
 	{
-		ret[len + 1 - i] = hex[num % 16];
+		ret[len + 1 - i] = "0123456789abcdef"[num % 16];
 		num /= 16;
 		i++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_format.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 15:39:53 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/14 15:28:40 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/17 12:43:47 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_format	init_format(void)
 	format.len = 0;
 	format.flag = init_flag();
 	format.width = 0;
-	format.precision = 0;
+	format.precision = -1;
 	format.specifier = 0;
 	return (format);
 }

@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   del_tstr.c                                         :+:      :+:    :+:   */
+/*   is_str_format.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/13 16:07:56 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/14 15:19:05 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/17 13:06:46 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/17 13:07:27 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	del_tstr(t_string *tstr)
+t_bool	is_str_format(t_format format)
 {
-	ft_free_s(tstr->str);
-	ft_free_s(tstr);
+	const char	c = format.specifier;
+
+	if (c == 's')
+		return (ft_true);
+	else
+		return (ft_false);
 }
