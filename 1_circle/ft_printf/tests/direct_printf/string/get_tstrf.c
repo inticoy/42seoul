@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 23:13:18 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/17 11:46:13 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/17 11:48:10 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_string	get_tstrf(const char *fmt, t_format format, va_list *args)
 		tstr = convert_prefix(tstr, format);
 		tstr = convert_sign(tstr, format);
 		tstr = convert_space(tstr, format);
-		// tstr = convert_padding(tstr, format);
+		tstr = convert_padding(tstr, format);
 	}
 	return (tstr);
 }

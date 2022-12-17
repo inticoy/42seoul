@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:10:51 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/17 11:42:31 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/17 12:03:11 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_string
 }	t_string;
 
 // convert
-t_string	*convert_padding(t_string *tstr, t_format format);
+t_string	convert_padding(t_string tstr, t_format format);
 t_string	convert_precision(t_string tstr, t_format format);
 t_string	convert_prefix(t_string tstr, t_format format);
 t_string	convert_sign(t_string tstr, t_format format);
@@ -60,7 +60,7 @@ t_string	convert_space(t_string tstr, t_format format);
 
 // flag
 t_flag		init_flag(void);
-t_bool		need_padding(t_string *tstr, t_format format);
+t_bool		need_padding(t_string tstr, t_format format);
 t_bool		need_precision(t_string tstr, t_format format);
 t_bool		need_prefix(t_format format);
 t_bool		need_sign(t_format format);
@@ -74,9 +74,8 @@ t_format	init_format(void);
 // string
 void		del_tstr(t_string *tstr);
 t_string	ft_strtotstr(char *str);
-t_string	*ft_tstrjoin(t_string *ts1, t_string *ts2);
+t_string	ft_tstrjoin(t_string ts1, t_string ts2);
 int			ft_tstrlstlen(t_list *tstrlst);
-t_string	*ft_tstrnew(char *str, int len, int size);
 void		ft_tstrtoupper(t_string ts);
 t_string	get_tstr(char *str, int len, int size);
 t_string	get_tstrf(const char *fmt, t_format format, va_list *args);
