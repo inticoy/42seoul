@@ -3,45 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   convert_space.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 19:53:09 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/15 22:33:25 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/17 11:45:26 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static t_string	get_tstr_space(void)
+static t_string	apply_space(t_string tstr, t_format format)
 {
-	t_string	space;
+	const char	*space = " ";
+	char		*sret;
 
-	space.str = " ";
-	space.len = 1;
-	space.size = 2;
-	return (space);
-}
-
-static t_string	*apply_space(t_string *tstr, t_format format)
-{
-	t_string	space;
-	t_string	*ret;
-
-	if (ft_isplus(tstr->str[0]) || ft_isminus(tstr->str[0]))
+	if (ft_isplus(tstr.str[0]) || ft_isminus(tstr.str[0]))
 		return (tstr);
 	else
 	{
-		space = get_tstr_space();
-		ret = ft_tstrjoin(&space, tstr);
-		del_tstr(tstr);
-		return (ret);
+		sret = ft_strjoin(space, tstr.str);
+		ft_free_s(tstr.str);
+		return (ft_strtotstr(sret));
 	}
 }
 
-t_string	*convert_space(t_string *tstr, t_format format)
+t_string	convert_space(t_string tstr, t_format format)
 {
-	if (!tstr)
-		return (FT_NULL);
+	if (!tstr.str)
+		return (tstr);
 	else if (!need_space(format))
 		return (tstr);
 	else

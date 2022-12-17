@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 21:34:02 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/17 00:40:05 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/17 11:40:52 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	ft_printf(const char *fmt, ...)
 	int			printed;
 
 	va_start(args, fmt);
+	written = 0;
+	printed = 0;
 	while (*fmt)
 	{
 		format = get_formatf(fmt);

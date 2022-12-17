@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:26:15 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/17 10:02:34 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/17 11:38:28 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	main(void)
 	int	ft;
 	int	or;
 
-	ft = ft_printf("%#.5x\n", 12);
-	or = printf("%#.5x\n", 12);
+	ft = ft_printf("\001\002\007\v\010\f\r\n");
+	or = printf("\001\002\007\v\010\f\r\n");
 
 	printf("%d %d\n", ft, or);
 	return (0);

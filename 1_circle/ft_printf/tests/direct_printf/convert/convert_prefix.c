@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   convert_prefix.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 19:53:09 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/17 09:51:39 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/17 11:41:30 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static t_string	get_tstr_prefix(void)
-{
-	t_string	prefix;
-
-	prefix.str = "0x";
-	prefix.len = 2;
-	prefix.size = 3;
-	return (prefix);
-}
 
 static t_bool	isallzero(t_string tstr)
 {

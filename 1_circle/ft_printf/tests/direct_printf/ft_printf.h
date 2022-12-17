@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:10:51 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/17 09:52:00 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/17 11:42:31 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ typedef struct s_string
 t_string	*convert_padding(t_string *tstr, t_format format);
 t_string	convert_precision(t_string tstr, t_format format);
 t_string	convert_prefix(t_string tstr, t_format format);
-t_string	*convert_sign(t_string *tstr, t_format format);
-t_string	*convert_space(t_string *tstr, t_format format);
+t_string	convert_sign(t_string tstr, t_format format);
+t_string	convert_space(t_string tstr, t_format format);
 
 // flag
 t_flag		init_flag(void);
