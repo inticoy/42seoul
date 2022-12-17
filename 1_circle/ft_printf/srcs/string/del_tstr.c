@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   del_tstr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 20:44:36 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/04 19:10:09 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/13 16:07:56 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/14 15:19:05 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_lstiter(t_list *lst, void (*f) (void *))
+void	del_tstr(t_string *tstr)
 {
-	if (!lst)
-		return ;
-	f(lst->content);
-	if (lst->next)
-		ft_lstiter(lst->next, f);
+	ft_free_s(tstr->str);
+	ft_free_s(tstr);
 }

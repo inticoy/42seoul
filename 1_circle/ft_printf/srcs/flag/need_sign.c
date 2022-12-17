@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   need_sign.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 20:44:36 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/04 19:10:09 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/12 19:42:43 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/14 15:20:16 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_lstiter(t_list *lst, void (*f) (void *))
+t_bool	need_sign(t_format format)
 {
-	if (!lst)
-		return ;
-	f(lst->content);
-	if (lst->next)
-		ft_lstiter(lst->next, f);
+	if (!format.flag.sign)
+		return (ft_false);
+	else if (format.specifier == 'd')
+		return (ft_true);
+	else if (format.specifier == 'i')
+		return (ft_true);
+	else
+		return (ft_false);
 }

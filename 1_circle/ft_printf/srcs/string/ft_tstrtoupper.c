@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_tstrtoupper.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 20:44:36 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/04 19:10:09 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/15 22:41:33 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/17 09:50:57 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include "libft.h"
+#include <unistd.h>
 
-void	ft_lstiter(t_list *lst, void (*f) (void *))
+void	ft_tstrtoupper(t_string ts)
 {
-	if (!lst)
+	if (!ts.str)
 		return ;
-	f(lst->content);
-	if (lst->next)
-		ft_lstiter(lst->next, f);
+	ft_strtoupper(ts.str);
 }

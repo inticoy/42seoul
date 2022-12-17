@@ -5,50 +5,53 @@
 #                                                     +:+ +:+         +:+      #
 #    By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/09/07 19:53:58 by gyoon             #+#    #+#              #
-#    Updated: 2022/11/10 18:35:52 by gyoon            ###   ########.fr        #
+#    Created: 2022/11/16 16:53:40 by jinhchoi          #+#    #+#              #
+#    Updated: 2022/12/17 12:02:33 by gyoon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
-
-SRCS =	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
-		ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c \
-		ft_strlcpy.c ft_strlcat.c ft_toupper.c ft_tolower.c ft_strchr.c \
-		ft_strrchr.c ft_strncmp.c ft_memchr.c ft_memcmp.c ft_strnstr.c \
-		ft_atoi.c ft_calloc.c ft_strdup.c \
-		ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c \
-		ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
-		ft_putnbr_fd.c
-BONUS =	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
-		ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
-OBJS = ${SRCS:.c=.o}
-BONUSOBJS = ${BONUS:.c=.o}
 NAME = libftprintf.a
-
-.c.o :
-	$(CC) $(CFLAGS) -c $< -o ${<:.c=.o} 
-
-$(NAME) : $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+CC = cc
+AR = ar
+RM = rm -rf
+CFLAGS = 
+ARFLAGS = -rc
+SRCFILES := ft_printf.c \
+			convert/convert_padding.c convert/convert_precision.c convert/convert_prefix.c convert/convert_sign.c convert/convert_space.c \
+			flag/init_flag.c flag/need_padding.c flag/need_precision.c flag/need_prefix.c flag/need_sign.c flag/need_space.c flag/update_flag.c \
+			format/get_formatf.c format/init_format.c \
+			string/del_tstr.c string/ft_strtotstr.c string/ft_tstrjoin.c string/ft_tstrlstlen.c string/ft_tstrtoupper.c string/get_tstr.c string/get_tstrf.c \
+			tostring/ft_ctoa.c tostring/ft_ptoa.c tostring/ft_utoa.c tostring/ft_vtoa.c tostring/ft_xtoa.c \
+			utils/ft_free_s.c \
+			utils/ft_isdot.c utils/ft_isflag.c utils/ft_isnumfs.c utils/ft_isminus.c utils/ft_ispercent.c utils/ft_isplus.c utils/ft_isstrfs.c utils/ft_iszero.c \
+			utils/ft_strlstlen.c utils/ft_strndup.c utils/ft_strtoupper.c 
+OBJS := $(SRCFILES:.c=.o)
+LIBFT = libft/libft.a
 
 all : $(NAME)
 
-bonus : $(BONUSOBJS)
-	make all
-	ar rs $(NAME) $(BONUSOBJS)
+$(NAME) : $(LIBFT) $(OBJS)
+	cp $(LIBFT) $@
+	ar -rc $@ $(OBJS)
+
+bonus : $(NAME)
+
+$(LIBFT) :
+	make -C libft bonus
+
+%.o : %.c
+	$(CC) $(CFLAGS) -c $< -o $@ -I. -I libft
 
 clean :
-	rm -f $(OBJS)
-	rm -f $(BONUSOBJS)
+	$(RM) $(OBJS)
+	make -C libft clean
 
-fclean :
-	make clean
-	rm -f $(NAME)
+fclean : clean
+	$(RM) $(NAME)
+	make -C libft fclean
 
 re :
 	make fclean
 	make all
 
-.PHONY : all clean fclean re .c.o
+.PHONY : all clean fclean re

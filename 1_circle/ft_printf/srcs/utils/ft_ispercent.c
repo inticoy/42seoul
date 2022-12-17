@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_ispercent.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 20:44:36 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/04 19:10:09 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/05 14:22:43 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/05 18:55:42 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_lstiter(t_list *lst, void (*f) (void *))
+int	ft_ispercent(int c)
 {
-	if (!lst)
-		return ;
-	f(lst->content);
-	if (lst->next)
-		ft_lstiter(lst->next, f);
+	if (c == '%')
+		return (1);
+	else
+		return (0);
 }

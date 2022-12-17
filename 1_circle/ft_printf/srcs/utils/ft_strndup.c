@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 20:11:42 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/16 16:00:40 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/05 19:18:49 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/13 15:49:18 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+char	*ft_strndup(const char *s1, size_t n)
 {
-	t_list	*ret;
+	const size_t	slen = ft_strlen(s1);
+	size_t			len;
+	char			*ret;
 
-	ret = (t_list *) ft_calloc(1, sizeof(t_list));
+	if (slen > n)
+		len = n;
+	else
+		len = slen;
+	ret = (char *) ft_calloc(len + 1, sizeof(char));
 	if (!ret)
 		return (0);
-	ret->content = content;
-	return (ret);
+	return (ft_memcpy(ret, s1, len));
 }

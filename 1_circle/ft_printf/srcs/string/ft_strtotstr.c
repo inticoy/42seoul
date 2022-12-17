@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_strtotstr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 20:44:36 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/04 19:10:09 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/13 17:03:43 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/17 01:03:18 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_lstiter(t_list *lst, void (*f) (void *))
+t_string	ft_strtotstr(char *str)
 {
-	if (!lst)
-		return ;
-	f(lst->content);
-	if (lst->next)
-		ft_lstiter(lst->next, f);
+	t_string	tstr;
+
+	if (!str)
+		return (get_tstr(FT_NULL, -1, 0));
+	else
+		return (get_tstr(str, ft_strlen(str), ft_strlen(str) + 1));
 }

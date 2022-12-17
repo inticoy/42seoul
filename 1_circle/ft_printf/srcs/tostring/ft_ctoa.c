@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_ctoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 20:44:36 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/04 19:10:09 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/05 20:11:53 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/16 13:34:00 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include "libft.h"
 
-void	ft_lstiter(t_list *lst, void (*f) (void *))
+char	*ft_ctoa(int c)
 {
-	if (!lst)
-		return ;
-	f(lst->content);
-	if (lst->next)
-		ft_lstiter(lst->next, f);
+	char	*ret;
+
+	ret = (char *)ft_calloc(2, sizeof(char));
+	if (!ret)
+		return (FT_NULL);
+	*ret = (char)c;
+	return (ret);
 }

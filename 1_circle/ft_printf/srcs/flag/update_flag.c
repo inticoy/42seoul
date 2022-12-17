@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   update_flag.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 20:44:36 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/04 19:10:09 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/05 23:29:47 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/10 19:46:40 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_lstiter(t_list *lst, void (*f) (void *))
+t_flag	update_flag(t_flag flag, int c)
 {
-	if (!lst)
-		return ;
-	f(lst->content);
-	if (lst->next)
-		ft_lstiter(lst->next, f);
+	if (c == '-')
+		flag.left = ft_true;
+	else if (c == '+')
+		flag.sign = ft_true;
+	else if (c == ' ')
+		flag.space = ft_true;
+	else if (c == '#')
+		flag.prefix = ft_true;
+	else if (c == '0')
+		flag.zero = ft_true;
+	return (flag);
 }

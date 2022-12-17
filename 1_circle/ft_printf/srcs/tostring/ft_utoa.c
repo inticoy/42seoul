@@ -1,24 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_utoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 20:11:42 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/16 16:00:40 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/05 22:55:36 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/16 13:39:22 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+static size_t	get_udigits(unsigned int u)
 {
-	t_list	*ret;
+	if (u < 10)
+		return (1);
+	else
+		return (get_udigits(u / 10) + 1);
+}
 
-	ret = (t_list *) ft_calloc(1, sizeof(t_list));
+static char	*set_utoa(char *s, unsigned int u)
+{
+	if (u >= 10)
+		s = set_utoa(s, u / 10);
+	*s++ = '0' + (u % 10);
+	return (s);
+}
+
+char	*ft_utoa(unsigned int u)
+{
+	char	*ret;
+
+	ret = (char *)ft_calloc(get_udigits(u) + 1, sizeof(char));
 	if (!ret)
-		return (0);
-	ret->content = content;
+		return (FT_NULL);
+	set_utoa(ret, u);
 	return (ret);
 }

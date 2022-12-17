@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 20:44:36 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/04 19:10:09 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/05 14:26:15 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/17 11:53:15 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
+#include <stdio.h>
+#include <limits.h>
+#include <unistd.h>
 
-void	ft_lstiter(t_list *lst, void (*f) (void *))
+int	main(void)
 {
-	if (!lst)
-		return ;
-	f(lst->content);
-	if (lst->next)
-		ft_lstiter(lst->next, f);
+	int	ft;
+	int	or;
+
+	ft = ft_printf("%05d\n", 12);
+	or = printf("%05d\n", 12);
+
+	printf("%d %d\n", ft, or);
+	return (0);
 }

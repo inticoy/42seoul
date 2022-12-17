@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_tstrjoin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 20:44:36 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/04 19:10:09 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/15 17:36:58 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/17 12:06:40 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include "libft.h"
 
-void	ft_lstiter(t_list *lst, void (*f) (void *))
+t_string	ft_tstrjoin(t_string ts1, t_string ts2)
 {
-	if (!lst)
-		return ;
-	f(lst->content);
-	if (lst->next)
-		ft_lstiter(lst->next, f);
+	char	*str;
+
+	if (!ts1.str || !ts2.str)
+		return (get_tstr(FT_NULL, -1, 0));
+	str = (char *)ft_calloc(ts1.size + ts2.size - 1, sizeof(char));
+	if (!str)
+		return (get_tstr(FT_NULL, -1, 0));
+	ft_memcpy(str, ts1.str, ts1.len);
+	ft_memcpy(str + ts1.len, ts2.str, ts2.len);
+	return (get_tstr(str, ts1.len + ts2.len, ts1.size + ts2.size - 1));
 }
