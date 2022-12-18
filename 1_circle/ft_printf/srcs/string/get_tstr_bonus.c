@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_space.c                                    :+:      :+:    :+:   */
+/*   get_tstr_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/05 19:53:09 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/17 15:28:47 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/17 00:30:47 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/17 15:46:33 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
-static t_string	apply_space(t_string tstr)
+t_string	get_tstr(char *str, int len, int size)
 {
-	char		*str;
+	t_string	tstr;
 
-	str = ft_strjoin(" ", tstr.str);
-	ft_free_s(tstr.str);
-	return (get_tstr_auto(str));
-}
-
-t_string	convert_space(t_string tstr, t_format format)
-{
-	if (!tstr.str)
-		return (tstr);
-	else if (!need_space(tstr, format))
-		return (tstr);
+	if (!str)
+	{
+		tstr.str = str;
+		tstr.len = -1;
+		tstr.size = 0;
+	}
 	else
-		return (apply_space(tstr));
+	{
+		tstr.str = str;
+		tstr.len = len;
+		tstr.size = size;
+	}
+	return (tstr);
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_tstrf.c                                        :+:      :+:    :+:   */
+/*   get_tstrf_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 23:13:18 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/17 15:29:27 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/17 15:46:35 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 t_string	get_tstrf(const char *fmt, t_format format, va_list *args)
 {

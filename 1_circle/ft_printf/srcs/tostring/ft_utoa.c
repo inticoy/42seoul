@@ -6,12 +6,11 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 22:55:36 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/17 12:59:42 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/17 15:29:39 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
 
 static size_t	get_udigits(unsigned int u)
 {

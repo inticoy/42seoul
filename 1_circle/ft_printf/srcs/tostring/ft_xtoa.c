@@ -6,12 +6,11 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 22:19:06 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/17 12:58:43 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/17 15:30:39 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
 
 static size_t	get_xdigits(unsigned int num)
 {

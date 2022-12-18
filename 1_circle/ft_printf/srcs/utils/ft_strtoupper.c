@@ -6,12 +6,11 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 23:06:11 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/10 19:06:17 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/17 15:41:33 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "ft_printf.h"
 
 char	*ft_strtoupper(char *s)
 {

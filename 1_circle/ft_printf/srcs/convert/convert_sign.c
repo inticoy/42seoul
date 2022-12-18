@@ -6,14 +6,13 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 19:53:09 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/17 13:25:30 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/17 15:28:44 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
 
-static t_string	apply_sign(t_string tstr, t_format format)
+static t_string	apply_sign(t_string tstr)
 {
 	char		*str;
 
@@ -34,5 +33,5 @@ t_string	convert_sign(t_string tstr, t_format format)
 	else if (!need_sign(format))
 		return (tstr);
 	else
-		return (apply_sign(tstr, format));
+		return (apply_sign(tstr));
 }

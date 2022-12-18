@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printf_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:10:51 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/17 15:35:26 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/17 15:45:55 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef FT_PRINTF_BONUS_H
+# define FT_PRINTF_BONUS_H
 
 # include <stdarg.h>
 # include "libft.h"

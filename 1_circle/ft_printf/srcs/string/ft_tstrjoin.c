@@ -6,12 +6,11 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 17:36:58 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/17 12:53:05 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/17 15:29:21 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
 
 t_string	ft_tstrjoin(t_string ts1, t_string ts2)
 {

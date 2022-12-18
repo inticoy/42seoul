@@ -1,45 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ptoa.c                                          :+:      :+:    :+:   */
+/*   ft_utoa_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/05 20:15:14 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/17 15:29:36 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/05 22:55:36 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/17 15:46:19 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
-static size_t	get_xdigits(unsigned long long num)
+static size_t	get_udigits(unsigned int u)
 {
-	if (num < 16)
+	if (u < 10)
 		return (1);
 	else
-		return (get_xdigits(num / 16) + 1);
+		return (get_udigits(u / 10) + 1);
 }
 
-char	*ft_ptoa(void *ptr)
+static char	*set_utoa(char *s, unsigned int u)
 {
-	unsigned long long	num;
-	size_t				len;
-	size_t				i;
-	char				*ret;
+	if (u >= 10)
+		s = set_utoa(s, u / 10);
+	*s++ = '0' + (u % 10);
+	return (s);
+}
 
-	num = (unsigned long long)ptr;
-	len = get_xdigits(num);
-	ret = (char *)ft_calloc(len + 3, sizeof(char));
+char	*ft_utoa(unsigned int u)
+{
+	char	*ret;
+
+	ret = (char *)ft_calloc(get_udigits(u) + 1, sizeof(char));
 	if (!ret)
 		return (FT_NULL);
-	ret[0] = '0';
-	ret[1] = 'x';
-	i = 0;
-	while (i < len)
-	{
-		ret[len + 1 - i] = "0123456789abcdef"[num % 16];
-		num /= 16;
-		i++;
-	}
+	set_utoa(ret, u);
 	return (ret);
 }

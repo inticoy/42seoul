@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ctoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 20:11:53 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/16 13:34:00 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/17 15:29:33 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
 
 char	*ft_ctoa(int c)
 {

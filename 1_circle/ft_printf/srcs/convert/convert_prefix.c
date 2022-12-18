@@ -6,12 +6,11 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 19:53:09 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/17 13:22:47 by gyoon            ###   ########.fr       */
+/*   Updated: 2022/12/17 15:28:40 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
 
 static t_bool	is_all_zero(t_string tstr)
 {

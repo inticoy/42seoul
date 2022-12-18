@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_space.c                                    :+:      :+:    :+:   */
+/*   ft_strtoupper_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/05 19:53:09 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/17 15:28:47 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/05 23:06:11 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/17 15:46:05 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-static t_string	apply_space(t_string tstr)
+char	*ft_strtoupper(char *s)
 {
-	char		*str;
+	size_t	len;
+	size_t	i;
 
-	str = ft_strjoin(" ", tstr.str);
-	ft_free_s(tstr.str);
-	return (get_tstr_auto(str));
-}
-
-t_string	convert_space(t_string tstr, t_format format)
-{
-	if (!tstr.str)
-		return (tstr);
-	else if (!need_space(tstr, format))
-		return (tstr);
-	else
-		return (apply_space(tstr));
+	if (!s)
+		return (FT_NULL);
+	len = ft_strlen(s);
+	i = 0;
+	while (i < len)
+	{
+		s[i] = ft_toupper(s[i]);
+		i++;
+	}
+	return (s);
 }

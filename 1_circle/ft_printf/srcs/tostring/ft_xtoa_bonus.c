@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ptoa.c                                          :+:      :+:    :+:   */
+/*   ft_xtoa_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/05 20:15:14 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/17 15:29:36 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/05 22:19:06 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/17 15:46:25 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
-static size_t	get_xdigits(unsigned long long num)
+static size_t	get_xdigits(unsigned int num)
 {
 	if (num < 16)
 		return (1);
@@ -20,24 +20,19 @@ static size_t	get_xdigits(unsigned long long num)
 		return (get_xdigits(num / 16) + 1);
 }
 
-char	*ft_ptoa(void *ptr)
+char	*ft_xtoa(unsigned int num)
 {
-	unsigned long long	num;
-	size_t				len;
+	const size_t		len = get_xdigits(num);
 	size_t				i;
 	char				*ret;
 
-	num = (unsigned long long)ptr;
-	len = get_xdigits(num);
-	ret = (char *)ft_calloc(len + 3, sizeof(char));
+	ret = (char *) ft_calloc(len + 1, sizeof(char));
 	if (!ret)
 		return (FT_NULL);
-	ret[0] = '0';
-	ret[1] = 'x';
 	i = 0;
 	while (i < len)
 	{
-		ret[len + 1 - i] = "0123456789abcdef"[num % 16];
+		ret[len - 1 - i] = "0123456789abcdef"[num % 16];
 		num /= 16;
 		i++;
 	}

@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_space.c                                    :+:      :+:    :+:   */
+/*   need_space_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/05 19:53:09 by gyoon             #+#    #+#             */
-/*   Updated: 2022/12/17 15:28:47 by gyoon            ###   ########.fr       */
+/*   Created: 2022/12/12 19:44:20 by gyoon             #+#    #+#             */
+/*   Updated: 2022/12/17 15:47:00 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
-static t_string	apply_space(t_string tstr)
+t_bool	need_space(t_string tstr, t_format format)
 {
-	char		*str;
-
-	str = ft_strjoin(" ", tstr.str);
-	ft_free_s(tstr.str);
-	return (get_tstr_auto(str));
-}
-
-t_string	convert_space(t_string tstr, t_format format)
-{
-	if (!tstr.str)
-		return (tstr);
-	else if (!need_space(tstr, format))
-		return (tstr);
+	if (!format.flag.space)
+		return (ft_false);
+	else if (tstr.str[0] == '+' || tstr.str[0] == '-')
+		return (ft_false);
+	else if (format.specifier == 'd')
+		return (ft_true);
+	else if (format.specifier == 'i')
+		return (ft_true);
 	else
-		return (apply_space(tstr));
+		return (ft_false);
 }
