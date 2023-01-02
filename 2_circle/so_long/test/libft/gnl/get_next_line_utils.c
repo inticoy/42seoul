@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:49 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/28 18:43:37 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/02 23:07:51 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ static void	*memcpy(void *dst, const void *src, size_t n)
 	return (dst);
 }
 
-int	update_line(t_string *l, t_buffer b)
+int	update_line(t_gnl_string *l, t_buffer b)
 {
-	t_string	tmp;
+	t_gnl_string	tmp;
 
 	tmp.len = get_index(b.buf, '\n', b.idx, b.len) - b.idx + 1 + l->len;
 	if (l->len && tmp.len < l->size)
@@ -76,9 +76,9 @@ int	update_buffer(t_buffer *b)
 	return (1);
 }
 
-t_string	optimize_string(t_string s)
+t_gnl_string	optimize_string(t_gnl_string s)
 {
-	t_string	opt;
+	t_gnl_string	opt;
 
 	opt.str = 0;
 	opt.len = s.len;

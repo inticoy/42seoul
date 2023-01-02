@@ -6,15 +6,15 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:06:44 by gyoon             #+#    #+#             */
-/*   Updated: 2022/10/28 18:27:57 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/02 23:08:36 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static t_string	init_string(void)
+static t_gnl_string	init_string(void)
 {
-	t_string	s;
+	t_gnl_string	s;
 
 	s.str = 0;
 	s.len = 0;
@@ -33,8 +33,8 @@ static int	read_buffer(int fd, t_buffer *b)
 
 char	*get_next_line(int fd)
 {
-	static t_buffer	buffer;
-	t_string		line;
+	static t_buffer		buffer;
+	t_gnl_string		line;
 
 	line = init_string();
 	while (1)

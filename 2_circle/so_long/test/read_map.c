@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 20:26:13 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/02 22:34:36 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/02 23:09:50 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ t_map	read_map(char *path)
 	line = 0;
 	i = 0;
 	fd = open(path, O_RDONLY);
-	while (!get_next_line(fd))
+	map.size.x = 0;
+	/* while (!get_next_line(fd))
 		line++;
 	close(fd);
 	map.map = (char **)ft_calloc(line, sizeof(char *));
@@ -35,6 +36,6 @@ t_map	read_map(char *path)
 	map.size.dimension = 2;
 	map.size.x = ft_strlen(map.map[1]);
 	map.size.y = line;
-	map.size.z = 0;
+	map.size.z = 0; */
 	return (map);
 }
