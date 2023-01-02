@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 15:38:06 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/02 16:44:11 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/02 22:34:24 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,24 @@ int	key_hook(int keycode, int vars)
 
 int	main(void)
 {
-	void	*mlx;
-	void	*mlx_win;
-	void	*mario;
-	int		img_width;
-	int		img_height;
+	t_game	game;
+	t_image	mario;
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1280, 720, "Hello world!");
+	game.mlx = mlx_init();
+	game.map = read_map("./maps/1-1.ber");
 
+	game.win = mlx_new_window(game.mlx, 1280, 720, "Super Mario Bros.");
 
-	mario = mlx_xpm_file_to_image(mlx, "./assets/ch_mario_small_0.xpm", &img_width, &img_height);
-	mlx_put_image_to_window(mlx, mlx_win, mario, 0, 0);
+	mario = read_image(game.mlx, "./assets/ch_mario_small_0_32.xpm");
+	mlx_put_image_to_window(game.mlx, game.win, mario.img, 0, 0);
 
-	mlx_key_hook(mlx_win, key_hook, 0);
-	mlx_loop(mlx);
+	mario = read_image(game.mlx, "./assets/ch_mario_small_1_16.xpm");
+	mlx_put_image_to_window(game.mlx, game.win, mario.img, 32, 32);
+
+	mario = read_image(game.mlx, "./assets/ch_mario_small_1_32.xpm");
+	mlx_put_image_to_window(game.mlx, game.win, mario.img, 48, 48);
+
+	mlx_key_hook(game.win, key_hook, 0);
+	mlx_loop(game.mlx);
 	return (0);
 }
