@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 15:38:06 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/02 16:16:02 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/02 16:44:11 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	key_hook(int keycode, int vars)
 
 	i = vars;
 	i++;
-	printf("key : %d\n", keycode);
+	ft_printf("key : %d\n", keycode);
 	return (0);
 }
 
