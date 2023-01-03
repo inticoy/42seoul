@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 15:38:06 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/03 15:46:49 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/03 17:21:45 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	main(void)
 
 	game.mlx = mlx_init();
 	game.map = read_map("./maps/1-1.ber");
-	ft_printf("%d %d \n", game.map.size.x, game.map.size.y);
 	game.assets = read_assets(game.mlx);
 	game.size = init_point(2, 32 * game.map.size.x, 32 * game.map.size.y, -1);
 	game.win = mlx_new_window(game.mlx, game.size.x, game.size.y, \
