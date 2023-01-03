@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 15:38:06 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/02 22:34:24 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/03 15:46:49 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,12 @@ int	main(void)
 
 	game.mlx = mlx_init();
 	game.map = read_map("./maps/1-1.ber");
-
-	game.win = mlx_new_window(game.mlx, 1280, 720, "Super Mario Bros.");
-
-	mario = read_image(game.mlx, "./assets/ch_mario_small_0_32.xpm");
-	mlx_put_image_to_window(game.mlx, game.win, mario.img, 0, 0);
-
-	mario = read_image(game.mlx, "./assets/ch_mario_small_1_16.xpm");
-	mlx_put_image_to_window(game.mlx, game.win, mario.img, 32, 32);
-
-	mario = read_image(game.mlx, "./assets/ch_mario_small_1_32.xpm");
-	mlx_put_image_to_window(game.mlx, game.win, mario.img, 48, 48);
+	ft_printf("%d %d \n", game.map.size.x, game.map.size.y);
+	game.assets = read_assets(game.mlx);
+	game.size = init_point(2, 32 * game.map.size.x, 32 * game.map.size.y, -1);
+	game.win = mlx_new_window(game.mlx, game.size.x, game.size.y, \
+								"Super Mario Bros.");
+	draw_map(game);
 
 	mlx_key_hook(game.win, key_hook, 0);
 	mlx_loop(game.mlx);

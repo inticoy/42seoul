@@ -37,6 +37,6 @@ static char *result[] = {
 "oooooooo......oooo......oooooooo",
 "oooooo      oooooooo      oooooo",
 "oooooo      oooooooo      oooooo",
-"oooo        oooooooo        oooo"
+"oooo        oooooooo        oooo",
 "oooo        oooooooo        oooo"
 };

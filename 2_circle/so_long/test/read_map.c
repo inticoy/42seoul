@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 20:26:13 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/02 23:09:50 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/03 14:59:23 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,49 @@
 #include "get_next_line.h"
 #include "ft_printf.h"
 
+static int	get_num_line(char *path)
+{
+	int		fd;
+	char	*line;
+	int		ret;
+
+	fd = open(path, O_RDONLY);
+	ret = 0;
+	while (ft_true)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		else
+		{
+			ret++;
+			ft_free_s(line);
+		}
+	}
+	close(fd);
+	return (ret);
+}
+
 t_map	read_map(char *path)
 {
 	int		fd;
-	int		line;
 	int		i;
+	char	*line;
 	t_map	map;
 
-	line = 0;
+	map = init_map();
+	map.size.y = get_num_line(path);
+	map.map = (char **)ft_calloc(map.size.y + 1, sizeof(char *));
+	fd = open(path, O_RDONLY);
 	i = 0;
-	fd = open(path, O_RDONLY);
-	map.size.x = 0;
-	/* while (!get_next_line(fd))
-		line++;
-	close(fd);
-	map.map = (char **)ft_calloc(line, sizeof(char *));
-	fd = open(path, O_RDONLY);
-	while (i < line)
+	while (i < map.size.y)
 		map.map[i++] = get_next_line(fd);
-	map.size.dimension = 2;
-	map.size.x = ft_strlen(map.map[1]);
-	map.size.y = line;
-	map.size.z = 0; */
+	map.size.x = ft_strlen(map.map[0]) - 1;
+	close (fd);
+	while (*map.map)
+	{
+		ft_printf("%s", *map.map++);
+	}
+	ft_printf("%d %d \n", map.size.x, map.size.y);
 	return (map);
 }
