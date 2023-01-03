@@ -1,6 +1,6 @@
 path = "../assets/"
-filename = "block_wall_16.xpm"
-newfilename = "block_wall_32.xpm"
+filename = "mario_3.xpm"
+newfilename = "mario_3.xpm"
 
 pixel_from = 16
 pixel_to = 32
