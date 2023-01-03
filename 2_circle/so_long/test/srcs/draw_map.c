@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:21:17 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/03 17:23:40 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/03 19:38:18 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ void	draw_map(t_game	g)
 										x * 32, y * 32);
 			else if ((*g.map.map)[x] == 'C')
 				mlx_put_image_to_window(g.mlx, g.win, g.assets.blocks[1].img, \
+										x * 32, y * 32);
+			if ((*g.map.map)[x] == 'P')
+				mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[0].img, \
 										x * 32, y * 32);
 			x++;
 		}
