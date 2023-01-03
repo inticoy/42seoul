@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 15:38:06 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/03 17:21:45 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/03 20:18:45 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,8 @@
 // 	*(unsigned int*)dst = color;
 // }
 
-int	key_hook(int keycode, int vars)
+int	key_hook(int keycode, t_game *game)
 {
-	int	i;
-
-	i = vars;
-	i++;
 	ft_printf("key : %d\n", keycode);
 	return (0);
 }
@@ -44,8 +40,7 @@ int	main(void)
 	game.win = mlx_new_window(game.mlx, game.size.x, game.size.y, \
 								"Super Mario Bros.");
 	draw_map(game);
-
-	mlx_key_hook(game.win, key_hook, 0);
+	mlx_hook(game.win, 2, 1L<<0, key_hook, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }

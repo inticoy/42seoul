@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 20:26:13 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/03 17:21:41 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/03 20:01:12 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,5 @@ t_map	read_map(char *path)
 		map.map[i++] = get_next_line(fd);
 	map.size.x = ft_strlen(map.map[0]) - 1;
 	close (fd);
-	i = 0;
-	while (i < map.size.y)
-		ft_printf("%s", *(map.map + i++));
-	ft_printf("%d %d \n", map.size.x, map.size.y);
 	return (map);
 }
