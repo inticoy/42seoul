@@ -1,6 +1,6 @@
 path = "../assets/"
-filename = "mario_3.xpm"
-newfilename = "mario_3.xpm"
+filename = "mario_11.xpm"
+newfilename = "mario_11.xpm"
 
 pixel_from = 16
 pixel_to = 32

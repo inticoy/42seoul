@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 15:40:52 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/03 22:35:49 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/04 16:10:21 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,13 @@
 #  define FT_NULL (void *)0
 # endif
 
-#include "ft_printf.h"
+# include "ft_printf.h"
+
+# define TITLE "Super Mario Bros."
+# define E_KEY_PRESS 2
+# define M_KEY_PRESS 1L
+# define E_KEY_RELEASE 3
+# define M_KEY_RELEASE 2L
 
 # define KEY_W 13
 # define KEY_A 0
@@ -27,6 +33,7 @@
 typedef struct s_point	t_size;
 typedef struct s_point	t_point;
 typedef struct s_point	t_velocity;
+typedef struct s_point	t_acceleration;
 
 struct s_point
 {
@@ -47,7 +54,7 @@ typedef struct s_assets
 	t_image	bg;
 	t_image	coin_block[3];
 	t_image	blocks[3];
-	t_image	mario[6];
+	t_image	mario[12];
 }	t_assets;
 
 typedef struct s_map
@@ -59,8 +66,10 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	t_point		pos;
-	t_velocity	v;
+	t_bool			left;
+	t_point			pos;
+	t_velocity		v;
+	t_acceleration	a;
 }	t_player;
 
 typedef struct s_key
@@ -69,6 +78,7 @@ typedef struct s_key
 	t_bool	press_a;
 	t_bool	press_s;
 	t_bool	press_d;
+	t_bool	press_shift;
 }	t_key;
 
 typedef struct s_game
@@ -92,10 +102,14 @@ typedef struct s_data
 	int		endian;
 }	t_data;
 
+void		draw_map(t_game	g);
+
+int			hook_key_release(int keycode, t_game *game);
+int			hook_key_press(int keycode, t_game *game);
+int			hook_loop(t_game *game);
+
 t_map		init_map(void);
 t_point		init_point(char dimension, int x, int y, int z);
-
-void		draw_map(t_game	g);
 
 t_assets	read_assets(void *mlx);
 t_image		read_image(void *mlx, char *path);

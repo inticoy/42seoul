@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_assets.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 19:54:19 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/03 20:50:07 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/04 16:10:51 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,11 @@ t_assets	read_assets(void *mlx)
 	assets.mario[3] = read_image(mlx, "./assets/mario_3.xpm");
 	assets.mario[4] = read_image(mlx, "./assets/mario_4.xpm");
 	assets.mario[5] = read_image(mlx, "./assets/mario_5.xpm");
+	assets.mario[6] = read_image(mlx, "./assets/mario_6.xpm");
+	assets.mario[7] = read_image(mlx, "./assets/mario_7.xpm");
+	assets.mario[8] = read_image(mlx, "./assets/mario_8.xpm");
+	assets.mario[9] = read_image(mlx, "./assets/mario_9.xpm");
+	assets.mario[10] = read_image(mlx, "./assets/mario_10.xpm");
+	assets.mario[11] = read_image(mlx, "./assets/mario_11.xpm");
 	return (assets);
 }

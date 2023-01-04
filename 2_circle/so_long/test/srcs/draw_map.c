@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:21:17 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/03 23:05:02 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/04 16:29:39 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,47 @@ void	draw_map(t_game	g)
 		g.map.map++;
 		y++;
 	}
-	if (g.player.v.x > 0)
+
+	if (g.player.left)
 	{
-		if ((g.frame / 8) % 3 == 0)
-			mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[1].img, \
+		if (g.player.v.x < 0)
+		{
+			if ((g.frame / 8) % 3 == 0)
+				mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[7].img, \
+				g.player.pos.x, g.player.pos.y);
+			if ((g.frame / 8) % 3 == 1)
+				mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[8].img, \
+				g.player.pos.x, g.player.pos.y);
+			if ((g.frame / 8) % 3 == 2)
+				mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[9].img, \
+				g.player.pos.x, g.player.pos.y);
+		}
+		else if (g.player.v.x > 0)
+			mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[10].img, \
 			g.player.pos.x, g.player.pos.y);
-		if ((g.frame / 8) % 3 == 1)
-			mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[2].img, \
-			g.player.pos.x, g.player.pos.y);
-		if ((g.frame / 8) % 3 == 2)
-			mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[3].img, \
+		else
+			mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[6].img, \
 			g.player.pos.x, g.player.pos.y);
 	}
 	else
-		mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[0].img, \
+	{
+		if (g.player.v.x > 0)
+		{
+			if ((g.frame / 8) % 3 == 0)
+				mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[1].img, \
+				g.player.pos.x, g.player.pos.y);
+			if ((g.frame / 8) % 3 == 1)
+				mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[2].img, \
+				g.player.pos.x, g.player.pos.y);
+			if ((g.frame / 8) % 3 == 2)
+				mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[3].img, \
+				g.player.pos.x, g.player.pos.y);
+		}
+		else if (g.player.v.x < 0)
+			mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[4].img, \
 			g.player.pos.x, g.player.pos.y);
+		else
+			mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[0].img, \
+			g.player.pos.x, g.player.pos.y);
+	}
 }

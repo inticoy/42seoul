@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+         #
+#    By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 16:53:40 by gyoon             #+#    #+#              #
-#    Updated: 2023/01/03 19:59:56 by gyoon            ###   ########.fr        #
+#    Updated: 2023/01/04 13:49:45 by gyoon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ RM = rm -rf
 # CFLAGS = -Wall -Wextra -Werror
 
 SRCS = srcs/draw_map.c \
+		srcs/hook_key_press.c srcs/hook_key_release.c srcs/hook_loop.c\
 		srcs/init_map.c srcs/init_point.c \
 		srcs/read_assets.c srcs/read_image.c srcs/read_map.c \
 		srcs/so_long.c
