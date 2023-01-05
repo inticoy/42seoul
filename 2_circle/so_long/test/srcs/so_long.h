@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 15:40:52 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/04 16:10:21 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/05 15:30:05 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct s_key
 	t_bool	press_s;
 	t_bool	press_d;
 	t_bool	press_shift;
+	t_bool	press_esc;
 }	t_key;
 
 typedef struct s_game
@@ -102,13 +103,16 @@ typedef struct s_data
 	int		endian;
 }	t_data;
 
-void		draw_map(t_game	g);
+void		draw_game(t_game g);
 
 int			hook_key_release(int keycode, t_game *game);
 int			hook_key_press(int keycode, t_game *game);
 int			hook_loop(t_game *game);
 
+t_game		init_game(void);
+t_key		init_key(void);
 t_map		init_map(void);
+t_player	init_player(t_map m);
 t_point		init_point(char dimension, int x, int y, int z);
 
 t_assets	read_assets(void *mlx);

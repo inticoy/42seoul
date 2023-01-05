@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook_key_press.c                                   :+:      :+:    :+:   */
+/*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/04 13:34:39 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/05 13:50:30 by gyoon            ###   ########.fr       */
+/*   Created: 2023/01/05 14:26:47 by gyoon             #+#    #+#             */
+/*   Updated: 2023/01/05 15:28:27 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "ft_printf.h"
+#include "mlx.h"
 
-int	hook_key_press(int keycode, t_game *game)
+t_game	init_game(void)
 {
-	if (keycode == KEY_A)
-	{
-		game->key.press_a = ft_true;
-		game->key.press_d = ft_false;
-	}
-	if (keycode == KEY_D)
-	{
-		game->key.press_d = ft_true;
-		game->key.press_a = ft_false;
-	}
-	if (keycode == KEY_S)
-		game->key.press_s = ft_true;
-	if (keycode == KEY_W)
-		game->key.press_w = ft_true;
-	ft_printf("pressed : %d\n", keycode);
-	return (0);
+	t_game	g;
+
+	g.frame = 0;
+	g.mlx = mlx_init();
+	g.map = read_map("./maps/1-1.ber");
+	g.player = init_player(g.map);
+	g.assets = read_assets(g.mlx);
+	g.size = init_point(2, 32 * g.map.size.x, 32 * g.map.size.y, -1);
+	g.win = mlx_new_window(g.mlx, g.size.x, g.size.y, TITLE);
+	g.key = init_key();
+	return (g);
 }

@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook_key_press.c                                   :+:      :+:    :+:   */
+/*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/04 13:34:39 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/05 13:50:30 by gyoon            ###   ########.fr       */
+/*   Created: 2023/01/05 14:30:12 by gyoon             #+#    #+#             */
+/*   Updated: 2023/01/05 14:36:02 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "ft_printf.h"
 
-int	hook_key_press(int keycode, t_game *game)
+t_player	init_player(t_map m)
 {
-	if (keycode == KEY_A)
+	t_player	p;
+	int			x;
+	int			y;
+
+	y = 0;
+	while (y < m.size.y)
 	{
-		game->key.press_a = ft_true;
-		game->key.press_d = ft_false;
+		x = 0;
+		while (x < m.size.x)
+		{
+			if (m.map[y][x] == 'P')
+				p.pos = init_point(2, x * 32, y * 32, -1);
+			x++;
+		}
+		y++;
 	}
-	if (keycode == KEY_D)
-	{
-		game->key.press_d = ft_true;
-		game->key.press_a = ft_false;
-	}
-	if (keycode == KEY_S)
-		game->key.press_s = ft_true;
-	if (keycode == KEY_W)
-		game->key.press_w = ft_true;
-	ft_printf("pressed : %d\n", keycode);
-	return (0);
+	p.left = ft_false;
+	p.v = init_point(2, 0, 0, -1);
+	p.a = init_point(2, 0, 0, -1);
+	return (p);
 }
