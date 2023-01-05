@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 15:46:33 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/05 15:47:13 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/05 16:00:30 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,46 +15,25 @@
 
 void	draw_player(t_game g)
 {
+	int	i;
+
 	if (g.player.left)
 	{
 		if (g.player.v.x < 0)
-		{
-			if ((g.frame / 8) % 3 == 0)
-				mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[7].img, \
-				g.player.pos.x, g.player.pos.y);
-			if ((g.frame / 8) % 3 == 1)
-				mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[8].img, \
-				g.player.pos.x, g.player.pos.y);
-			if ((g.frame / 8) % 3 == 2)
-				mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[9].img, \
-				g.player.pos.x, g.player.pos.y);
-		}
+			i = 7 + (g.frame / 8) % 3;
 		else if (g.player.v.x > 0)
-			mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[10].img, \
-			g.player.pos.x, g.player.pos.y);
+			i = 10;
 		else
-			mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[6].img, \
-			g.player.pos.x, g.player.pos.y);
+			i = 6;
 	}
 	else
 	{
 		if (g.player.v.x > 0)
-		{
-			if ((g.frame / 8) % 3 == 0)
-				mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[1].img, \
-				g.player.pos.x, g.player.pos.y);
-			if ((g.frame / 8) % 3 == 1)
-				mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[2].img, \
-				g.player.pos.x, g.player.pos.y);
-			if ((g.frame / 8) % 3 == 2)
-				mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[3].img, \
-				g.player.pos.x, g.player.pos.y);
-		}
+			i = 1 + (g.frame / 8) % 3;
 		else if (g.player.v.x < 0)
-			mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[4].img, \
-			g.player.pos.x, g.player.pos.y);
+			i = 4;
 		else
-			mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[0].img, \
-			g.player.pos.x, g.player.pos.y);
+			i = 0;
 	}
+	mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[i].img, g.player.pos.x, g.player.pos.y);
 }
