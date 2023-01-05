@@ -6,47 +6,45 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 13:49:14 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/05 14:17:00 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/05 15:51:30 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "ft_printf.h"
 
-int	hook_loop(t_game *game)
+int	hook_loop(t_game *g)
 {
-	game->frame++;
-	game->player.a.x = 0;
-	if (game->key.press_d)
+	g->frame++;
+	g->player.a.x = 0;
+	if (g->key.press_d)
 	{
-		game->player.left = ft_false;
-		if (0 <= game->player.v.x && game->player.v.x < 4 && game->frame % 8 == 0)
-			game->player.a.x = 1;
+		g->player.left = ft_false;
+		if (0 <= g->player.v.x && g->player.v.x < 4 && g->frame % 2 == 0)
+			g->player.a.x = 1;
 	}
 	else
 	{
-		if (game->player.v.x > 0 && game->frame % 8 == 0)
-			game->player.a.x = -1;
+		if (g->player.v.x > 0 && g->frame % 8 == 0)
+			g->player.a.x = -1;
 	}
-	if (game->key.press_a)
+	if (g->key.press_a)
 	{
-		game->player.left = ft_true;
-		if (-4 < game->player.v.x && game->player.v.x <= 0 && game->frame % 8 == 0)
-			game->player.a.x = -1;
+		g->player.left = ft_true;
+		if (-4 < g->player.v.x && g->player.v.x <= 0 && g->frame % 2 == 0)
+			g->player.a.x = -1;
 	}
 	else
 	{
-		if (game->player.v.x < 0 && game->frame % 8 == 0)
-			game->player.a.x = 1;
+		if (g->player.v.x < 0 && g->frame % 8 == 0)
+			g->player.a.x = 1;
 	}
-	
-	//ft_printf("here : %d %d %d \n", game->player.a.x, game->player.v.x, game->player.pos.x);
-	game->player.v.x += game->player.a.x;
-	game->player.pos.x += game->player.v.x;
-	if (game->key.press_w)
-		game->player.pos.y -= 6;
-	if (game->key.press_s)
-		game->player.pos.y += 8;
-	draw_game(*game);
+	g->player.v.x += g->player.a.x;
+	g->player.pos.x += g->player.v.x;
+	if (g->key.press_w)
+		g->player.pos.y -= 6;
+	if (g->key.press_s)
+		g->player.pos.y += 8;
+	draw_game(*g);
 	return (0);
 }

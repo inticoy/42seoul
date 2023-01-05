@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:21:17 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/05 14:17:26 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/05 15:47:01 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,81 +16,7 @@
 
 void	draw_game(t_game g)
 {
-	int	x;
-	int	y;
-
-	y = 0;
-	x = 0;
 	mlx_clear_window(g.mlx, g.win);
-	while (*g.map.map)
-	{
-		x = 0;
-		while (x < g.map.size.x)
-		{
-			if ((*g.map.map)[x] == '1')
-				mlx_put_image_to_window(g.mlx, g.win, g.assets.blocks[2].img, \
-										x * 32, y * 32);
-			else if ((*g.map.map)[x] == '0' || (*g.map.map)[x] == 'E' || (*g.map.map)[x] == 'P')
-				mlx_put_image_to_window(g.mlx, g.win, g.assets.bg.img, \
-										x * 32, y * 32);
-			else if ((*g.map.map)[x] == 'C')
-			{
-				if ((g.frame / 8) % 5 == 0 || (g.frame / 8) % 5 == 4)
-					mlx_put_image_to_window(g.mlx, g.win, g.assets.coin_block[0].img, \
-										x * 32, y * 32);
-				else if ((g.frame / 8) % 5 == 1 || (g.frame / 8) % 5 == 3)
-					mlx_put_image_to_window(g.mlx, g.win, g.assets.coin_block[1].img, \
-										x * 32, y * 32);
-				else if ((g.frame / 8) % 5 == 2)
-					mlx_put_image_to_window(g.mlx, g.win, g.assets.coin_block[2].img, \
-										x * 32, y * 32);
-			}
-			x++;
-		}
-		g.map.map++;
-		y++;
-	}
-
-	if (g.player.left)
-	{
-		if (g.player.v.x < 0)
-		{
-			if ((g.frame / 8) % 3 == 0)
-				mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[7].img, \
-				g.player.pos.x, g.player.pos.y);
-			if ((g.frame / 8) % 3 == 1)
-				mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[8].img, \
-				g.player.pos.x, g.player.pos.y);
-			if ((g.frame / 8) % 3 == 2)
-				mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[9].img, \
-				g.player.pos.x, g.player.pos.y);
-		}
-		else if (g.player.v.x > 0)
-			mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[10].img, \
-			g.player.pos.x, g.player.pos.y);
-		else
-			mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[6].img, \
-			g.player.pos.x, g.player.pos.y);
-	}
-	else
-	{
-		if (g.player.v.x > 0)
-		{
-			if ((g.frame / 8) % 3 == 0)
-				mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[1].img, \
-				g.player.pos.x, g.player.pos.y);
-			if ((g.frame / 8) % 3 == 1)
-				mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[2].img, \
-				g.player.pos.x, g.player.pos.y);
-			if ((g.frame / 8) % 3 == 2)
-				mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[3].img, \
-				g.player.pos.x, g.player.pos.y);
-		}
-		else if (g.player.v.x < 0)
-			mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[4].img, \
-			g.player.pos.x, g.player.pos.y);
-		else
-			mlx_put_image_to_window(g.mlx, g.win, g.assets.mario[0].img, \
-			g.player.pos.x, g.player.pos.y);
-	}
+	draw_map(g);
+	draw_player(g);
 }

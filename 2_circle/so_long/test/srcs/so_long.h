@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 15:40:52 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/05 15:30:05 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/05 15:52:18 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 # define KEY_A 0
 # define KEY_S 1
 # define KEY_D 2
+# define KEY_SHIFT 257
+# define KEY_ESC 53
 
 typedef struct s_point	t_size;
 typedef struct s_point	t_point;
@@ -67,6 +69,7 @@ typedef struct s_map
 typedef struct s_player
 {
 	t_bool			left;
+	t_bool			jump;
 	t_point			pos;
 	t_velocity		v;
 	t_acceleration	a;
@@ -104,6 +107,8 @@ typedef struct s_data
 }	t_data;
 
 void		draw_game(t_game g);
+void		draw_map(t_game g);
+void		draw_player(t_game g);
 
 int			hook_key_release(int keycode, t_game *game);
 int			hook_key_press(int keycode, t_game *game);

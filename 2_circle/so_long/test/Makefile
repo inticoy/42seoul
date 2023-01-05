@@ -6,7 +6,7 @@
 #    By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 16:53:40 by gyoon             #+#    #+#              #
-#    Updated: 2023/01/05 15:32:31 by gyoon            ###   ########.fr        #
+#    Updated: 2023/01/05 15:47:33 by gyoon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,8 @@ RM = rm -rf
 
 # CFLAGS = -Wall -Wextra -Werror
 
-SRCS = srcs/draw_game.c \
-		srcs/hook_key_press.c srcs/hook_key_release.c srcs/hook_loop.c\
+SRCS = srcs/draw_game.c srcs/draw_map.c srcs/draw_player.c \
+		srcs/hook_key_press.c srcs/hook_key_release.c srcs/hook_loop.c \
 		srcs/init_game.c srcs/init_key.c srcs/init_map.c srcs/init_player.c srcs/init_point.c \
 		srcs/read_assets.c srcs/read_image.c srcs/read_map.c \
 		srcs/so_long.c
