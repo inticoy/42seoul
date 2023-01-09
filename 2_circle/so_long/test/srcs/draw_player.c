@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 15:46:33 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/05 16:00:30 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/09 17:17:57 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ void	draw_player(t_game g)
 {
 	int	i;
 
-	if (g.player.left)
+	if (g.player.is_left)
 	{
-		if (g.player.v.x < 0)
+		if (g.player.remaining != 96) // if (g.player.v.y)
+			i = 11;
+		else if (g.player.v.x < 0)
 			i = 7 + (g.frame / 8) % 3;
 		else if (g.player.v.x > 0)
 			i = 10;
@@ -28,7 +30,9 @@ void	draw_player(t_game g)
 	}
 	else
 	{
-		if (g.player.v.x > 0)
+		if (g.player.remaining != 96) // if (g.player.v.y)
+			i = 5;
+		else if (g.player.v.x > 0)
 			i = 1 + (g.frame / 8) % 3;
 		else if (g.player.v.x < 0)
 			i = 4;

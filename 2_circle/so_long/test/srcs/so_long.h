@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 15:40:52 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/05 15:52:18 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/09 16:23:21 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	t_bool			left;
-	t_bool			jump;
+	t_bool			is_left;
+	int				remaining;
 	t_point			pos;
 	t_velocity		v;
 	t_acceleration	a;

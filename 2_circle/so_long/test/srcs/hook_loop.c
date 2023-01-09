@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 13:49:14 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/05 17:15:21 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/09 17:10:01 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	hook_loop(t_game *g)
 	g->player.a.x = 0;
 	if (g->key.press_d)
 	{
-		g->player.left = ft_false;
+		g->player.is_left = ft_false;
 		if (0 <= g->player.v.x && g->player.v.x < 4 && g->frame % 2 == 0)
 			g->player.a.x = 1;
 	}
@@ -30,7 +30,7 @@ int	hook_loop(t_game *g)
 	}
 	if (g->key.press_a)
 	{
-		g->player.left = ft_true;
+		g->player.is_left = ft_true;
 		if (-4 < g->player.v.x && g->player.v.x <= 0 && g->frame % 2 == 0)
 			g->player.a.x = -1;
 	}
@@ -43,30 +43,19 @@ int	hook_loop(t_game *g)
 
 
 	g->player.a.y = 0;
-	// if (g->key.press_s)
-	// {
-	// 	if (0 <= g->player.v.y && g->player.v.y < 4 && g->frame % 2 == 0)
-	// 		g->player.a.y = 1;
-	// }
-	// else
-	// {
-	// 	if (g->player.v.y > 0 && g->frame % 8 == 0)
-	// 		g->player.a.y = -1;
-	// }
 	if (g->key.press_w)
 	{
-		if (-4 < g->player.v.y && g->player.v.y <= 0 && g->frame % 2 == 0)
-			g->player.a.y = -4;
+		if (g->player.remaining > 0 && -12 < g->player.v.y && g->player.v.y <= 0)
+			g->player.a.y = -8;
+		else if (g->player.remaining > 0 && -12 == g->player.v.y)
+			g->player.a.y = -2;
 	}
-	else
-	{
-		if (g->player.v.y < 0 && g->frame % 8 == 0)
-			g->player.a.y = -4;
-	}
-	g->player.a.y += 1;
-	g->player.v.y += g->player.a.y;
-	
-	int blocked_x = 0;
+	g->player.a.y += 2;
+	if (g->player.v.y + g->player.a.y >= -12 && g->player.v.y + g->player.a.y <= 12)
+		g->player.v.y += g->player.a.y;
+	ft_printf("%d %d\n", g->player.v.y, g->player.a.y);
+
+	int	blocked_x = 0;
 	int	blocked_y = 0;
 	t_point	next_x;
 	t_point	next_y;
@@ -101,27 +90,34 @@ int	hook_loop(t_game *g)
 	if (g->map.map[next_y.y/32][next_y.x/32] == '1')
 	{
 		blocked_y = 1;
+		g->player.remaining = 0;
 		ft_printf("A\n");
 	}
 	if (g->map.map[next_y.y/32][(next_y.x + 31)/32] == '1')
 	{
 		blocked_y = 1;
+		g->player.remaining = 0;
 		ft_printf("B\n");
 	}
 	if (g->map.map[(next_y.y + 31)/32][next_y.x/32] == '1')
 	{
 		blocked_y = 1;
+		g->player.remaining = 96;
 		ft_printf("C\n");
 	}
 	if (g->map.map[(next_y.y + 31)/32][(next_y.x + 31)/32] == '1')
 	{
 		blocked_y = 1;
+		g->player.remaining = 96;
 		ft_printf("D\n");
 	}
 	if (blocked_y)
 		g->player.v.y = 0;
 	else
+	{
 		g->player.pos.y += g->player.v.y;
+		g->player.remaining += g->player.v.y;
+	}
 	draw_game(*g);
 	return (0);
 }
