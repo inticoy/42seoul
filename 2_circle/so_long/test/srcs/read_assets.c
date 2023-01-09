@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_assets.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 19:54:19 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/04 16:10:51 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/09 22:55:34 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ t_assets	read_assets(void *mlx)
 {
 	t_assets	assets;
 
-	assets.bg = read_image(mlx, "./assets/sky_0.xpm");
-	assets.coin_block[0] = read_image(mlx, "./assets/item_0.xpm");
-	assets.coin_block[1] = read_image(mlx, "./assets/item_1.xpm");
-	assets.coin_block[2] = read_image(mlx, "./assets/item_2.xpm");
-	assets.blocks[0] = read_image(mlx, "./assets/ground_0.xpm");
-	assets.blocks[1] = read_image(mlx, "./assets/stair_0.xpm");
-	assets.blocks[2] = read_image(mlx, "./assets/wall_0.xpm");
+	assets.block[0] = read_image(mlx, "./assets/sky_0.xpm");
+	assets.block[1] = read_image(mlx, "./assets/ground_0.xpm");
+	assets.block[2] = read_image(mlx, "./assets/stair_0.xpm");
+	assets.block[3] = read_image(mlx, "./assets/wall_0.xpm");
+	assets.block[10] = read_image(mlx, "./assets/item_0.xpm");
+	assets.block[11] = read_image(mlx, "./assets/item_1.xpm");
+	assets.block[12] = read_image(mlx, "./assets/item_2.xpm");
 	assets.mario[0] = read_image(mlx, "./assets/mario_0.xpm");
 	assets.mario[1] = read_image(mlx, "./assets/mario_1.xpm");
 	assets.mario[2] = read_image(mlx, "./assets/mario_2.xpm");
