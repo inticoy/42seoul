@@ -1,6 +1,6 @@
 path = "../assets/"
-filename = "ground_0.xpm"
-newfilename = "ground_0.xpm"
+filename = "item_3.xpm"
+newfilename = "item_3.xpm"
 
 pixel_from = 16
 pixel_to = 32
@@ -15,8 +15,8 @@ after[3] = after[3].replace(str(pixel_from), str(pixel_to), 2)
 
 for line in range(5 + colors, 5 + colors + pixel_from):
 	newline = ""
-	for letter in range(0, len(before[line][1:1 + pixel_from])):
-		newline += before[line][1 + letter * 2] + before[line][2 + letter * 2] + before[line][1 + letter * 2] + before[line][2 + letter * 2]
+	for letter in before[line][1:1 + pixel_from]:
+		newline += letter + letter
 	after.append('"' + newline + '",')
 	after.append('"' + newline + '",')
 

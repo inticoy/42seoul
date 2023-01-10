@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 15:40:52 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/09 23:11:24 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/10 20:14:48 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_image
 
 typedef struct s_assets
 {
-	t_image	block[13];
+	t_image	block[14];
 	t_image	mario[12];
 }	t_assets;
 

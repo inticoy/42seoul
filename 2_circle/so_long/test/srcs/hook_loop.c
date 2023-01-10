@@ -6,16 +6,15 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 13:49:14 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/09 19:32:53 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/10 20:15:28 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "ft_printf.h"
 
-int	hook_loop(t_game *g)
+static void	acceleration_x(t_game *g)
 {
-	g->frame++;
 	g->player.a.x = 0;
 	if (g->key.press_d)
 	{
@@ -39,9 +38,10 @@ int	hook_loop(t_game *g)
 		if (g->player.v.x < 0 && g->frame % 8 == 0)
 			g->player.a.x = 1;
 	}
-	g->player.v.x += g->player.a.x;
+}
 
-
+static void	acceleration_y(t_game *g)
+{
 	g->player.a.y = 0;
 	if (g->key.press_w)
 	{
@@ -51,33 +51,31 @@ int	hook_loop(t_game *g)
 			g->player.a.y = -2;
 	}
 	g->player.a.y += 2;
-	if (g->player.v.y + g->player.a.y >= -12 && g->player.v.y + g->player.a.y <= 12)
-		g->player.v.y += g->player.a.y;
-	ft_printf("%d %d\n", g->player.v.y, g->player.a.y);
+}
 
-	int	blocked_x = 0;
-	int	blocked_y = 0;
+static void	block_x(t_game *g)
+{
+	int		blocked_x;
 	t_point	next_x;
-	t_point	next_y;
 
+	blocked_x = 0;
 	next_x = init_point(2, g->player.pos.x + g->player.v.x, g->player.pos.y, -1);
-	
-	if (g->map.map[next_x.y/32][next_x.x/32] == '1')
+	if ('1' <= g->map.map[next_x.y/32][next_x.x/32] && g->map.map[next_x.y/32][next_x.x/32] <= 'C')
 	{
 		blocked_x = 1;
 		ft_printf("A\n");
 	}
-	if (g->map.map[next_x.y/32][(next_x.x + 31)/32] == '1')
+	if ('1' <=  g->map.map[next_x.y/32][(next_x.x + 31)/32] && g->map.map[next_x.y/32][(next_x.x + 31)/32] <= 'C')
 	{
 		blocked_x = 1;
 		ft_printf("B\n");
 	}
-	if (g->map.map[(next_x.y + 31)/32][next_x.x/32] == '1')
+	if ('1' <= g->map.map[(next_x.y + 31)/32][next_x.x/32] && g->map.map[(next_x.y + 31)/32][next_x.x/32] <= 'C')
 	{
 		blocked_x = 1;
 		ft_printf("C\n");
 	}
-	if (g->map.map[(next_x.y + 31)/32][(next_x.x + 31)/32] == '1')
+	if ('1' <= g->map.map[(next_x.y + 31)/32][(next_x.x + 31)/32] && g->map.map[(next_x.y + 31)/32][(next_x.x + 31)/32] <= 'C')
 	{
 		blocked_x = 1;
 		ft_printf("D\n");
@@ -86,28 +84,38 @@ int	hook_loop(t_game *g)
 		g->player.v.x = 0;
 	else
 		g->player.pos.x += g->player.v.x;
+}
 
+static void	block_y(t_game *g)
+{
+	int		blocked_y;
+	t_point	next_y;
+
+	blocked_y = 0;
 	next_y = init_point(2, g->player.pos.x, g->player.pos.y + g->player.v.y, -1);
-
-	if (g->map.map[next_y.y/32][next_y.x/32] == '1')
+	if ('1' <= g->map.map[next_y.y/32][next_y.x/32] && g->map.map[next_y.y/32][next_y.x/32] <= 'C')
 	{
 		blocked_y = 1;
 		g->player.remaining = 0;
+		if (g->map.map[next_y.y/32][next_y.x/32] == 'C')
+			g->map.map[next_y.y/32][next_y.x/32] = '2';
 		ft_printf("A\n");
 	}
-	if (g->map.map[next_y.y/32][(next_y.x + 31)/32] == '1')
+	if ('1' <=  g->map.map[next_y.y/32][(next_y.x + 31)/32] && g->map.map[next_y.y/32][(next_y.x + 31)/32] <= 'C')
 	{
 		blocked_y = 1;
 		g->player.remaining = 0;
+		if (g->map.map[next_y.y/32][(next_y.x + 31)/32] == 'C')
+			g->map.map[next_y.y/32][(next_y.x + 31)/32] = '2';
 		ft_printf("B\n");
 	}
-	if (g->map.map[(next_y.y + 31)/32][next_y.x/32] == '1')
+	if ('1' <= g->map.map[(next_y.y + 31)/32][next_y.x/32] && g->map.map[(next_y.y + 31)/32][next_y.x/32] <= 'C')
 	{
 		blocked_y = 1;
 		g->player.remaining = 96;
 		ft_printf("C\n");
 	}
-	if (g->map.map[(next_y.y + 31)/32][(next_y.x + 31)/32] == '1')
+	if ('1' <= g->map.map[(next_y.y + 31)/32][(next_y.x + 31)/32] && g->map.map[(next_y.y + 31)/32][(next_y.x + 31)/32] <= 'C')
 	{
 		blocked_y = 1;
 		g->player.remaining = 96;
@@ -120,6 +128,18 @@ int	hook_loop(t_game *g)
 		g->player.pos.y += g->player.v.y;
 		g->player.remaining += g->player.v.y;
 	}
+}
+
+int	hook_loop(t_game *g)
+{
+	g->frame++;
+	acceleration_x(g);
+	g->player.v.x += g->player.a.x;
+	acceleration_y(g);
+	if (g->player.v.y + g->player.a.y >= -12 && g->player.v.y + g->player.a.y <= 12)
+		g->player.v.y += g->player.a.y;
+	block_x(g);
+	block_y(g);
 	draw_game(*g);
 	return (0);
 }
