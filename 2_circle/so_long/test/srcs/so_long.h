@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 15:40:52 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/09 16:23:21 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/09 23:11:24 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,7 @@ typedef struct s_image
 
 typedef struct s_assets
 {
-	t_image	bg;
-	t_image	coin_block[3];
-	t_image	blocks[3];
+	t_image	block[13];
 	t_image	mario[12];
 }	t_assets;
 

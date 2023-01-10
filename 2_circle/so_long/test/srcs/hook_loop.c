@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 13:49:14 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/09 17:10:01 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/09 19:32:53 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	hook_loop(t_game *g)
 	t_point	next_y;
 
 	next_x = init_point(2, g->player.pos.x + g->player.v.x, g->player.pos.y, -1);
-	next_y = init_point(2, g->player.pos.x, g->player.pos.y + g->player.v.y, -1);
+	
 	if (g->map.map[next_x.y/32][next_x.x/32] == '1')
 	{
 		blocked_x = 1;
@@ -86,6 +86,8 @@ int	hook_loop(t_game *g)
 		g->player.v.x = 0;
 	else
 		g->player.pos.x += g->player.v.x;
+
+	next_y = init_point(2, g->player.pos.x, g->player.pos.y + g->player.v.y, -1);
 
 	if (g->map.map[next_y.y/32][next_y.x/32] == '1')
 	{

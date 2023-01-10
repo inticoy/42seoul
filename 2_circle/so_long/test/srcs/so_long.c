@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 15:38:06 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/05 15:30:35 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/09 22:41:08 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include "mlx.h"
 #include "so_long.h"
+#include "mlx.h"
 
 int	main(void)
 {
